@@ -1,10 +1,12 @@
 import { loadEnv } from "vite";
 import { defineConfig } from 'astro/config';
 import react from "@astrojs/react";
-
 import netlify from "@astrojs/netlify";
-
-const { PUBLIC_WORDPRESS_API_URL } = loadEnv(process.env.NODE_ENV, process.cwd(), "");
+import sitemap from "@astrojs/sitemap";
+const {
+  PUBLIC_WORDPRESS_API_URL,
+  PUBLIC_SITE_URL
+} = loadEnv(process.env.NODE_ENV, process.cwd(), "");
 
 if (!URL.canParse(PUBLIC_WORDPRESS_API_URL)) {
   throw new Error(`
@@ -12,16 +14,21 @@ if (!URL.canParse(PUBLIC_WORDPRESS_API_URL)) {
     Add to your environment variables PUBLIC_WORDPRESS_API_URL.
   `);
 }
+const {
+  protocol,
+  hostname,
+  port,
+  pathname
+} = new URL(`${PUBLIC_WORDPRESS_API_URL}`);
 
-const { protocol, hostname, port, pathname } = new URL(`${PUBLIC_WORDPRESS_API_URL}`);
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [react()],
-  site: `${protocol}/${hostname}`,
+  site: PUBLIC_SITE_URL,
+  integrations: [react(), sitemap()],
   image: {
-    domains: [`${hostname}`],
-},
+    domains: [hostname, "secure.gravatar.com"]
+  }
   // output: "hybrid",
-    // adapter: netlify(),
+  // adapter: netlify(),
 });

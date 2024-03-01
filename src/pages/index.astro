@@ -4,7 +4,6 @@ import Card from '../components/Card.astro';
 import { getHomePage } from "~data/page";
 
 const page = await getHomePage();
-console.log(page);
 ---
 
 <Layout seoData={page.page.seo}>

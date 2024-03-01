@@ -1,0 +1,23 @@
+{
+    "files.associations": {
+        "*.scss": "scss"
+    },
+    "cssvar.files": [
+        "./src/styles/variables/_colours.scss",
+        "./src/styles/variables/_typography.scss",
+        "./src/styles/variables/_sizing-spacing.scss",
+        "./src/styles/variables/_media-queries.scss",
+        "./src/styles/variables/_animations.scss",
+        "./src/styles/variables/_borders.scss",
+        "./src/styles/variables/_shadows.scss",
+        "./src/styles/variables/_misc.scss"
+    ],
+    "cssvar.disableSort": true,
+    "cssvar.extensions": ["css", "scss", "html", "jsx", "tsx"],
+    "prettier.tabWidth": 4,
+    "prettier.printWidth": 200,
+    "editor.wordWrap": "on",
+    "editor.formatOnSave": true,
+    "files.trimTrailingWhitespace": true,
+    "files.trimFinalNewlines": true
+}
