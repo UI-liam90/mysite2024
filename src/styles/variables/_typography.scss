@@ -1,0 +1,46 @@
+@use "../abstracts/mixins" as *;
+
+:root {
+  /* ---------------------------------------
+    Font Families
+    ------------------------------------------ */
+  --font-sans: "Roboto", sans-serif;
+  --font-serif: "Roboto Slab Variable", sans-serif;
+  --font-mono: Dank Mono, Operator Mono, Inconsolata, Fira Mono, ui-monospace,
+    SF Mono, Monaco, Droid Sans Mono, Source Code Pro, monospace;
+  --font-body: "Roboto", sans-serif;
+  --font-heading: "Roboto Slab Variable", sans-serif;
+  /* ---------------------------------------
+    Font Sizes
+    ------------------------------------------ */
+  /* These are based off the perfect Fouth here: https://type-scale.com/ */
+  /* @link https://utopia.fyi/type/calculator?c=548,42,1.25,1920,48,1.25,5,4,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l */
+  --font-size-mouse: 0.75rem; /* 12px */
+  --font-size-cat: #{clamped(14px, 16px)}; /* 16px */
+  --font-size-fox: #{clamped(16px, 20px)}; /* 16px / 18px */
+  --font-size-dog: #{clamped(17px, 38px)}; /* 22px / 25px */
+  --font-size-wolf: #{clamped(22px, 50px)}; /* 27px / 31px */
+  --font-size-lion: #{clamped(30px, 67px)}; /* 34px / 39px */
+  --font-size-bear: #{clamped(40px, 90px)}; /* 42px / 48px */
+  --font-size-elephant: #{clamped(53px, 120px)}; /* 53px / 60px */
+
+  /* ---------------------------------------
+    Font line heights and spacing
+    ------------------------------------------ */
+  --font-lineheight-00: 0.95;
+  --font-lineheight-0: 1.1;
+  --font-lineheight-1: 1.25;
+  --font-lineheight-2: 1.375;
+  --font-lineheight-3: 1.5;
+  --font-lineheight-4: 1.75;
+  --font-lineheight-5: 2;
+  --font-letterspacing-0: -0.05em;
+  --font-letterspacing-1: 0.025em;
+  --font-letterspacing-2: 0.05em;
+  --font-letterspacing-3: 0.075em;
+  --font-letterspacing-4: 0.15em;
+  --font-letterspacing-5: 0.5em;
+  --font-letterspacing-6: 0.75em;
+  --font-letterspacing-7: 1em;
+  --font-letter-spacing-theme: #{calc-letter-spacing(50)};
+}

@@ -1,0 +1,105 @@
+@use "../abstracts/breakpoint" as *;
+
+.news-header {
+    background-color: var(--grey-300);
+    display: flex;
+    gap: var(--spacing-8);
+    padding-bottom: var(--spacing-7);
+    @include breakpoint(lg) {
+        display: grid;
+        grid-template-columns: 1fr 1.5fr;
+    }
+}
+.news-header__image img {
+    border-radius: var(--radius-32);
+    overflow: hidden;
+}
+.byline {
+    font-weight: 700;
+    .post-category {
+        display: inline-block;
+        padding: var(--spacing-1) 0;
+        background-color: var(--ube);
+        border-radius: var(--radius-5);
+        margin-right: 0;
+        margin-left: var(--spacing-2);
+
+        &::after {
+            content: ",";
+        }
+        &:last-child::after {
+            display: none;
+        }
+        a {
+            background-image: linear-gradient(var(--black), var(--black)), linear-gradient(var(--white), var(--white));
+            background-size: 100% 2px, 0 2px;
+            background-position: 100% 100%, 0 100%;
+            background-repeat: no-repeat, no-repeat;
+            transition: background-size 0.5s linear, color 0.5s linear;
+            &:hover,
+            &:focus {
+                color: var(--white);
+                background-size: 0 2px, 100% 2px;
+            }
+        }
+    }
+}
+.post-main {
+    background-color: var(--white);
+    .post-main__container {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-8);
+    }
+    .post-main__article {
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-size: var(--font-size-dog);
+        }
+    }
+    .gallery {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-4);
+        @include breakpoint(sm) {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        }
+    }
+}
+.post-main__related {
+    position: relative;
+    .related-post {
+        > h2 {
+            margin-top: 0;
+            grid-column: 1 / -1;
+        }
+        position: sticky;
+        top: 0;
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-7);
+        @include breakpoint(sm) {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        }
+        .news-grid-item {
+            background-color: var(--white);
+        }
+    }
+}
+.blog-post-nav {
+    ul {
+        margin: 0 0 var(--spacing-8);
+        display: flex;
+        justify-content: space-between;
+        list-style: none;
+        li {
+            padding: 0;
+        }
+    }
+}

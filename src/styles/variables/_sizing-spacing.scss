@@ -1,0 +1,46 @@
+@use "../abstracts/breakpoint" as *;
+:root {
+    /* ---------------------------------------
+    Character Limit Sizes and max widths
+    ------------------------------------------ */
+    --size-content-1: 20ch;
+    --size-content-2: 45ch;
+    --size-content-3: 60ch;
+    --size-header-1: 20ch;
+    --size-header-2: 25ch;
+    --size-header-3: 45rem;
+
+    /* ---------------------------------------
+    Gaps, Padding, & Margins
+    ------------------------------------------ */
+    /* these work on a scale of 4px increments, please keep to this mind set if adding more sizes */
+    --spacing-1: 4px;
+    --spacing-2: 8px;
+    --spacing-3: 12px;
+    --spacing-4: 16px;
+    --spacing-5: 20px;
+    --spacing-6: 24px;
+    --spacing-7: 28px;
+    --spacing-8: 32px;
+    --spacing-9: 36px;
+    --spacing-10: 40px;
+    --spacing-20: 80px;
+    --spacing-30: 120px;
+    --spacing-40: 160px;
+    /* ---------------------------------------
+    container Settings
+    ------------------------------------------ */
+    --container-width: 1200px;
+    --container-y-gutters: var(--spacing-6);
+    --container-x-gutters: var(--spacing-10);
+
+    /* ---------------------------------------
+    Aspect ratios
+    ------------------------------------------ */
+    --ratio-box: 1;
+    --ratio-landscape: 4/3;
+    --ratio-portrait: 3/4;
+    --ratio-widescreen: 16/9;
+    --ratio-ultrawide: 18/5;
+    --ratio-golden: 1.618/1;
+}

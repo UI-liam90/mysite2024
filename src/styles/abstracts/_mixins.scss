@@ -1,0 +1,68 @@
+@use "sass:math";
+
+// function to calc letter spacing correctly when using values from Adobe tools
+@function calc-letter-spacing($kerningValue) {
+    @return #{math.div($kerningValue, 1000)}em;
+}
+
+//mixin to add the neccessary placeholder code
+@mixin placeholder {
+    &::-webkit-input-placeholder {
+        @content;
+    }
+
+    &:-moz-placeholder {
+        /* Firefox 18- */
+        @content;
+    }
+
+    &::-moz-placeholder {
+        /* Firefox 19+ */
+        @content;
+    }
+
+    &:-ms-input-placeholder {
+        @content;
+    }
+}
+
+//mixin to create media queries
+@mixin create-mq($breakpoint) {
+    @if ($breakpoint == 0) {
+        @content;
+    } @else {
+        @media screen and ($breakpoint) {
+            @content;
+        }
+    }
+}
+
+// change px to rem
+@function to-rems($px) {
+    $rems: math.div($px, 16px) * 1rem;
+    @return $rems;
+}
+
+//round numbers
+@function rnd($number, $places: 0) {
+    $n: 1;
+    @if $places > 0 {
+        @for $i from 1 through $places {
+            $n: $n * 10;
+        }
+    }
+    @return math.div(math.round($number * $n), $n);
+}
+
+//create fluid font sizes with clamp
+$default-min-bp: 548px;
+$default-max-bp: 1920px;
+
+@function clamped($min-px, $max-px, $min-bp: $default-min-bp, $max-bp: $default-max-bp) {
+    $slope: math.div($max-px - $min-px, $max-bp - $min-bp);
+    $slope-vw: rnd($slope * 100, 2);
+    $intercept-rems: rnd(to-rems($min-px - $slope * $min-bp), 2);
+    $min-rems: rnd(to-rems($min-px), 2);
+    $max-rems: rnd(to-rems($max-px), 2);
+    @return clamp(#{$min-rems}, #{$slope-vw}vw + #{$intercept-rems}, #{$max-rems});
+}

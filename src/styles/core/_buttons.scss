@@ -1,0 +1,49 @@
+a.button,
+a.button.button--primary,
+button.button,
+input[type="submit"].button,
+input[type="submit"],
+button[type="submit"],
+input[type="button"],
+input[type="reset"] {
+    --btn-bg-colour: var(--brand-1);
+    --btn-bg-colour-interactive: var(--brand-2);
+    --btn-border-colour: var(--black);
+    --btn-text-colour: var(--white);
+    --btn-text-colour-interactive: var(--black);
+    --btn-font-size: 16px;
+    cursor: pointer;
+    background-color: var(--btn-bg-colour);
+    display: inline-block;
+    text-decoration: none;
+    border: 0px solid var(--btn-border-colour);
+    padding: var(--spacing-3) var(--spacing-6);
+    margin-top: var(--spacing-4);
+    color: var(--btn-text-colour);
+    border-radius: 8px;
+    transition: all 500ms linear;
+    font-size: var(--btn-font-size);
+    text-align: center;
+    font-weight: 700;
+    &:hover:not(:disabled),
+    &:active:not(:disabled),
+    &:focus:not(:disabled) {
+        background-color: var(--btn-bg-colour-interactive);
+        color: var(--btn-text-colour-interactive);
+    }
+    &:disabled {
+        --btn-bg-colour: var(--grey-600);
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+    &.button--secondary,
+    &.button--alt {
+        --btn-bg-colour: var(--brand-2);
+        --btn-text-colour: var(--black);
+        --btn-bg-colour-interactive: var(--lblue);
+        --btn-text-colour-interactive: var(--black);
+    }
+    &.button--large {
+        --btn-font-size: 20px;
+    }
+}
