@@ -1,0 +1,12 @@
+@use "~styles/abstracts/breakpoint" as *;
+.video-hero video {
+    display: block;
+    font-size: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+.image-hero img,
+.slider-hero img {
+    object-fit: cover;
+}

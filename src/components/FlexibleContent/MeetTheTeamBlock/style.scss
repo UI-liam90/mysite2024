@@ -1,0 +1,150 @@
+@use "@/styles/abstracts/breakpoint" as *;
+.meet-the-team-block {
+  padding: var(--spacing-20) 0;
+  .meet-the-team-block__container {
+    max-width: var(--container-width);
+    padding-left: var(--container-x-gutters);
+    padding-right: var(--container-x-gutters);
+  }
+  .modal {
+    max-width: 450px;
+    max-height: 90vh;
+    border-radius: 30px;
+    border: 10px solid var(--white);
+    border-right: 0;
+    overflow: hidden;
+    padding: 0;
+    background-color: var(--white);
+    color: var(--white);
+    .social-media-menu__team {
+      --colour: var(--white);
+      --interaction-colour: var(--black);
+    }
+    .modal-wrapper {
+      position: relative;
+      overflow-y: auto;
+      overflow-x: hidden;
+      scrollbar-width: thin;
+      scrollbar-color: var(--ube) rgba(255 255 255 / 0.3);
+      max-height: 90vh;
+      .modal-close {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        z-index: var(--layer-3);
+        svg {
+          width: 30px;
+          height: 30px;
+        }
+      }
+      .modal-wrapper__image {
+        position: relative;
+        aspect-ratio: 7 / 8;
+        background-color: var(--white);
+        display: flex;
+        align-items: flex-end;
+        h4 {
+          top: 20px;
+          left: 0;
+          position: absolute;
+          font-size: var(--font-size-fox);
+          background-color: var(--cornflower);
+          padding: var(--spacing-2);
+        }
+        .social-media-menu__team {
+          --size: 20px;
+          background-color: var(--damson);
+          position: absolute;
+          bottom: 0;
+          right: 0;
+          padding: var(--spacing-2);
+          margin-bottom: var(--spacing-2);
+          .social-icon {
+            margin: 0;
+          }
+        }
+        .super-skills {
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          list-style: none;
+          margin: 0 0 var(--spacing-2);
+          li {
+            background-color: var(--ube);
+            padding: var(--spacing-2);
+            margin-bottom: var(--spacing-1);
+            font-size: var(--font-size-mouse);
+            font-weight: 700;
+          }
+        }
+      }
+      img {
+        aspect-ratio: 1;
+        object-fit: contain;
+        border-radius: 0;
+      }
+      .modal-wrapper__content {
+        padding: var(--spacing-5);
+        background-color: var(--prune);
+        p {
+          font-size: var(--font-size-cat);
+        }
+      }
+    }
+  }
+}
+.meet-the-team-block__team-grid {
+  display: grid;
+  gap: 30px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  .meet-team-title {
+    grid-column: 1 / -1;
+  }
+  .team-member-block {
+    aspect-ratio: 1;
+    border-radius: 30px;
+    display: flex;
+    align-items: flex-end;
+    cursor: pointer;
+    &.team-member-block--popups {
+      cursor: pointer;
+      transition: transform 250ms var(--ease-1);
+      &:hover,
+      &:focus {
+        transform: scale(1.1);
+      }
+    }
+    img {
+      aspect-ratio: 1;
+      object-fit: contain;
+      border-radius: 30px;
+    }
+  }
+  @include breakpoint(md) {
+    .meet-team-title {
+      text-align: right;
+      grid-column: -3 / -1;
+      grid-row: 1 / 2;
+    }
+  }
+  @include breakpoint(lg) {
+    .meet-team-title {
+      grid-column: -4 / -1;
+    }
+  }
+}
+
+// .modal--text-light {
+//     color: var(--white);
+//     .social-media-menu__team {
+//         --colour: var(--white);
+//         --interaction-colour: var(--black);
+//     }
+// }
+// .modal--text-dark {
+//     color: var(--black);
+//     .social-media-menu__team {
+//         --colour: var(--black);
+//         --interaction-colour: var(--white);
+//     }
+// }

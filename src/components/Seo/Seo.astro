@@ -7,7 +7,7 @@ const { seoData } = Astro.props;
 
 const siteUrl = import.meta.env.PUBLIC_SITE_URL;
 
-const canonicalUrl = new URL(`${seoData.canonical}`);
+const canonicalUrl = seoData.canonical && seoData.canonical !== "/" && seoData.canonical !== "" ? new URL(`${seoData?.canonical}`) : "";
 const opengraphUrl = new URL(`${seoData?.opengraphUrl}`);
 
 // assign data from yoast to varibles
@@ -17,7 +17,7 @@ const metaKeywords = seoData?.metaKeywords;
 const schema = seoData?.schema.raw;
 const titleOutput = metaTitle ? metaTitle : globalSeo.generalSettings.title;
 const descriptionOutput = metaDescription ? metaDescription : globalSeo.generalSettings.description;
-const canonical = seoData.canonical && seoData.canonical !== "/" ? siteUrl + canonicalUrl.pathname : siteUrl + canonicalUrl.pathname;
+const canonical = seoData.canonical && seoData.canonical !== "/" && seoData.canonical !== "" ? siteUrl + canonicalUrl.pathname : siteUrl + "/";
 
 //opengraph data
 const openGraphTitle = seoData?.opengraphTitle;
@@ -46,7 +46,6 @@ if (import.meta.env.PUBLIC_SEO_ACTIVE === "false") {
 } else if (noFollow && !noIndex) {
     metaRobots = noFollow;
 }
-
 ---
 
 {titleOutput && <title>{titleOutput}</title>}
@@ -65,4 +64,4 @@ if (import.meta.env.PUBLIC_SEO_ACTIVE === "false") {
 {twitterTitle && <meta property="twitter:title" content={twitterTitle} />}
 {twitterDescription && <meta property="twitter:description" content={twitterDescription} />}
 {twitterImage && <meta property="twitter:image" content={twitterImage} />}
-<slot/>
+<slot />

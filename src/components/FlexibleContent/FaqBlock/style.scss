@@ -1,0 +1,42 @@
+@use "~styles/abstracts/breakpoint" as *;
+.faqs-columns {
+    display: flex;
+    flex-direction: column;
+    @include breakpoint(md) {
+        display: grid;
+        gap: 32px;
+        grid-template-columns: 1fr 1fr;
+    }
+}
+.faq-section {
+    .faq-section__question {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: var(--white);
+        color: var(--black);
+        padding: var(--spacing-1) var(--spacing-4);
+        border-radius: var(--radius-16);
+        margin-bottom: var(--spacing-4);
+        svg {
+            height: 1.7em;
+            transition: all 350ms var(--ease-1);
+            @include breakpoint(lg) {
+                height: 2.5em;
+            }
+        }
+    }
+    .faq-section__answer {
+        max-height: 0px;
+        transition: max-height 100ms var(--ease-1);
+        overflow: hidden;
+        padding: var(--spacing-1) var(--spacing-4) 0;
+    }
+    &.faq-section--open .faq-section__question svg {
+        transform: rotate(180deg);
+    }
+    &.faq-section--open .faq-section__answer {
+        max-height: 9999px;
+        transition: max-height 5000ms var(--ease-1);
+    }
+}
