@@ -1,6 +1,4 @@
-"use client";
-import React from "react";
-import { HTMLRender } from "@/components/helpers/htmlRender";
+import { HTMLRender } from "~helpers/htmlRender";
 import { v4 } from "uuid";
 import IconEl from "./IconEl";
 

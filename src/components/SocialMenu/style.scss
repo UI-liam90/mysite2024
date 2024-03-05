@@ -1,0 +1,21 @@
+.social-media-menu {
+    --size: 20px;
+    --colour: var(--white);
+    --interaction-colour: var(--grey-500);
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--spacing-5);
+    li {
+        padding: 0 var(--spacing-2);
+    }
+    svg {
+        fill: var(--colour);
+        height: var(--size);
+        transition: 250ms ease-in-out;
+    }
+    a:hover svg,
+    a:focus svg {
+        fill: var(--interaction-colour);
+    }
+}

@@ -4,8 +4,8 @@ import { v4 } from "uuid";
 import { HTMLRender } from "~helpers/htmlRender";
 import LinkButton from "~components/LinkButton";
 import { WpImage } from "~helpers/WpImage";
-import { Splide, SplideTrack, SplideSlide } from "@splidejs/react-splide";
-import "@splidejs/react-splide/css";
+import { Splide, SplideTrack, SplideSlide } from "react-splide";
+import "react-splide/css";
 
 const SliderHero = ({ blockData }) => {
     const splideElRef = useRef(null);
@@ -20,7 +20,7 @@ const SliderHero = ({ blockData }) => {
     return (
         <div className={`slider-hero ${blockData.fullWidth === "yes" ? "hero-block--full-width" : ""}`}>
             <div className={`slide-container`}>
-                {/* <Splide ref={splideElRef} options={options} hasTrack={false}>
+                <Splide ref={splideElRef} options={options} hasTrack={false}>
                     <SplideTrack>
                         {blockData.slides.map((slide) => {
                             return (
@@ -44,7 +44,7 @@ const SliderHero = ({ blockData }) => {
                             );
                         })}
                     </SplideTrack>
-                </Splide> */}
+                </Splide>
             </div>
         </div>
     );

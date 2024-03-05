@@ -1,0 +1,26 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { getPost, getPostSlugs } from "~data/post";
+import { HTMLRender } from "~helpers/htmlRender";
+
+// get page data and slugs
+const { postSlug } = Astro.params;
+let post = await getPost(postSlug);
+
+export async function getStaticPaths() {
+    let data = await getPostSlugs();
+
+    return data.nodes.map((page) => ({
+        params: { postSlug: page.slug },
+        props: { page: page },
+    }));
+}
+---
+
+<Layout seoData={post.seo}>
+    <main class="main-content">
+        <div class="container">
+            <HTMLRender data={post.content} />
+        </div>
+    </main>
+</Layout>

@@ -14,7 +14,6 @@ const Consent = ({ fieldData, name, ...wrapProps }) => {
         register,
         formState: { errors },
     } = useFormContext();
-    console.log(checkboxLabel);
     return (
         <InputWrapper errors={errors?.[name] || {}} inputData={fieldData} labelFor={name} {...wrapProps}>
             <input

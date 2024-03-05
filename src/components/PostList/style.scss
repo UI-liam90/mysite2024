@@ -1,0 +1,9 @@
+@use "@/styles/abstracts/breakpoint" as *;
+.news-grid {
+    display: grid;
+    grid-template-columns: auto;
+    gap: var(--spacing-8);
+    @include breakpoint(sm) {
+        grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    }
+}

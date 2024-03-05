@@ -15,7 +15,6 @@
     "@astrojs/react": "^3.0.10",
     "@astrojs/sitemap": "^3.1.1",
     "@nanostores/react": "^0.7.2",
-    "@splidejs/react-splide": "^0.7.12",
     "@types/react": "^18.2.61",
     "@types/react-dom": "^18.2.19",
     "apollo-upload-client": "^18.0.1",
@@ -33,9 +32,11 @@
     "react-gravity-form": "github:UI-liam90/react-gravity-form",
     "react-hook-form": "^7.47.0",
     "react-intersection-observer": "^9.5.1",
+    "react-splide": "github:UI-liam90/react-splide",
     "react-svg": "^16.1.17",
     "uuid": "^9.0.0",
-    "vanilla-cookieconsent": "^3.0.0-rc.17"
+    "vanilla-cookieconsent": "^3.0.0-rc.17",
+    "yet-another-react-lightbox": "^3.17.0"
   },
   "devDependencies": {
     "sass": "^1.69.7"

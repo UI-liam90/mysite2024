@@ -1,0 +1,93 @@
+@use "@/styles/abstracts/breakpoint" as *;
+ul.menu {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  ul {
+    position: absolute;
+    float: left;
+    box-shadow: var(--shadow-1);
+    top: 100%;
+    left: -999em;
+    z-index: var(--layer-important);
+    background-color: var(--white);
+    list-style: none;
+    padding-bottom: var(--spacing-4);
+    li {
+      margin-left: var(--spacing-3);
+      margin-right: var(--spacing-3);
+      padding: 0;
+    }
+    ul {
+      top: 0;
+      left: -999em;
+    }
+  }
+}
+
+ul.menu ul li:hover > ul,
+ul.menu ul li.focus > ul {
+  display: block;
+  left: auto;
+}
+
+ul.menu ul a {
+  text-align: left;
+}
+
+ul.menu li:hover > ul,
+ul.menu li.focus > ul {
+  left: auto;
+}
+
+ul.menu li {
+  position: relative;
+  margin: 0;
+  &.menu-item--has-children {
+    display: flex;
+    align-items: center;
+    position: relative;
+    .dropdown-arrow {
+      svg {
+        width: 12px;
+        fill: var(--black);
+      }
+    }
+  }
+}
+ul.menu a {
+  display: block;
+  text-decoration: none;
+  color: var(--white);
+  font-family: var(--font-heading);
+  font-size: var(--font-size-wolf);
+  font-weight: 600;
+  padding: var(--spacing-3) var(--spacing-5);
+  text-transform: uppercase;
+  &:active,
+  &:visited {
+    color: var(--white);
+  }
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+  }
+}
+ul.sub-menu a {
+  color: var(--black);
+  &:active,
+  &:visited {
+    color: var(--black);
+  }
+}
+
+/* Small menu. */
+
+// @include breakpoint(md) {
+//     ul.menu {
+//         display: flex;
+//         justify-content: flex-end;
+//     }
+// }

@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
-import { HTMLRender } from "@/components/helpers/htmlRender";
+import { HTMLRender } from "~helpers/htmlRender";
 import { InView } from "react-intersection-observer";
-import GridImageBlock from "@/components/GridImageBlock";
+import GridImageBlock from "~components/GridImageBlock";
 
 import "./style.scss";
 

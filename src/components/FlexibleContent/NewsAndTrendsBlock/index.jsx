@@ -1,17 +1,18 @@
-"use client";
-import React from "react";
 import { v4 } from "uuid";
 import { InView } from "react-intersection-observer";
-import NewsGridItemBlock from "@/components/NewsGridItemBlock";
-import HTag from "@/components/helpers/hTag";
-import LinkButton from "@/components/LinkButton";
-import { HTMLRender } from "@/components/helpers/htmlRender";
+import NewsGridItemBlock from "~components/NewsGridItemBlock";
+import HTag from "~helpers/hTag";
+import LinkButton from "~components/LinkButton";
+import { HTMLRender } from "~helpers/htmlRender";
+import { getAllNews } from "../globalQueries";
 import "./style.scss";
+
+const AllNews = await getAllNews();
 
 const NewsAndTrendsBlock = ({ blockData }) => {
     let newsNodes = blockData?.newsCategory?.contentNodes?.nodes;
     if (!newsNodes || newsNodes.length === 0) {
-        newsNodes = blockData.posts.nodes;
+        newsNodes = AllNews.posts.nodes;
     }
     return (
         <>
