@@ -4,6 +4,9 @@ import Seo from "~components/Seo/Seo.astro";
 import CookieNotice from "~components/CookieNotice";
 import GoogleAnalytics from "~components/GoogleAnalytics";
 import GoogleTagManager from "~components/GoogleTagManager";
+import Header from "~slices/Header/header.astro";
+import Footer from "~slices/Footer/Footer.astro";
+import OffCanvas from "~slices/OffCanvas";
 
 const { seoData } = Astro.props;
 ---
@@ -21,7 +24,10 @@ const { seoData } = Astro.props;
         <Seo seoData={seoData} />
     </head>
     <body>
+        <Header />
         <slot />
+        <Footer />
+        <OffCanvas client:media="(max-width: 1024px)" />
         <CookieNotice client:load />
         {
             import.meta.env.PUBLIC_GOOGLE_TAG_ID && (
@@ -30,5 +36,16 @@ const { seoData } = Astro.props;
                 />
             )
         }
+        <script>
+            import { isNavOpen } from "~slices/OffCanvas/offCanvasStore";
+
+            isNavOpen.subscribe((open) => {
+                if (open) {
+                    document.body.classList.add("off-canvas-open");
+                } else {
+                    document.body.classList.remove("off-canvas-open");
+                }
+            });
+        </script>
     </body>
 </html>

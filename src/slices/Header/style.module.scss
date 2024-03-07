@@ -1,0 +1,18 @@
+@use "~styles/abstracts/breakpoint" as *;
+.globalHeader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--spacing-10);
+    .logo {
+        width: 100%;
+        max-width: 350px;
+    }
+    .desktopNav {
+        display: block;
+        width: 100%;
+    }
+    @include breakpoint(lg) {
+        justify-content: flex-start;
+    }
+}

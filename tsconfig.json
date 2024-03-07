@@ -11,6 +11,7 @@
         "~images/*": ["src/images/*"],
         "~helpers/*": ["src/helpers/*"],
         "~data/*": ["src/data/*"],
+        "~slices/*": ["src/slices/*"],
     }
   }
 }

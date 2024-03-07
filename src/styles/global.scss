@@ -96,7 +96,6 @@ h6,
 .title-six {
     font-size: var(--font-size-cat);
 }
-
 p,
 li,
 address {
@@ -104,7 +103,6 @@ address {
     margin-bottom: var(--spacing-6);
     line-height: 1.5;
     a {
-        color: inherit;
         text-decoration: underline;
         &:hover,
         &:focus {
@@ -213,4 +211,7 @@ strong {
     position: absolute;
     width: 1px;
     word-wrap: normal !important;
+}
+body.off-canvas-open {
+    overflow: hidden;
 }
