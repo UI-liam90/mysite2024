@@ -1,32 +1,23 @@
 import { useState } from "react";
 import { HTMLRender } from "~helpers/htmlRender";
 import { v4 } from "uuid";
-import FsLightbox from "fslightbox-react";
+import Lightbox from "yet-another-react-lightbox";
 import { InView } from "react-intersection-observer";
 import { WpImage } from "~helpers/WpImage";
 
+import "yet-another-react-lightbox/styles.css";
 import "./style.scss";
 
 const GalleryBlock = ({ blockData }) => {
-    const [lightboxController, setLightboxController] = useState({
-        toggler: false,
-        slide: 1,
-    });
+    const [index, setIndex] = useState(-1);
 
     if (blockData.displayGalleryAs === "normal") {
-        const openLightboxOnSlide = (number) => {
-            setLightboxController({
-                toggler: !lightboxController.toggler,
-                slide: number,
-            });
-        };
         const galleryImages = [];
         const images = blockData.galleryItems;
         images.forEach((item) => {
-            let image = item.mediaItemUrl;
+            let image = { src: item.mediaItemUrl };
             galleryImages.push(image);
         });
-        console.log(galleryImages);
         return (
             <div
                 className={`gallery-block gallery-block--${blockData.displayGalleryAs} ${blockData.fullWidth === "yes" ? "gallery-block--full-width" : ""} ${
@@ -47,8 +38,8 @@ const GalleryBlock = ({ blockData }) => {
                                                     tabIndex={0}
                                                     ref={ref}
                                                     className={`gallery-image toZoomIn ${inView ? "zoomIn" : ""}`}
-                                                    onClick={() => openLightboxOnSlide(index + 1)}
-                                                    onKeyDown={() => openLightboxOnSlide(index + 1)}
+                                                    onClick={() => setIndex(index)}
+                                                    onKeyDown={() => setIndex(index)}
                                                     aria-label={image.title}
                                                 >
                                                     <WpImage file={image} />
@@ -64,23 +55,17 @@ const GalleryBlock = ({ blockData }) => {
                             );
                         })}
                     </div>
-                    {blockData.showLightbox === "yes" && <FsLightbox toggler={lightboxController.toggler} sources={galleryImages} slide={lightboxController.slide} />}
+                    {blockData.showLightbox === "yes" && <Lightbox index={index} slides={galleryImages} open={index >= 0} close={() => setIndex(-1)} />}
                 </div>
             </div>
         );
     } else if (blockData.displayGalleryAs === "mason") {
-        const openLightboxOnSlide = (number) => {
-            setLightboxController({
-                toggler: !lightboxController.toggler,
-                source: number,
-            });
-        };
         const galleryImages = [];
         const gridItems = blockData.masonGalleryItems;
         gridItems.forEach((item) => {
             let images = item.gridItemsOne;
-            images.forEach((imageItem) => {
-                let image = imageItem.mediaItemUrl;
+            images.forEach((item) => {
+                let image = { src: item.mediaItemUrl };
                 galleryImages.push(image);
             });
         });
@@ -97,7 +82,7 @@ const GalleryBlock = ({ blockData }) => {
                         let gridImages = item.gridItemsOne;
                         return (
                             <div key={v4()} className={`gallery-grid gallery-grid--type-${item.gridType} ${item.gridDirection === "right" ? "gallery-grid--direction-right" : ""}`}>
-                                {gridImages.map((image) => {
+                                {gridImages.map((image, index) => {
                                     let imageData = image.mediaItemUrl;
                                     return (
                                         <InView key={v4()} threshold="0.25" triggerOnce="true">
@@ -109,8 +94,8 @@ const GalleryBlock = ({ blockData }) => {
                                                             tabIndex={0}
                                                             ref={ref}
                                                             className={`gallery-image toZoomIn ${inView ? "zoomIn" : ""}`}
-                                                            onClick={() => openLightboxOnSlide(imageData.images.fallback.src)}
-                                                            onKeyDown={() => openLightboxOnSlide(imageData.images.fallback.src)}
+                                                            onClick={() => setIndex(index)}
+                                                            onKeyDown={() => setIndex(index)}
                                                             aria-label={image.title}
                                                         >
                                                             <WpImage file={image} />
@@ -129,7 +114,7 @@ const GalleryBlock = ({ blockData }) => {
                         );
                     })}
 
-                    {blockData.showLightbox === "yes" && <FsLightbox toggler={lightboxController.toggler} sources={galleryImages} source={lightboxController.source} />}
+                    {blockData.showLightbox === "yes" && <Lightbox index={index} slides={galleryImages} open={index >= 0} close={() => setIndex(-1)} />}
                 </div>
             </div>
         );

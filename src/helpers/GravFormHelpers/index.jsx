@@ -78,7 +78,7 @@ const GravityFormForm = ({ data, presetValues = null, successCallback = () => {}
                     serverData: formFields?.nodes,
                     clientData: formattedVals,
                 });
-                console.log("formRes", formRes);
+                //console.log("formRes", formRes);
                 submitForm({
                     variables: {
                         id: databaseId,
@@ -87,7 +87,7 @@ const GravityFormForm = ({ data, presetValues = null, successCallback = () => {}
                 })
                     .then(({ data: { submitGfForm: errors } }) => {
                         // Success if no errors returned.
-                        console.log(data);
+                        //console.log(data);
                         if (!Boolean(errors?.length)) {
                             setSuccess(true);
                             setLoading(false);
@@ -106,7 +106,7 @@ const GravityFormForm = ({ data, presetValues = null, successCallback = () => {}
                         }
                     })
                     .catch((error) => {
-                        console.log(error);
+                        //console.log(error);
                         setLoading(false);
                         setGeneralError("unknownError");
                         errorCallback({ data: formRes, error: errors, reset });

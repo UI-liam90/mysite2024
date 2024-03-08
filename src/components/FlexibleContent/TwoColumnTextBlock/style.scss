@@ -1,13 +1,13 @@
-@use "@/styles/abstracts/breakpoint" as *;
+@use "~styles/abstracts/breakpoint" as *;
 .two-column-text-block {
-  padding: var(--spacing-20) 0;
-  .container {
-    display: flex;
-    flex-direction: column;
-    @include breakpoint(lg) {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: var(--spacing-8);
+    padding: var(--spacing-20) 0;
+    .container {
+        display: flex;
+        flex-direction: column;
+        @include breakpoint(lg) {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--spacing-8);
+        }
     }
-  }
 }

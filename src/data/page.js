@@ -12,7 +12,6 @@ import { newsAndTrendsBlockFields } from "~components/FlexibleContent/NewsAndTre
 import { textBlockFields } from "~components/FlexibleContent/TextBlock/query";
 import { twoColumnTextBlockFields } from "~components/FlexibleContent/TwoColumnTextBlock/query";
 import { globalBuilderItems } from "~components/FlexibleContent/GlobalElementBlock";
-import { globalFields } from "~components/FlexibleContent/globalQueries";
 import GQLQuery from "~helpers/GQLQuery";
 
 const pageQuery = `
@@ -95,7 +94,6 @@ export async function getPage(uri) {
             page(id: "${uri}", idType: URI) {
                 ${pageQuery}
             }
-            ${globalFields}
         }
     `,
     };

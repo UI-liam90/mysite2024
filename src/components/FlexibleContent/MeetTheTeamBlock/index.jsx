@@ -1,10 +1,8 @@
-"use client";
-import React from "react";
-import { HTMLRender } from "@/components/helpers/htmlRender";
+import { HTMLRender } from "~helpers/htmlRender";
 import { InView } from "react-intersection-observer";
 import { v4 } from "uuid";
 import TeamMemberBlock from "./TeamMemberBlock";
-import HTag from "@/components/helpers/hTag";
+import HTag from "~helpers/hTag";
 
 import "./style.scss";
 

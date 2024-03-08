@@ -1,0 +1,25 @@
+.news-grid-item {
+    scale: 1;
+    transition: all 250ms var(--ease-1);
+    margin-bottom: 0;
+    background-color: var(--prune);
+    a {
+        text-decoration: none;
+    }
+    img {
+        object-fit: cover;
+        object-position: center;
+        aspect-ratio: 16 / 9;
+        width: 100%;
+    }
+    .news-grid-item__title {
+        background-color: var(--grey-300);
+        padding: var(--spacing-5);
+        color: var(--black);
+        text-decoration: none;
+    }
+    &:hover,
+    &:focus {
+        scale: 1.05;
+    }
+}

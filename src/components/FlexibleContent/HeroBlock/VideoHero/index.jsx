@@ -9,7 +9,7 @@ const VideoHero = ({ blockData }) => {
                 <div ref={ref} className={`video-hero toZoomIn ${inView ? "zoomIn" : ""}`}>
                     {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
                     <video
-                        src={blockData.video.localFile.publicURL}
+                        src={blockData.video.mediaItemUrl}
                         autoPlay={blockData.autoplay === "yes" ? "true" : false}
                         playsInline={blockData.autoplay === "yes" ? "true" : false}
                         controls={blockData.showControls === "yes" ? true : false}

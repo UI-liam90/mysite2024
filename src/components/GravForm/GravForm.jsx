@@ -21,11 +21,11 @@ const GravForm = ({ id, presetValues }) => {
         const handleFormData = async () => {
             setLoading(true);
             const data = await getGravityForm(id);
-            console.log(data);
+            // console.log(data);
             setSuccess(data);
             setLoading(false);
         };
-        console.log("effect");
+        // console.log("effect");
         handleFormData();
 
         // eslint-disable-next-line react-hooks/exhaustive-deps

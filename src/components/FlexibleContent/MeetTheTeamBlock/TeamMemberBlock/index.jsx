@@ -1,10 +1,10 @@
 "use client";
 import React, { useState, useRef } from "react";
 import { InView } from "react-intersection-observer";
-import { WpImage } from "@/components/helpers/WpImage";
+import { WpImage } from "~helpers/WpImage";
 import { v4 } from "uuid";
-import SocialMenu from "../../../SocialMenu";
-import { HTMLRender } from "@/components/helpers/htmlRender";
+import SocialMenu from "~components/SocialMenu";
+import { HTMLRender } from "~helpers/htmlRender";
 
 const TeamMemberBlock = ({ teamMember, popUps }) => {
     const [modalStatus, setModalStatus] = useState("closed");

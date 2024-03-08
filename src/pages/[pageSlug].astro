@@ -1,0 +1,26 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Card from "../components/Card.astro";
+import { getPage, getPageSlugs } from "~data/page";
+// import {getPost, getPostSlugs } from "~data/post";
+import FlexibleContentPages from "~components/FlexibleContent/flexibleContentPages";
+
+// get page data and slugs
+const { pageSlug } = Astro.params;
+let page = await getPage(pageSlug);
+
+export async function getStaticPaths() {
+    let data = await getPageSlugs();
+
+    return data.nodes.map((page) => ({
+        params: { pageSlug: page.slug },
+        props: { page: page },
+    }));
+}
+---
+
+<Layout seoData={page.page.seo}>
+    <main class="main-content">
+        <FlexibleContentPages client:load blockData={page.page.pageBuilder.blocks} />
+    </main>
+</Layout>
