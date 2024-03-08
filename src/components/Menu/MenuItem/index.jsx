@@ -1,3 +1,4 @@
+import Link from "~helpers/Link";
 const MenuItem = ({ item }) => {
     const internal = /^\/(?!\/)/.test(item.path);
     if (internal) {
@@ -8,9 +9,9 @@ const MenuItem = ({ item }) => {
                         {item.label}
                     </a>
                 ) : (
-                    <a className={`internal-link ${item.cssClasses}`} href={item.path}>
+                    <Link class={`internal-link ${item.cssClasses}`} href={item.path}>
                         {item.label}
-                    </a>
+                    </Link>
                 )}
             </>
         );
