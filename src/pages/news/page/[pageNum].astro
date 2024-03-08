@@ -1,0 +1,25 @@
+---
+import Layout from "~layouts/Layout.astro";
+import { getPostList, getPostArchiveSeo } from "~data/post";
+import PostList from "~components/PostList";
+
+export const prerender = false;
+
+Astro.response.headers.set("CDN-Cache-Control", "public, max-age=120, must-revalidate");
+
+const { pageNum } = Astro.params;
+
+let postOffset = pageNum ? (parseInt(pageNum) - 1) * parseInt(import.meta.env.PUBLIC_POST_SIZE) : 0;
+
+const allPosts = await getPostList(postOffset, parseInt(import.meta.env.PUBLIC_POST_SIZE));
+const PostArchiveSeo = await getPostArchiveSeo();
+---
+
+<Layout pageSlug="news" seoData={PostArchiveSeo.acfOptionsArchivePageSettings.newsArchiveSettings}>
+    <main class="main-content">
+        <div class="container">
+            <h1>{PostArchiveSeo.acfOptionsArchivePageSettings.newsArchiveSettings.pageTitle}</h1>
+            <PostList client:load postsData={allPosts} page={parseInt(pageNum)} path="/news/" postSize={parseInt(import.meta.env.PUBLIC_POST_SIZE)} />
+        </div>
+    </main>
+</Layout>

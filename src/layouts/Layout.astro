@@ -8,20 +8,19 @@ import Header from "~slices/Header/header.astro";
 import Footer from "~slices/Footer/Footer.astro";
 import OffCanvas from "~slices/OffCanvas";
 
-const { seoData } = Astro.props;
+const { seoData, pageSlug } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <meta name="description" content="Astro description" />
         <meta name="viewport" content="width=device-width" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <meta name="generator" content={Astro.generator} />
         {import.meta.env.PUBLIC_ANALYTICS_ID && <GoogleAnalytics measurementId={import.meta.env.PUBLIC_ANALYTICS_ID} />}
         {import.meta.env.PUBLIC_GOOGLE_TAG_ID && <GoogleTagManager measurementId={import.meta.env.PUBLIC_GOOGLE_TAG_ID} />}
-        <Seo seoData={seoData} />
+        <Seo seoData={seoData} slug={pageSlug} />
     </head>
     <body>
         <Header />

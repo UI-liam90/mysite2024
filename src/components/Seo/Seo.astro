@@ -3,21 +3,21 @@ import { getSeo } from "~data/seo";
 
 const globalSeo = await getSeo();
 
-const { seoData } = Astro.props;
+const { seoData, slug } = Astro.props;
 
 const siteUrl = import.meta.env.PUBLIC_SITE_URL;
 
-const canonicalUrl = seoData.canonical && seoData.canonical !== "/" && seoData.canonical !== "" ? new URL(`${seoData?.canonical}`) : "";
-const opengraphUrl = new URL(`${seoData?.opengraphUrl}`);
+const canonicalUrl = seoData?.canonical && seoData?.canonical !== "/" && seoData?.canonical !== "" ? new URL(`${seoData?.canonical}`) : "";
+const opengraphUrl = seoData?.opengraphUrl ? new URL(`${seoData?.opengraphUrl}`) : "";
 
 // assign data from yoast to varibles
 const metaTitle = seoData?.title;
 const metaDescription = seoData?.metaDesc;
 const metaKeywords = seoData?.metaKeywords;
-const schema = seoData?.schema.raw;
+const schema = seoData?.schema?.raw;
 const titleOutput = metaTitle ? metaTitle : globalSeo.generalSettings.title;
 const descriptionOutput = metaDescription ? metaDescription : globalSeo.generalSettings.description;
-const canonical = seoData.canonical && seoData.canonical !== "/" && seoData.canonical !== "" ? siteUrl + canonicalUrl.pathname : siteUrl + "/";
+const canonical = seoData?.canonical && seoData?.canonical !== "/" && seoData?.canonical !== "" ? siteUrl + canonicalUrl.pathname : siteUrl + `/${slug ? slug : ""}`;
 
 //opengraph data
 const openGraphTitle = seoData?.opengraphTitle;

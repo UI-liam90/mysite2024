@@ -17,7 +17,7 @@ export async function getStaticPaths() {
 }
 ---
 
-<Layout seoData={post.seo}>
+<Layout pageSlug={postSlug} seoData={post.seo}>
     <main class="main-content">
         <div class="container">
             <HTMLRender data={post.content} />

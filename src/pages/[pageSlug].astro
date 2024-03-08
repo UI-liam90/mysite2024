@@ -19,7 +19,7 @@ export async function getStaticPaths() {
 }
 ---
 
-<Layout seoData={page.page.seo}>
+<Layout pageSlug={pageSlug} seoData={page.page.seo}>
     <main class="main-content">
         <FlexibleContentPages client:load blockData={page.page.pageBuilder.blocks} />
     </main>

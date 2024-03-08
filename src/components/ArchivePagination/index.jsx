@@ -46,7 +46,7 @@ const renderPagesInBetween = ({ currentPage, totalCount, archivePath, postSize }
         const to = isFirst ? archivePath : `${archivePath}page/${page}`;
 
         return {
-            tag: a,
+            tag: "a",
             children: page,
             href: to,
             className: "page-numbers",

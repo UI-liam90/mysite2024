@@ -36,6 +36,27 @@ export async function getPostList(offset = 0, pageSize = 12, taxonomy = null) {
     return responseBody.posts;
 }
 
+export async function getPostArchiveSeo() {
+    const query = {
+        query: `query GetPostArchiveSeo {
+          acfOptionsArchivePageSettings {
+            newsArchiveSettings {
+              title: seoTitle
+              pageTitle: title
+              metaDesc: metaDescription
+              featuredImage {
+                ${imageFragment}
+              }
+            }
+          }
+        }
+        `,
+    };
+
+    const responseBody = await GQLQuery(query, {});
+    return responseBody;
+}
+
 export async function getPost(slug) {
     const query = {
         query: `query GetPostByUri {
