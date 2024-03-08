@@ -1,2 +1,10 @@
+[[redirects]]
+  from = "/mdm-panel"
+  to = "<<SITE_URL>>/wp-admin"
+  status = 301
+  force = true
 [images]
-  remote_images = ["https://liamwebwright.co.uk/.*"]
+  remote_images = ["<<SITE_URL>>/.*"]
+[build]
+  command = "npm run build"
+  publish = "dist"
