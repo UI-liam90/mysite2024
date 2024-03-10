@@ -4,14 +4,14 @@ import { WpImage } from "~helpers/WpImage";
 import ScreenVisibility from "~helpers/screenVisibility";
 import { getHeader, getMenu } from "~data/global.js";
 
-import styles from "./style.module.scss";
+import "./style.scss";
 
 const menu = await getMenu();
 const header = await getHeader();
 ---
 
-<header class={`${styles.globalHeader}`}>
-    <div class={`${styles.logo}`}>
+<header class="globalHeader">
+    <div class="logo">
         <a aria-label="back to homepage" class="header-link-home" href="/">
             {/* Output the logo if it is a standard image file format */}
             {header.themeGeneralSettings.themeSettings?.siteLogo && <WpImage file={header.themeGeneralSettings.themeSettings?.siteLogo} />}
@@ -19,9 +19,9 @@ const header = await getHeader();
             {header.themeGeneralSettings.themeSettings?.siteLogoSvg && <WpImage file={header.themeGeneralSettings.themeSettings?.siteLogoSvg} />}
         </a>
     </div>
-    <div class={`${styles.desktopNav}`}>
+    <div class="desktopNav">
         <ScreenVisibility client:load hiddenMQ={"(max-width: 1024px)"}>
-            <Menu className={`menu desktop-menu`} menuData={menu.menuItems} />
+            <Menu className="menu desktop-menu" menuData={menu.menuItems} />
         </ScreenVisibility>
     </div>
 </header>

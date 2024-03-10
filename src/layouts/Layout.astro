@@ -36,6 +36,7 @@ const { seoData, pageSlug } = Astro.props;
             )
         }
         <script>
+            //add an off-canvas-open class to the body when the off canvas is open
             import { isNavOpen } from "~slices/OffCanvas/offCanvasStore";
 
             isNavOpen.subscribe((open) => {

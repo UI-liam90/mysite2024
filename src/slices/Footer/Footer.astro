@@ -4,7 +4,7 @@ import SocialMenu from "~components/SocialMenu";
 import { HTMLRender } from "~helpers/htmlRender";
 import { getFooter } from "~data/global.js";
 
-import styles from "./style.module.scss";
+import "./style.scss";
 
 const footer = await getFooter();
 
@@ -13,10 +13,10 @@ const contactDetails = footer.acfOptionsContactDetails.contactDetails;
 const title = footer.generalSettings.title;
 ---
 
-<footer class={`${styles.footer}`}>
+<footer class="footer">
     <div class="container">
-        <div class={`${styles.footerItems}`}>
-            <div class={`footerColumn`}>
+        <div class="footerItems">
+            <div class="footerColumn">
                 {themeSettings?.socialMedia && <SocialMenu socialData={themeSettings?.socialMedia} className="social-media-menu__footer" />}
                 {
                     contactDetails?.address && (
@@ -27,30 +27,30 @@ const title = footer.generalSettings.title;
                 }
                 {
                     contactDetails?.emailAddresses && (
-                        <a href={`mailto:${contactDetails?.emailAddresses[0]?.email}`} class={`${styles.contactLink}`}>
+                        <a href={`mailto:${contactDetails?.emailAddresses[0]?.email}`} class="contactLink">
                             {contactDetails?.emailAddresses[0]?.email}
                         </a>
                     )
                 }
                 {
                     contactDetails?.telephoneNumbers && (
-                        <a href={`tel:${contactDetails?.telephoneNumbers[0]?.number}`} class={`${styles.contactLink}`}>
+                        <a href={`tel:${contactDetails?.telephoneNumbers[0]?.number}`} class="contactLink">
                             {contactDetails?.telephoneNumbers[0]?.number}
                         </a>
                     )
                 }
             </div>
-            <div class={`footerColumn`}></div>
-            <div class={`footerColumn`}></div>
-            <div class={`footerColumn`}></div>
+            <div class="footerColumn"></div>
+            <div class="footerColumn"></div>
+            <div class="footerColumn"></div>
         </div>
-        <div class={`footerBottom`}>
-            <div class={`${styles.copyrightSection}`}>
-                <p class={`${styles.copyright}`}>
+        <div class="footerBottom">
+            <div class="copyrightSection">
+                <p class="copyright">
                     © {title}
                     {new Date().getFullYear()} | Site Developed By <a href="https://mosaicdigitalmedia.co.uk/">Mosaic Digital Media</a>
                 </p>
-                <Menu className={`${styles.footerMenu}`} menuData={footer.menuItems} />
+                <Menu className="footerMenu" menuData={footer.menuItems} />
             </div>
         </div>
     </div>
