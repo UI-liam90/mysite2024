@@ -1,4 +1,3 @@
-import React from "react";
 import ArchivePagination from "../ArchivePagination";
 import NewsGridItemBlock from "../NewsGridItemBlock";
 import "./style.scss";

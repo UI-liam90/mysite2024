@@ -2,8 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import Card from "../components/Card.astro";
 import { getPage, getPageSlugs } from "~data/page";
-// import {getPost, getPostSlugs } from "~data/post";
-import FlexibleContentPages from "~components/FlexibleContent/flexibleContentPages";
+import FlexibleContent from "~components/FlexibleContent/flexibleContent.astro";
 
 // get page data and slugs
 const { pageSlug } = Astro.params;
@@ -21,6 +20,6 @@ export async function getStaticPaths() {
 
 <Layout pageSlug={pageSlug} seoData={page.page.seo}>
     <main class="main-content">
-        <FlexibleContentPages client:load blockData={page.page.pageBuilder.blocks} />
+        <FlexibleContent blockData={page.page.pageBuilder.blocks} contentType="Page" />
     </main>
 </Layout>

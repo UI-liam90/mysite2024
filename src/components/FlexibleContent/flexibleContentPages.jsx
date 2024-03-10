@@ -1,4 +1,4 @@
-import FlexibleContent from ".";
+import FlexibleContent from "./oldflex.jsx";
 
 const FlexibleContentPages = ({ blockData }) => {
     const blocks = blockData;

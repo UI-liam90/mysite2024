@@ -1,25 +1,15 @@
-import React from "react";
-import FlexibleContent from "..";
 import { contactBlockFields } from "../ContactBlock/query";
 import { countUpBlockFields } from "../CountUpBlock/query";
 import { faqBlockFields } from "../FaqBlock/query";
 import { galleryBlockFields } from "../GalleryBlock/query";
 import { heroBlockFields } from "../HeroBlock/query";
 import { iconBlockFields } from "../IconBlock/query";
-import { imageAndTextBlockFields } from "../ImageAndTextBlock/query";
-import { imageAndTextGridBlockFields } from "../ImageAndTextGridBlock/query";
+import { imageAndTextBlockFields } from "../TextAndImageBlock/query";
+import { imageAndTextGridBlockFields } from "../TextAndImageGridBlock/query";
 import { meetTheTeamFields } from "../MeetTheTeamBlock/query";
 import { newsAndTrendsBlockFields } from "../NewsAndTrendsBlock/query";
 import { textBlockFields } from "../TextBlock/query";
 import { twoColumnTextBlockFields } from "../TwoColumnTextBlock/query";
-
-const GlobalElementBlock = ({ blockData }) => {
-    const blocks = blockData;
-    return <FlexibleContent blockData={blocks} contentType="GlobalElement" />;
-};
-
-export default GlobalElementBlock;
-
 export const globalBuilderItems = /* GraphQL */ `
 fieldGroupName
 elementToClone {

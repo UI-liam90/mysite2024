@@ -1,0 +1,10 @@
+---
+import { HTMLRender } from "~helpers/htmlRender";
+const { blockData } = Astro.props;
+---
+
+<div class="text-block">
+    <div class="container">
+        <HTMLRender data={blockData.wysiwyg} />
+    </div>
+</div>

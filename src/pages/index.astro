@@ -1,13 +1,13 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { getHomePage } from "~data/page";
-import FlexibleContentPages from "~components/FlexibleContent/flexibleContentPages";
+import FlexibleContent from "~components/FlexibleContent/flexibleContent.astro";
 
 const page = await getHomePage();
 ---
 
 <Layout seoData={page.page.seo}>
     <main class="main-content">
-        <FlexibleContentPages client:load blockData={page.page.pageBuilder.blocks} />
+        <FlexibleContent blockData={page.page.pageBuilder.blocks} contentType="Page" />
     </main>
 </Layout>

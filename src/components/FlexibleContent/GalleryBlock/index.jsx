@@ -2,7 +2,6 @@ import { useState } from "react";
 import { HTMLRender } from "~helpers/htmlRender";
 import { v4 } from "uuid";
 import Lightbox from "yet-another-react-lightbox";
-import { InView } from "react-intersection-observer";
 import { WpImage } from "~helpers/WpImage";
 
 import "yet-another-react-lightbox/styles.css";
@@ -29,29 +28,17 @@ const GalleryBlock = ({ blockData }) => {
                     <div className="gallery-grid">
                         {images.map((image, index) => {
                             return (
-                                <InView key={v4()} threshold="0.25" triggerOnce="true">
-                                    {({ inView, ref }) => (
-                                        <>
-                                            {blockData.showLightbox === "yes" ? (
-                                                <div
-                                                    role="button"
-                                                    tabIndex={0}
-                                                    ref={ref}
-                                                    className={`gallery-image toZoomIn ${inView ? "zoomIn" : ""}`}
-                                                    onClick={() => setIndex(index)}
-                                                    onKeyDown={() => setIndex(index)}
-                                                    aria-label={image.title}
-                                                >
-                                                    <WpImage file={image} />
-                                                </div>
-                                            ) : (
-                                                <div ref={ref} className={`gallery-image toZoomIn ${inView ? "zoomIn" : ""}`} aria-label={image.title}>
-                                                    <WpImage file={image} />
-                                                </div>
-                                            )}
-                                        </>
+                                <div key={index}>
+                                    {blockData.showLightbox === "yes" ? (
+                                        <div role="button" tabIndex={0} className={`gallery-image`} onClick={() => setIndex(index)} onKeyDown={() => setIndex(index)} aria-label={image.title}>
+                                            <WpImage file={image} />
+                                        </div>
+                                    ) : (
+                                        <div className={`gallery-image`} aria-label={image.title}>
+                                            <WpImage file={image} />
+                                        </div>
                                     )}
-                                </InView>
+                                </div>
                             );
                         })}
                     </div>
@@ -85,29 +72,17 @@ const GalleryBlock = ({ blockData }) => {
                                 {gridImages.map((image, index) => {
                                     let imageData = image.mediaItemUrl;
                                     return (
-                                        <InView key={v4()} threshold="0.25" triggerOnce="true">
-                                            {({ inView, ref }) => (
-                                                <>
-                                                    {blockData.showLightbox === "yes" ? (
-                                                        <div
-                                                            role="button"
-                                                            tabIndex={0}
-                                                            ref={ref}
-                                                            className={`gallery-image toZoomIn ${inView ? "zoomIn" : ""}`}
-                                                            onClick={() => setIndex(index)}
-                                                            onKeyDown={() => setIndex(index)}
-                                                            aria-label={image.title}
-                                                        >
-                                                            <WpImage file={image} />
-                                                        </div>
-                                                    ) : (
-                                                        <div ref={ref} className={`gallery-image toZoomIn ${inView ? "zoomIn" : ""}`} aria-label={image.title}>
-                                                            <WpImage file={image} />
-                                                        </div>
-                                                    )}
-                                                </>
+                                        <>
+                                            {blockData.showLightbox === "yes" ? (
+                                                <div role="button" tabIndex={0} className={`gallery-image`} onClick={() => setIndex(index)} onKeyDown={() => setIndex(index)} aria-label={image.title}>
+                                                    <WpImage file={image} />
+                                                </div>
+                                            ) : (
+                                                <div className={`gallery-image`} aria-label={image.title}>
+                                                    <WpImage file={image} />
+                                                </div>
                                             )}
-                                        </InView>
+                                        </>
                                     );
                                 })}
                             </div>

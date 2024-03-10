@@ -1,0 +1,32 @@
+---
+import { HTMLRender } from "~helpers/htmlRender";
+import { WpImage } from "~helpers/WpImage";
+import "./style.scss";
+
+const { blockData } = Astro.props;
+---
+
+<div class="icon-block">
+    <div class="container">
+        <HTMLRender data={blockData.text} />
+        <div class="icon-block__grid">
+            {
+                blockData.items.map((iconData) => {
+                    return (
+                        <div class={`icon-section`}>
+                            <div class="icon-section__image">
+                                {/* Output the icon if it is a normal image format */}
+                                {iconData.icon && <WpImage file={iconData.icon} />}
+                                {/* Output the icon if it is a SVG */}
+                                {iconData.iconSvg && <WpImage client:load file={iconData.iconSvg} />}
+                            </div>
+                            <div class="icon-section__text">
+                                <HTMLRender data={iconData.textArea} />
+                            </div>
+                        </div>
+                    );
+                })
+            }
+        </div>
+    </div>
+</div>

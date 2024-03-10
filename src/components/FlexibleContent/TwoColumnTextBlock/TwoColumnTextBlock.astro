@@ -1,0 +1,18 @@
+---
+import { HTMLRender } from "~helpers/htmlRender";
+
+import "./style.scss";
+
+const { blockData } = Astro.props;
+---
+
+<div class="two-column-text-block">
+    <div class="container">
+        <div class="two-column-text-block__column-one">
+            <HTMLRender data={blockData.columnOneWysiwyg} />
+        </div>
+        <div class="two-column-text-block__column-two">
+            <HTMLRender data={blockData.columnTwoWysiwyg} />
+        </div>
+    </div>
+</div>

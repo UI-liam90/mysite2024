@@ -1,5 +1,4 @@
-"use client";
-import React, { useState, useRef } from "react";
+import { useState, useRef } from "react";
 import { InView } from "react-intersection-observer";
 import { WpImage } from "~helpers/WpImage";
 import { v4 } from "uuid";
@@ -23,30 +22,25 @@ const TeamMemberBlock = ({ teamMember, popUps }) => {
     };
     return (
         <>
-            <InView threshold="0.25" triggerOnce="true">
-                {({ inView, ref }) => (
-                    <div className={`team-member-block-container toZoomIn ${inView ? "zoomIn" : ""}`}>
-                        {popUps === "yes" ? (
-                            <div
-                                role="button"
-                                tabIndex={0}
-                                className={`team-member-block team-member-block--popups`}
-                                aria-label={`Read More About ${teamMember.name}`}
-                                ref={ref}
-                                style={{ backgroundColor: teamMember.backgroundColour }}
-                                onClick={() => toggleModal()}
-                                onKeyDown={() => toggleModal()}
-                            >
-                                <WpImage file={teamMember.image} />
-                            </div>
-                        ) : (
-                            <div className={`team-member-block`} ref={ref} style={{ backgroundColor: teamMember.backgroundColour }}>
-                                <WpImage file={teamMember.image} />
-                            </div>
-                        )}
+            <div className={`team-member-block-container`}>
+                {popUps === "yes" ? (
+                    <div
+                        role="button"
+                        tabIndex={0}
+                        className={`team-member-block team-member-block--popups`}
+                        aria-label={`Read More About ${teamMember.name}`}
+                        style={{ backgroundColor: teamMember.backgroundColour }}
+                        onClick={() => toggleModal()}
+                        onKeyDown={() => toggleModal()}
+                    >
+                        <WpImage file={teamMember.image} />
+                    </div>
+                ) : (
+                    <div className={`team-member-block`} style={{ backgroundColor: teamMember.backgroundColour }}>
+                        <WpImage file={teamMember.image} />
                     </div>
                 )}
-            </InView>
+            </div>
             {popUps === "yes" && (
                 <dialog ref={modalRef} className={`modal modal--text-${teamMember.textColour}`}>
                     <div className="modal-wrapper">

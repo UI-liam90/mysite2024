@@ -1,18 +1,17 @@
-"use client";
 import React, { Suspense } from "react";
 import { v4 } from "uuid";
-const TextBlock = React.lazy(() => import("./TextBlock"));
-const TwoColumnTextBlock = React.lazy(() => import("./TwoColumnTextBlock"));
+const TextBlock = React.lazy(() => import("./TextBlock/TextBlock.astro"));
+const TwoColumnTextBlock = React.lazy(() => import("./TextAndImageGridBlock"));
 const ImageAndTextGridBlock = React.lazy(() => import("./ImageAndTextGridBlock"));
 const ImageAndTextBlock = React.lazy(() => import("./ImageAndTextBlock"));
-const NewsAndTrendsBlock = React.lazy(() => import("./NewsAndTrendsBlock"));
-const MeetTheTeamBlock = React.lazy(() => import("./MeetTheTeamBlock"));
-const ContactBlock = React.lazy(() => import("./ContactBlock"));
+const NewsAndTrendsBlock = React.lazy(() => import("./NewsAndTrendsBlock/NewsAndTrendsBlock.astro"));
+const MeetTheTeamBlock = React.lazy(() => import("./MeetTheTeamBlock/MeetTheTeamBlock.astro"));
+const ContactBlock = React.lazy(() => import("./ContactBlock/ContactBlock.astro"));
 const FaqBlock = React.lazy(() => import("./FaqBlock"));
-const IconBlock = React.lazy(() => import("./IconBlock"));
+const IconBlock = React.lazy(() => import("./IconBlock/IconBlock.astro"));
 const CountUpBlock = React.lazy(() => import("./CountUpBlock"));
 const GalleryBlock = React.lazy(() => import("./GalleryBlock"));
-const HeroBlock = React.lazy(() => import("./HeroBlock"));
+const HeroBlock = React.lazy(() => import("./HeroBlock/HeroBlock.astro"));
 const GlobalElementBlock = React.lazy(() => import("./GlobalElementBlock"));
 
 const FlexibleContent = ({ blockData, contentType }) => {

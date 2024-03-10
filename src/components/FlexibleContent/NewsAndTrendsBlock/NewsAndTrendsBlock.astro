@@ -1,0 +1,35 @@
+---
+import NewsGridItemBlock from "~components/NewsGridItemBlock";
+import HTag from "~helpers/hTag";
+import LinkButton from "~components/LinkButton";
+import { HTMLRender } from "~helpers/htmlRender";
+import { getAllNews } from "../globalQueries";
+import "./style.scss";
+
+const { blockData } = Astro.props;
+
+const AllNews = await getAllNews();
+let newsNodes = blockData?.newsCategory?.contentNodes?.nodes;
+if (!newsNodes || newsNodes.length === 0) {
+    newsNodes = AllNews.posts.nodes;
+}
+---
+
+<div class="news-trends-block">
+    <div class="container">
+        <div class={`news-trends-block__text`}>
+            <HTag type={blockData.titleType}>{blockData.title}</HTag>
+            <HTMLRender data={blockData.text} />
+            {
+                blockData?.button?.url && (
+                    <LinkButton type="secondary" size="large" url={blockData.button.url}>
+                        {blockData.button.title}
+                    </LinkButton>
+                )
+            }
+        </div>
+        <div class="news-trends-block__news-grid">
+            {newsNodes.slice(0, blockData.numberOfPosts).map((post) => <NewsGridItemBlock client:load headingType="h2" postData={post} />)}
+        </div>
+    </div>
+</div>

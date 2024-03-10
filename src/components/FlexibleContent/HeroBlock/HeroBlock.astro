@@ -1,0 +1,16 @@
+---
+import ImageHero from "./ImageHero/ImageHero.astro";
+import VideoHero from "./VideoHero/VideoHero.astro";
+import SliderHero from "./SliderHero";
+import "./style.scss";
+
+const { blockData } = Astro.props;
+---
+
+<div className={`hero-block`}>
+    <div class:list={[{ container: blockData.fullWidth !== "yes" }]}>
+        {blockData.heroType === "one-image" && <ImageHero blockData={blockData} />}
+        {blockData.heroType === "one-video" && <VideoHero blockData={blockData} />}
+        {blockData.heroType === "slider" && <SliderHero client:load blockData={blockData} />}
+    </div>
+</div>

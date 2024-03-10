@@ -1,0 +1,18 @@
+---
+import { HTMLRender } from "~helpers/htmlRender";
+import { WpImage } from "~helpers/WpImage";
+
+import "./style.scss";
+
+const { blockData } = Astro.props;
+---
+
+<div class={`text-image-block text-image-block--${blockData.gridPosition}`}>
+    <div class="container">
+        <div class={`text-image-block__text`}>
+            <HTMLRender data={blockData.text} />
+        </div>
+
+        <div class="text-image-block__image">{blockData.image && <WpImage file={blockData.image} />}</div>
+    </div>
+</div>

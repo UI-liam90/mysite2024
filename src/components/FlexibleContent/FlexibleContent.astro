@@ -1,0 +1,54 @@
+---
+import ContactBlock from "./ContactBlock/ContactBlock.astro";
+import CountUpBlock from "./CountUpBlock";
+import FaqBlock from "./FaqBlock";
+import GalleryBlock from "./GalleryBlock";
+import GlobalElementBlock from "./GlobalElementBlock/GlobalElementBlock.astro";
+import HeroBlock from "./HeroBlock/HeroBlock.astro";
+import IconBlock from "./IconBlock/IconBlock.astro";
+import MeetTheTeamBlock from "./MeetTheTeamBlock/MeetTheTeamBlock.astro";
+import NewsAndTrendsBlock from "./NewsAndTrendsBlock/NewsAndTrendsBlock.astro";
+import TextBlock from "./TextBlock/TextBlock.astro";
+import TwoColumnTextBlock from "./TwoColumnTextBlock/TwoColumnTextBlock.astro";
+import TextAndImageBlock from "./TextAndImageBlock/TextAndImageBlock.astro";
+import TextAndImageGridBlock from "./TextAndImageGridBlock/TextAndImageGridBlock.astro";
+const { blockData, contentType } = Astro.props;
+const blocks = blockData;
+---
+
+{
+    blocks &&
+        blocks.map((block) => {
+            switch (block.fieldGroupName) {
+                case `${contentType}_Pagebuilder_Blocks_ContactBlock`:
+                    return <ContactBlock blockData={block} />;
+                case `${contentType}_Pagebuilder_Blocks_CountUpBlock`:
+                    return <CountUpBlock client:load blockData={block} />;
+                case `${contentType}_Pagebuilder_Blocks_FaqBlock`:
+                    return <FaqBlock client:load blockData={block} />;
+                case `${contentType}_Pagebuilder_Blocks_GalleryBlock`:
+                    return <GalleryBlock client:load blockData={block} />;
+                case `${contentType}_Pagebuilder_Blocks_HeroBanner`:
+                    return <HeroBlock blockData={block} />;
+                case `${contentType}_Pagebuilder_Blocks_IconBlock`:
+                    return <IconBlock blockData={block} />;
+                case `${contentType}_Pagebuilder_Blocks_MeetTheTeamBlock`:
+                    return <MeetTheTeamBlock blockData={block} />;
+                case `${contentType}_Pagebuilder_Blocks_NewsAndTrendsBlock`:
+                    return <NewsAndTrendsBlock blockData={block} />;
+                case `${contentType}_Pagebuilder_Blocks_TextBlock`:
+                    return <TextBlock blockData={block} />;
+                case `${contentType}_Pagebuilder_Blocks_TextAndImageBlock`:
+                    return <TextAndImageBlock blockData={block} />;
+                case `${contentType}_Pagebuilder_Blocks_TextAndImageGridBlock`:
+                    return <TextAndImageGridBlock blockData={block} />;
+                case `${contentType}_Pagebuilder_Blocks_TwoColumnTextBlock`:
+                    return <TwoColumnTextBlock blockData={block} />;
+                case "Page_Pagebuilder_Blocks_GlobalElementBlock":
+                    return <GlobalElementBlock blockData={block.elementToClone.pageBuilder.blocks} />;
+
+                default:
+                    return null;
+            }
+        })
+}
