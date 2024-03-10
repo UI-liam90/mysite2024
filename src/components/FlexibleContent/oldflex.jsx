@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
 import { v4 } from "uuid";
 const TextBlock = React.lazy(() => import("./TextBlock/TextBlock.astro"));
-const TwoColumnTextBlock = React.lazy(() => import("./TextAndImageGridBlock"));
+const TwoColumnTextBlock = React.lazy(() => import("./TextAndImageGridBlock/TextAndImageGridBlock.astro"));
 const ImageAndTextGridBlock = React.lazy(() => import("./ImageAndTextGridBlock"));
 const ImageAndTextBlock = React.lazy(() => import("./ImageAndTextBlock"));
 const NewsAndTrendsBlock = React.lazy(() => import("./NewsAndTrendsBlock/NewsAndTrendsBlock.astro"));
@@ -12,7 +12,7 @@ const IconBlock = React.lazy(() => import("./IconBlock/IconBlock.astro"));
 const CountUpBlock = React.lazy(() => import("./CountUpBlock"));
 const GalleryBlock = React.lazy(() => import("./GalleryBlock"));
 const HeroBlock = React.lazy(() => import("./HeroBlock/HeroBlock.astro"));
-const GlobalElementBlock = React.lazy(() => import("./GlobalElementBlock"));
+const GlobalElementBlock = React.lazy(() => import("./GlobalElementBlock/GlobalElementBlock.astro"));
 
 const FlexibleContent = ({ blockData, contentType }) => {
     const blocks = blockData;

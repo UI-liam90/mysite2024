@@ -1,5 +1,4 @@
 import classnames from "classnames";
-import React, { useEffect, useContext } from "react";
 import { useFormContext } from "react-hook-form";
 import Captcha from "../../components/Captcha";
 import Html from "../../components/Html";
@@ -16,8 +15,7 @@ import { islabelHidden } from "../../utils/inputSettings";
 
 const FieldBuilder = ({ databaseId, formFields, formLoading, preOnSubmit, presetValues, settings }) => {
     //get global state of preset values
-    //const { formValues, handleFormValues } = useContext(AppContext);
-    const { reset } = useFormContext();
+    //const { reset } = useFormContext();
     // useEffect(() => {
     //     reset(formValues[databaseId]);
 
