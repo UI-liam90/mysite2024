@@ -12,106 +12,111 @@
  */
 
 const formatter = ({ id, fieldResponse, type, inputs }) => {
-    switch (type) {
-        // case "ADDRESS":
-        //     return {
-        //         addressValues: value,
-        //     };
-        case "CAPTCHA":
-            return {
-                value: fieldResponse,
-            };
-        case "CHECKBOX":
-            // Loop through all Gravity Form Checkbox choices.
-            const selectedChoices = inputs
-                .map(({ id, label, name }) => {
-                    const inputName = name || label;
-                    // If the Gravity Forms choice matches with selected item from user.
-                    // Add to response.
-                    if (fieldResponse.find((option) => option === inputName)) {
-                        return {
-                            inputId: id,
-                            value: inputName,
-                        };
-                    }
-                    return false;
-                })
-                .filter(Boolean);
+	console.log(fieldResponse);
+	switch (type) {
+		case "ADDRESS":
+			return {
+				addressValues: fieldResponse,
+			};
+		case "NAME":
+			return {
+				nameValues: fieldResponse,
+			};
+		case "CAPTCHA":
+			return {
+				value: fieldResponse,
+			};
+		case "CHECKBOX":
+			// Loop through all Gravity Form Checkbox choices.
+			const selectedChoices = inputs
+				.map(({ id, label, name }) => {
+					const inputName = name || label;
+					// If the Gravity Forms choice matches with selected item from user.
+					// Add to response.
+					if (fieldResponse.find((option) => option === inputName)) {
+						return {
+							inputId: id,
+							value: inputName,
+						};
+					}
+					return false;
+				})
+				.filter(Boolean);
 
-            return {
-                checkboxValues: selectedChoices,
-            };
-        case "EMAIL":
-            // UPDATE TO INCLUDE CONFIRMATION VALUE IF REQUIRED.
-            return {
-                emailValues: {
-                    value: fieldResponse,
-                },
-            };
-        case "FILEUPLOAD":
-            return {
-                fileUploadValues: fieldResponse,
-            };
-        case "CONSENT":
-            return {
-                value: fieldResponse.toString(),
-            };
+			return {
+				checkboxValues: selectedChoices,
+			};
+		case "EMAIL":
+			// UPDATE TO INCLUDE CONFIRMATION VALUE IF REQUIRED.
+			return {
+				emailValues: {
+					value: fieldResponse,
+				},
+			};
+		case "FILEUPLOAD":
+			return {
+				fileUploadValues: fieldResponse,
+			};
+		case "CONSENT":
+			return {
+				value: fieldResponse.toString(),
+			};
 
-        case "DATE":
-        case "HIDDEN":
-        case "NUMBER":
-        case "PHONE":
-        case "POSTCONTENT":
-        case "POSTEXCERPT":
-        case "POSTTITLE":
-        case "RADIO":
-        case "SELECT":
-        case "SIGNATURE":
-        case "TEXTAREA":
-        case "TEXT":
-        case "WEBSITE":
-            return {
-                value: fieldResponse,
-            };
-        case "MULTISELECT":
-            return {
-                values: fieldResponse,
-            };
-        case "POSTCATEGORY":
-            return {
-                values: fieldResponse,
-            };
-        case "POSTCUSTOM":
-            return {
-                values: fieldResponse,
-            };
-        case "POSTTAGS":
-            return {
-                values: fieldResponse,
-            };
-        default:
-            return {};
-    }
+		case "DATE":
+		case "HIDDEN":
+		case "NUMBER":
+		case "PHONE":
+		case "POSTCONTENT":
+		case "POSTEXCERPT":
+		case "POSTTITLE":
+		case "RADIO":
+		case "SELECT":
+		case "SIGNATURE":
+		case "TEXTAREA":
+		case "TEXT":
+		case "WEBSITE":
+			return {
+				value: fieldResponse,
+			};
+		case "MULTISELECT":
+			return {
+				values: fieldResponse,
+			};
+		case "POSTCATEGORY":
+			return {
+				values: fieldResponse,
+			};
+		case "POSTCUSTOM":
+			return {
+				values: fieldResponse,
+			};
+		case "POSTTAGS":
+			return {
+				values: fieldResponse,
+			};
+		default:
+			return {};
+	}
 };
 
 const formatData = ({ serverData, clientData }) => {
-    const formattedData = serverData
-        .map(({ type, inputs, id }) => {
-            // Does this particular field have a response?
-            const fieldResponse = clientData[`input_${id}`];
+	const formattedData = serverData
+		.map(({ type, inputs, id }) => {
+			// Does this particular field have a response?
+			const fieldResponse = clientData[`input_${id}`];
 
-            // If so, lets re-format and add to array.
-            if (fieldResponse) {
-                return {
-                    id,
-                    ...formatter({ id, fieldResponse, type, inputs }),
-                };
-            }
-            return false;
-        })
-        .filter(Boolean);
+			// If so, lets re-format and add to array.
+			if (fieldResponse) {
+				return {
+					id,
+					...formatter({ id, fieldResponse, type, inputs }),
+				};
+			}
+			return false;
+		})
+		.filter(Boolean);
 
-    return formattedData;
+	return formattedData;
 };
 
 export default formatData;

@@ -11,16 +11,18 @@ import { textareaFieldFragment } from "./components/Textarea/query";
 import { fileUploadFieldFragment } from "./components/FileUpload/query";
 import { consentFieldFragment } from "./components/Consent/query";
 import { formConfirmationFragment, submitButtonFragment } from "./fragments";
+import { nameFieldFragment } from "./components/Name/query";
+import { addressFieldFragment } from "./components/Address/query";
 
 export const submitMutationQuery = gql`
-    mutation submitForm($id: ID!, $fieldValues: [FormFieldValuesInput]!) {
-        submitGfForm(input: { id: $id, fieldValues: $fieldValues }) {
-            errors {
-                id
-                message
-            }
-        }
-    }
+	mutation submitForm($id: ID!, $fieldValues: [FormFieldValuesInput]!) {
+		submitGfForm(input: { id: $id, fieldValues: $fieldValues }) {
+			errors {
+				id
+				message
+			}
+		}
+	}
 `;
 
 export const gravityFormQuery = /* GraphQL */ `
@@ -63,6 +65,8 @@ export const gravityFormQuery = /* GraphQL */ `
           ${textFieldFragment}
           ${fileUploadFieldFragment}
           ${consentFieldFragment}
+          ${nameFieldFragment}
+          ${addressFieldFragment}
         }
       }
     }
