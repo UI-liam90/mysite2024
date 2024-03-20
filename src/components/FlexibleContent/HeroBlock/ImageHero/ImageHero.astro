@@ -7,7 +7,7 @@ const { blockData } = Astro.props;
 ---
 
 <div class={`image-hero`}>
-    <WpImage file={blockData.image} />
+    {blockData.image && <WpImage file={blockData.image} />}
     {
         blockData.overlay || blockData.button ? (
             <div class={`hero-overlay`}>
