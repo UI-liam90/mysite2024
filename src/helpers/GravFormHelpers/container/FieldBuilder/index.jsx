@@ -9,6 +9,7 @@ import SelectorList from "../../components/SelectorList";
 import Textarea from "../../components/Textarea";
 import FileUpload from "../../components/FileUpload";
 import Consent from "../../components/Consent";
+import Name from "../../components/Name";
 import { valueToLowerCase } from "../../utils/helpers";
 import { islabelHidden } from "../../utils/inputSettings";
 //import { AppContext } from "@/context/AppContext";
@@ -76,6 +77,8 @@ const FieldBuilder = ({ databaseId, formFields, formLoading, preOnSubmit, preset
             case "DATE":
             case "PHONE":
                 return <Input fieldData={field} key={id} gfId={id} name={inputName} defaultValue={defaultValue} wrapClassName={inputWrapperClass} wrapId={wrapId} />;
+            case "NAME":
+                return <Name fieldData={field} key={id} gfId={id} name={inputName} wrapClassName={inputWrapperClass} wrapId={wrapId} />;
             case "CONSENT":
                 return <Consent fieldData={field} key={id} gfId={id} name={inputName} wrapClassName={inputWrapperClass} wrapId={wrapId} />;
             case "TEXTAREA":

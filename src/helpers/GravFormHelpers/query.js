@@ -10,6 +10,7 @@ import { radioFieldFragment, checkboxFieldFragment } from "./components/Selector
 import { textareaFieldFragment } from "./components/Textarea/query";
 import { fileUploadFieldFragment } from "./components/FileUpload/query";
 import { consentFieldFragment } from "./components/Consent/query";
+import { nameFieldFragment } from "./components/Name/query";
 import { formConfirmationFragment, submitButtonFragment } from "./fragments";
 
 export const submitMutationQuery = gql`
@@ -62,6 +63,7 @@ export const gravityFormQuery = /* GraphQL */ `
           ${textareaFieldFragment}
           ${textFieldFragment}
           ${fileUploadFieldFragment}
+          ${nameFieldFragment}
           ${consentFieldFragment}
         }
       }
