@@ -1,10 +1,10 @@
 import GQLQuery from "~helpers/GQLQuery";
 import { imageFragment, seoFragment } from "./dataFragments";
-export async function getPostList(offset = 0, pageSize = 12, taxonomy = null) {
-    let condition = `where: {offsetPagination: {offset: ${offset}, size: ${pageSize}}, orderby: {field: DATE, order: DESC}}`;
+export async function getPostList(offset = 0, pageSize = 12, taxonomy = null, excludedId = null) {
+    let condition = `where: {offsetPagination: {offset: ${offset}, size: ${pageSize}}, notIn: "${excludedId}", orderby: {field: DATE, order: DESC}}`;
 
     if (taxonomy) {
-        condition = `where: {offsetPagination: {offset: ${offset}, size: ${pageSize}}, orderby: {field: DATE, order: DESC}, ${taxonomy.key}: "${taxonomy.value}"}`;
+        condition = `where: {offsetPagination: {offset: ${offset}, size: ${pageSize}}, notIn: "${excludedId}", orderby: {field: DATE, order: DESC}, ${taxonomy.key}: "${taxonomy.value}"}`;
     }
 
     const query = {
