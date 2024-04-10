@@ -13,10 +13,14 @@ const Link = ({ className, href, target, children }) => {
     };
 
     const url = isValidUrl(href) ? new URL(`${href}`) : null;
+    const wordpressUrl = new URL(`${import.meta.env.PUBLIC_WORDPRESS_API_URL}`);
 
-    const link = url ? url?.pathname : href;
+    if (url && url.host === wordpressUrl.host) {
+        href = url?.pathname;
+    }
+
     return (
-        <a className={className} href={link} target={target}>
+        <a className={className} href={href} target={target}>
             {children}
         </a>
     );
