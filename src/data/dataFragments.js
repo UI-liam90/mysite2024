@@ -1,9 +1,16 @@
 export const imageFragment = `
 altText
 mediaItemUrl
+srcSet
+sizes
+sourceUrl
 mediaDetails {
   width
   height
+  sizes {
+    sourceUrl
+    width
+  }
 }
 mimeType
 `;
