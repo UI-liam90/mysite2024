@@ -5,7 +5,7 @@ export async function getMenu() {
     const query = {
         query: `
           query {
-            menuItems(where: {location: MAIN_NAV}) {
+            menuItems(where: {location: MAIN_NAV}, first: 1000) {
               nodes {
                 ${menuFragment}
               }
