@@ -12,7 +12,7 @@ teamMembers {
         ${imageFragment}
     }
     socialMedia {
-        type
+        type: icon
         url: link
     }
 }
