@@ -89,6 +89,10 @@ const formatter = ({ id, fieldResponse, type, inputs }) => {
             return {
                 values: fieldResponse,
             };
+        case "NAME":
+            return {
+                nameValues: fieldResponse,
+            };
         default:
             return {};
     }

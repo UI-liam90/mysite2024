@@ -2,6 +2,8 @@
     /* ---------------------------------------
     Theme Colours
     ------------------------------------------ */
+    --transparent: transparent;
+
     --alert: #ef4444;
     --warning: #fde68a;
     --black: #000000;
@@ -19,4 +21,38 @@
 
     --brand-1: #2f404f;
     --brand-2: #d26f95;
+    --brand-3: var(--grey-500);
+}
+/* ---------------------------------------
+    Colour Utility Classes
+    ------------------------------------------ */
+.bg-colour-white {
+    background-color: var(--white);
+}
+.bg-colour-black {
+    background-color: var(--black);
+}
+.bg-colour-brand-1 {
+    background-color: var(--brand-1);
+}
+.bg-colour-brand-2 {
+    background-color: var(--brand-2);
+}
+.bg-colour-brand-3 {
+    background-color: var(--brand-3);
+}
+.text-colour-white {
+    color: var(--white);
+}
+.text-colour-black {
+    color: var(--black);
+}
+.text-colour-brand-1 {
+    color: var(--brand-1);
+}
+.text-colour-brand-2 {
+    color: var(--brand-2);
+}
+.text-colour-brand-3 {
+    color: var(--brand-3);
 }

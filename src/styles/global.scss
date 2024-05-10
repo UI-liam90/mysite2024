@@ -18,7 +18,7 @@ optgroup,
 textarea {
     color: var(--grey-900);
     font-family: var(--font-sans);
-    font-size: var(--font-size-cat);
+    font-size: var(--fs-cat);
     -webkit-font-smoothing: auto;
     -moz-osx-font-smoothing: auto;
     line-height: 1.5;
@@ -69,37 +69,37 @@ h6,
 h1,
 .heading-1,
 .title-one {
-    font-size: var(--font-size-bear);
+    font-size: var(--fs-bear);
 }
 h2,
 .heading-2,
 .title-two {
-    font-size: var(--font-size-lion);
+    font-size: var(--fs-lion);
 }
 h3,
 .heading-3,
 .title-three {
-    font-size: var(--font-size-wolf);
+    font-size: var(--fs-wolf);
 }
 h4,
 .heading-4,
 .title-four {
-    font-size: var(--font-size-dog);
+    font-size: var(--fs-dog);
 }
 h5,
 .heading-5,
 .title-five {
-    font-size: var(--font-size-fox);
+    font-size: var(--fs-fox);
 }
 h6,
 .heading-6,
 .title-six {
-    font-size: var(--font-size-cat);
+    font-size: var(--fs-cat);
 }
 p,
 li,
 address {
-    font-size: var(--font-size-fox);
+    font-size: var(--fs-fox);
     margin-bottom: var(--spacing-6);
     line-height: 1.5;
     a {
@@ -115,7 +115,7 @@ address {
     }
 }
 p small {
-    font-size: var(--font-size-mouse);
+    font-size: var(--fs-mouse);
 }
 ul,
 ol {
@@ -194,6 +194,15 @@ strong {
 .container {
     width: 100%;
     max-width: var(--container-width);
+    margin: 0 auto;
+    padding-top: var(--container-x-gutters);
+    padding-bottom: var(--container-x-gutters);
+    padding-left: var(--container-y-gutters);
+    padding-right: var(--container-y-gutters);
+}
+.container-wide {
+    width: 100%;
+    max-width: var(--container-wide-width);
     margin: 0 auto;
     padding-top: var(--container-x-gutters);
     padding-bottom: var(--container-x-gutters);

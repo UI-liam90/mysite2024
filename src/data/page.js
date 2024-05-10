@@ -1,17 +1,6 @@
 import { imageFragment, seoFragment } from "./dataFragments";
-import { contactBlockFields } from "~components/FlexibleContent/ContactBlock/query";
-import { countUpBlockFields } from "~components/FlexibleContent/CountUpBlock/query";
-import { faqBlockFields } from "~components/FlexibleContent/FaqBlock/query";
-import { galleryBlockFields } from "~components/FlexibleContent/GalleryBlock/query";
-import { heroBlockFields } from "~components/FlexibleContent/HeroBlock/query";
-import { iconBlockFields } from "~components/FlexibleContent/IconBlock/query";
-import { imageAndTextBlockFields } from "~components/FlexibleContent/TextAndImageBlock/query";
-import { imageAndTextGridBlockFields } from "~components/FlexibleContent/TextAndImageGridBlock/query";
-import { meetTheTeamFields } from "~components/FlexibleContent/MeetTheTeamBlock/query";
-import { newsAndTrendsBlockFields } from "~components/FlexibleContent/NewsAndTrendsBlock/query";
-import { textBlockFields } from "~components/FlexibleContent/TextBlock/query";
-import { twoColumnTextBlockFields } from "~components/FlexibleContent/TwoColumnTextBlock/query";
-import { globalBuilderItems } from "~components/FlexibleContent/GlobalElementBlock/query";
+import { pageBuilderBlocks } from "./pageBuilder";
+import { globalBuilderItems } from "~components/GlobalElementBlock/query";
 import GQLQuery from "~helpers/GQLQuery";
 
 const pageQuery = `
@@ -24,51 +13,16 @@ const pageQuery = `
           ${imageFragment}
         }
     }
-    pageBuilder {
-      blocks {
-          ... on Page_Pagebuilder_Blocks_TextBlock {
-              ${textBlockFields}
-          }
-          ... on Page_Pagebuilder_Blocks_TextAndImageGridBlock {
-              ${imageAndTextGridBlockFields}
-          }
-          ... on Page_Pagebuilder_Blocks_TwoColumnTextBlock {
-              ${twoColumnTextBlockFields}
-          }
-          ... on Page_Pagebuilder_Blocks_TextAndImageBlock {
-              ${imageAndTextBlockFields}
-          }
-          ... on Page_Pagebuilder_Blocks_NewsAndTrendsBlock {
-              ${newsAndTrendsBlockFields}
-          }
-          ... on Page_Pagebuilder_Blocks_MeetTheTeamBlock {
-              ${meetTheTeamFields}
-          }
-          ... on Page_Pagebuilder_Blocks_ContactBlock {
-              ${contactBlockFields}
-          }
-          ... on Page_Pagebuilder_Blocks_FaqBlock {
-              ${faqBlockFields}
-          }
-          ... on Page_Pagebuilder_Blocks_IconBlock {
-              ${iconBlockFields}
-          }
-          ... on Page_Pagebuilder_Blocks_CountUpBlock {
-              ${countUpBlockFields}
-          }
-          ... on Page_Pagebuilder_Blocks_GalleryBlock {
-              ${galleryBlockFields}
-          }
-          ... on Page_Pagebuilder_Blocks_HeroBanner {
-              ${heroBlockFields}
-          }
-          ... on Page_Pagebuilder_Blocks_GlobalElementBlock {
-              ${globalBuilderItems}
-          }
-      }
-  }
     seo {
         ${seoFragment}
+    }
+    pageBuilder {
+        blocks {
+            ${pageBuilderBlocks}
+            ... on PageBuilderBlocksGlobalElementBlockLayout {
+                ${globalBuilderItems}
+            }
+        }
     }
 `;
 

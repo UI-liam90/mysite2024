@@ -23,7 +23,7 @@
         fill: var(--white);
     }
     h5 {
-        font-size: var(--font-size-mouse);
+        font-size: var(--fs-mouse);
         margin: 0;
     }
 }
@@ -49,7 +49,7 @@
         width: 100%;
         margin-bottom: var(--spacing-4);
         .off-canvas__close {
-            font-size: var(--font-size-lion);
+            font-size: var(--fs-lion);
             color: var(--white);
         }
     }
@@ -78,7 +78,7 @@ ul.offcanvas-menu {
     a:active,
     a:visited {
         color: var(--white);
-        font-size: var(--font-size-dog);
+        font-size: var(--fs-dog);
         text-decoration: none;
     }
     ul {
