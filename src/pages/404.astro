@@ -1,0 +1,16 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { getHomePage } from "~data/page";
+import FlexibleContent from "~components/FlexibleContent/FlexibleContent.astro";
+
+const page = await getHomePage();
+---
+
+<Layout>
+    <main class="main-content">
+        <div class="container">
+            <h1>404 - Page not Found</h1>
+            <p>Looks like that page could not be found. It may of moved or been deleted. <a href="/">Return to Homepage</a></p>
+        </div>
+    </main>
+</Layout>
