@@ -1,7 +1,7 @@
 ---
 import Menu from "~components/Menu";
 import { WpImage } from "~helpers/WpImage";
-import ScreenVisibility from "~helpers/screenVisibility";
+import ScreenVisibility from "~helpers/ScreenVisibility";
 import { getHeader, getMenu } from "~data/global.js";
 
 import "./style.scss";
@@ -14,13 +14,13 @@ const header = await getHeader();
     <div class="logo">
         <a aria-label="back to homepage" class="header-link-home" href="/">
             {/* Output the logo if it is a standard image file format */}
-            {header.themeGeneralSettings.themeSettings?.siteLogo && <WpImage file={header.themeGeneralSettings.themeSettings?.siteLogo} />}
+            {header.themeGeneralSettings.themeSettings?.siteLogo && <WpImage file={header.themeGeneralSettings.themeSettings?.siteLogo.node} />}
             {/* Output the logo if it is a SVG */}
-            {header.themeGeneralSettings.themeSettings?.siteLogoSvg && <WpImage file={header.themeGeneralSettings.themeSettings?.siteLogoSvg} />}
+            {header.themeGeneralSettings.themeSettings?.siteLogoSvg && <WpImage file={header.themeGeneralSettings.themeSettings?.siteLogoSvg.node} />}
         </a>
     </div>
     <div class="desktopNav">
-        <ScreenVisibility client:load hiddenMQ={"(max-width: 1024px)"}>
+        <ScreenVisibility client:load mediaQuery={"(max-width: 1024px)"} hideOnMediaQuery={true}>
             <Menu className="menu desktop-menu" menuData={menu.menuItems} />
         </ScreenVisibility>
     </div>

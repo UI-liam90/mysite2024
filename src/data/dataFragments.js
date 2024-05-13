@@ -5,12 +5,12 @@ srcSet
 sizes
 sourceUrl
 mediaDetails {
-  width
-  height
-  sizes {
-    sourceUrl
     width
-  }
+    height
+    sizes {
+        sourceUrl
+        width
+    }
 }
 mimeType
 `;
@@ -53,4 +53,10 @@ twitterImage {
         file
     }
 }
+`;
+export const globalBlockSettingsFragment = `
+    blockBackgroundColour
+    blockTextColour
+    blockWidth
+    blockId
 `;

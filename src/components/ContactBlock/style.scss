@@ -1,0 +1,16 @@
+@use "~styles/abstracts/breakpoint" as *;
+.contact-detail {
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--spacing-3);
+    p {
+        margin: 0;
+    }
+    svg {
+        width: 20px;
+        margin-right: var(--spacing-4);
+    }
+    &.contact-detail--address {
+        align-items: flex-start;
+    }
+}
