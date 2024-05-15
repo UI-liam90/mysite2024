@@ -1,9 +1,16 @@
 export const imageFragment = `
 altText
 mediaItemUrl
+srcSet
+sizes
+sourceUrl
 mediaDetails {
-  width
-  height
+    width
+    height
+    sizes {
+        sourceUrl
+        width
+    }
 }
 mimeType
 `;
@@ -46,4 +53,10 @@ twitterImage {
         file
     }
 }
+`;
+export const globalBlockSettingsFragment = `
+    blockBackgroundColour
+    blockTextColour
+    blockWidth
+    blockId
 `;

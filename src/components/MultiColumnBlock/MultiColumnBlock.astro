@@ -1,0 +1,32 @@
+---
+import ColumnBlock from "./ColumnBlock.astro";
+import "./style.scss";
+const { blockData } = Astro.props;
+const columnCount = blockData.numberOfColumns;
+const classList = [
+    "multicolumn-block",
+    {
+        "bg-colour-black": blockData.blockBackgroundColour === "black",
+        "bg-colour-white": blockData.blockBackgroundColour === "white",
+        "bg-colour-brand-1": blockData.blockBackgroundColour === "brand-1",
+        "bg-colour-brand-2": blockData.blockBackgroundColour === "brand-2",
+        "bg-colour-brand-3": blockData.blockBackgroundColour === "brand-3",
+        "text-colour-black": blockData.blockTextColour === "black",
+        "text-colour-white": blockData.blockTextColour === "white",
+        "text-colour-brand-1": blockData.blockTextColour === "brand-1",
+        "text-colour-brand-2": blockData.blockTextColour === "brand-2",
+        "text-colour-brand-3": blockData.blockTextColour === "brand-3",
+    },
+];
+---
+
+<div id={blockData.blockId} class:list={classList}>
+    <div class:list={[{ container: blockData.blockWidth === "contain" }, { "container-wide": blockData.blockWidth === "wide" }]}>
+        {columnCount > 0 && <ColumnBlock columnData={blockData.columnOne} />}
+        {columnCount > 1 && <ColumnBlock columnData={blockData.columnTwo} />}
+        {columnCount > 2 && <ColumnBlock columnData={blockData.columnThree} />}
+        {columnCount > 3 && <ColumnBlock columnData={blockData.columnFour} />}
+        {columnCount > 4 && <ColumnBlock columnData={blockData.columnFive} />}
+        {columnCount > 5 && <ColumnBlock columnData={blockData.columnSix} />}
+    </div>
+</div>

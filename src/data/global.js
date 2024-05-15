@@ -5,7 +5,7 @@ export async function getMenu() {
     const query = {
         query: `
           query {
-            menuItems(where: {location: MAIN_NAV}) {
+            menuItems(where: {location: MAIN_NAV}, first: 1000) {
               nodes {
                 ${menuFragment}
               }
@@ -24,16 +24,24 @@ export async function getHeader() {
           themeGeneralSettings {
             themeSettings {
               siteLogo {
-                ${imageFragment}
+                node {
+                  ${imageFragment}
+                }
               }
               siteLogoAlternate {
-                ${imageFragment}
+                node {
+                  ${imageFragment}
+                }
               }
               siteLogoSvg {
-                ${imageFragment}
+                node {
+                  ${imageFragment}
+                }
               }
               siteLogoAlternateSvg {
-                ${imageFragment}
+                node {
+                  ${imageFragment}
+                }
               }
             }
           }
@@ -64,15 +72,15 @@ export async function getFooter() {
                 }
               }
             }
-            acfOptionsContactDetails {
-              contactDetails {
+            siteContactDetails {
+              businessContactDetails {
                 address
-                emailAddresses {
-                  email
-                }
                 telephoneNumbers {
                   number
                   prefix
+                }
+                emailAddresses {
+                  email
                 }
               }
             }
@@ -80,6 +88,51 @@ export async function getFooter() {
       `,
     };
     const responseBody = await GQLQuery(query, {});
+
+    return responseBody;
+}
+export async function getContactDetails() {
+    const query = {
+        query: `
+      query GetContactDetails {
+        siteContactDetails {
+          businessContactDetails {
+            address
+            telephoneNumbers {
+              number
+              prefix
+            }
+            emailAddresses {
+              email
+            }
+          }
+        }
+      }
+  `,
+    };
+    const responseBody = await GQLQuery(query);
+
+    return responseBody;
+}
+export async function getAllNews() {
+    const query = {
+        query: `
+      query GetAllNews {
+          posts {
+              nodes {
+                   title
+                   uri
+                   featuredImage {
+                       node {
+                           ${imageFragment}
+                       }
+                   }
+              }
+           }
+      }
+  `,
+    };
+    const responseBody = await GQLQuery(query);
 
     return responseBody;
 }
