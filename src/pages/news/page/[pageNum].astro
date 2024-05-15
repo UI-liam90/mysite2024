@@ -15,10 +15,10 @@ const allPosts = await getPostList(postOffset, parseInt(import.meta.env.PUBLIC_P
 const PostArchiveSeo = await getPostArchiveSeo();
 ---
 
-<Layout pageSlug="news" seoData={PostArchiveSeo.acfOptionsArchivePageSettings.newsArchiveSettings}>
+<Layout pageSlug="news" seoData={PostArchiveSeo.archivePageSettings.newsArchiveSettings}>
     <main class="main-content">
         <div class="container">
-            <h1>{PostArchiveSeo.acfOptionsArchivePageSettings.newsArchiveSettings.pageTitle}</h1>
+            <h1>{PostArchiveSeo.archivePageSettings.newsArchiveSettings.pageTitle}</h1>
             <PostList client:load postsData={allPosts} page={parseInt(pageNum)} path="/news/" postSize={parseInt(import.meta.env.PUBLIC_POST_SIZE)} />
         </div>
     </main>
