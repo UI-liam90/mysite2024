@@ -39,13 +39,16 @@ export async function getPostList(offset = 0, pageSize = 12, taxonomy = null, ex
 export async function getPostArchiveSeo() {
     const query = {
         query: `query GetPostArchiveSeo {
-          acfOptionsArchivePageSettings {
+          archivePageSettings {
             newsArchiveSettings {
               title: seoTitle
               pageTitle: title
               metaDesc: metaDescription
               featuredImage {
-                ${imageFragment}
+                node {
+                  ${imageFragment}
+                }
+
               }
             }
           }
