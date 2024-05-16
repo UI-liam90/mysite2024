@@ -20,7 +20,7 @@ const Link = ({ className, href, target, children }) => {
     }
 
     return (
-        <a className={className} href={href} target={target}>
+        <a className={className} href={href} target={target} data-astro-prefetch>
             {children}
         </a>
     );
