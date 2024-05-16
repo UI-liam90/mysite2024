@@ -34,7 +34,6 @@ const Address = ({ fieldData, name, formSettings, ...wrapProps }) => {
 		<GroupInputWrapper inputData={fieldData} labelFor={name} wrapClassName="address-inputs-wrapper">
 			<ul className={`${name}-inputs address-inputs-grp inputs`}>
 				{inputs.map((input) => {
-					console.log(subLabelPlacement);
 					if (input.isHidden) return null;
 
 					const inputSettings = getInputSettings(input.key);

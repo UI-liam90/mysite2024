@@ -1,0 +1,92 @@
+@use "~styles/abstracts/breakpoint" as *;
+
+.step-banner {
+	display: flex;
+	flex-wrap: wrap;
+	color: var(--black);
+	gap: var(--spacing-1);
+	margin-bottom: 2rem;
+
+	@include breakpoint(lg) {
+		padding-right: 1em;
+	}
+
+	&-item {
+		background-color: var(--grey-100);
+		padding: 1em;
+		text-transform: uppercase;
+		position: relative;
+		flex: 1 1 15%;
+		text-align: center;
+		font-weight: 700;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		@include breakpoint(lg) {
+			&:nth-of-type(n + 2) {
+				background: linear-gradient(242.5deg, var(--grey-100) 85%, transparent 85%, transparent 100%), linear-gradient(297.5deg, var(--grey-100) 85%, transparent 85%);
+			}
+
+			&:nth-of-type(n + 2) .step-banner-item-content {
+				padding-left: 15%;
+			}
+
+			&:before,
+			&:after {
+				content: "";
+				position: absolute;
+				background-color: transparent;
+				width: 1rem;
+				left: 100%;
+			}
+
+			&::before {
+				top: 0;
+				bottom: 50%;
+				background: linear-gradient(to top right, var(--grey-100) 0%, var(--grey-100) 50%, transparent 50%, transparent 100%);
+			}
+
+			&:after {
+				top: 50%;
+				bottom: 0;
+				background: linear-gradient(to bottom right, var(--grey-100) 0%, var(--grey-100) 50%, transparent 50%, transparent 100%);
+			}
+		}
+
+		&.active {
+			color: var(--white);
+			background-color: var(--brand-1);
+
+			@include breakpoint(lg) {
+				&:nth-of-type(n + 2) {
+					background: linear-gradient(242.5deg, var(--brand-1) 85%, transparent 85%, transparent 100%), linear-gradient(297.5deg, var(--brand-1) 85%, transparent 85%);
+				}
+			}
+
+			&:before {
+				background: linear-gradient(to top right, var(--brand-1) 0%, var(--brand-1) 50%, transparent 50%, transparent 100%);
+			}
+
+			&:after {
+				background: linear-gradient(to bottom right, var(--brand-1), var(--brand-1) 50%, transparent 50%, transparent 100%);
+			}
+
+			.step-number {
+				border-color: var(--white);
+				color: var(--white);
+			}
+		}
+	}
+
+	.step-number {
+		border: 2px solid var(--brand-1);
+		padding: 0.25em 0.5em;
+		border-radius: 50%;
+		color: var(--brand-1);
+	}
+
+	.step-name {
+		margin-left: var(--spacing-2);
+	}
+}

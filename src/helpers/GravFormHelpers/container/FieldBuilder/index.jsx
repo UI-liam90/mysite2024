@@ -16,7 +16,7 @@ import { islabelHidden } from "../../utils/inputSettings";
 import Section from "~helpers/GravFormHelpers/components/Section";
 //import { AppContext } from "@/context/AppContext";
 
-const FieldBuilder = ({ databaseId, formFields, formLoading, preOnSubmit, presetValues, settings, formSettings }) => {
+const FieldBuilder = ({ databaseId, formFields, formLoading, preOnSubmit, presetValues, settings, formSettings, currentPage }) => {
 	//get global state of preset values
 	//const { reset } = useFormContext();
 	// useEffect(() => {
@@ -37,7 +37,9 @@ const FieldBuilder = ({ databaseId, formFields, formLoading, preOnSubmit, preset
 
 	// Loop through fields and create
 	return formFields.map((field) => {
-		console.log(field.type, field);
+		console.log(field.pageNumber, currentPage);
+		if (field.pageNumber !== currentPage) return null;
+
 		// Set the wrapper classes
 		const { id, captchaTheme, descriptionPlacement, isRequired, subLabelPlacement, labelPlacement, type, size, visibility } = field;
 

@@ -41,6 +41,9 @@ export const gravityFormQuery = /* GraphQL */ `
       confirmations {
         ${formConfirmationFragment}
       }
+      pagination {
+        pageNames
+      }
       formFields {
         nodes {
           displayOnly

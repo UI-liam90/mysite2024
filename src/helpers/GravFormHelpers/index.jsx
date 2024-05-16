@@ -2,7 +2,7 @@
 
 import classnames from "classnames";
 import PropTypes from "prop-types";
-import { useState, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import FormGeneralError from "./components/FormGeneralError";
 import FieldBuilder from "./container/FieldBuilder";
@@ -13,6 +13,8 @@ import { valueToLowerCase } from "./utils/helpers";
 import { useMutation } from "@apollo/client/react/hooks/useMutation";
 import { submitMutationQuery } from "./query";
 //import { submitGravityForm } from "./fetch";
+import StepBanner from "./components/StepBanner";
+import StepNavigation from "./components/StepNavigation";
 
 /**
  * Component to take Gravity Form graphQL data and turn into
@@ -21,6 +23,8 @@ import { submitMutationQuery } from "./query";
  */
 const GravityFormForm = ({ data, presetValues = null, successCallback = () => {}, errorCallback = () => {}, navigate }) => {
 	const preOnSubmit = useRef();
+	const [pages, setPages] = useState([]);
+
 	// Split out form data.
 	const form = data?.gfForm;
 
@@ -31,6 +35,22 @@ const GravityFormForm = ({ data, presetValues = null, successCallback = () => {}
 
 	//Apollo submit form mutation
 	const [submitForm] = useMutation(submitMutationQuery);
+
+	useEffect(() => {
+		const pageSetup = [];
+		formFields.nodes.forEach((field) => {
+			const pageInd = field.pageNumber - 1;
+			if (!pageSetup[pageInd]) {
+				pageSetup[pageInd] = {
+					pageName: form.pagination?.pageNames[pageInd] ? form.pagination.pageNames[pageInd] : "",
+					pageNum: field.pageNumber,
+					fields: [],
+				};
+			}
+			pageSetup[pageInd].fields.push(field);
+		});
+		setPages([...pageSetup]);
+	}, []);
 
 	const redirect = navigate
 		? (url) => {
@@ -47,12 +67,13 @@ const GravityFormForm = ({ data, presetValues = null, successCallback = () => {}
 		setError,
 		reset,
 		getValues,
-		formState: { errors },
+		formState: { errors, isValid },
 	} = methods;
 
 	const [generalError, setGeneralError] = useState("");
 	const [loading, setLoading] = useState(false);
 	const [success, setSuccess] = useState(false);
+	const [currentPage, setCurrentPage] = useState(0);
 
 	const onSubmitCallback = async () => {
 		// Make sure we are not already waiting for a response
@@ -159,6 +180,12 @@ const GravityFormForm = ({ data, presetValues = null, successCallback = () => {}
 		}
 	}
 
+	// update current page index
+	const handlePageIndChange = (index) => {
+		setCurrentPage(index);
+	};
+
+	console.log(currentPage, "---", pages.length);
 	return (
 		<div className="gform_wrapper" id={`gform_wrapper_${databaseId}`}>
 			<div className="gform_anchor" id={`gf_${databaseId}`} />
@@ -172,6 +199,8 @@ const GravityFormForm = ({ data, presetValues = null, successCallback = () => {}
 						onSubmit={handleSubmit(onSubmitCallback)}
 					>
 						{generalError && <FormGeneralError errorCode={generalError} />}
+						{pages?.length > 1 && <StepBanner steps={pages} currStepInd={currentPage} />}
+
 						<div className="gform_body">
 							<ul
 								className={classnames(
@@ -185,6 +214,7 @@ const GravityFormForm = ({ data, presetValues = null, successCallback = () => {}
 								id={`gform_fields_${databaseId}`}
 							>
 								<FieldBuilder
+									currentPage={currentPage + 1}
 									databaseId={databaseId}
 									formLoading={loading}
 									formFields={formFields.nodes}
@@ -196,11 +226,15 @@ const GravityFormForm = ({ data, presetValues = null, successCallback = () => {}
 							</ul>
 						</div>
 
-						<div className={`gform_footer ${valueToLowerCase(labelPlacement)}`}>
-							<button className="gravityform__button gform_button button" disabled={loading} id={`gform_submit_button_${databaseId}`} type="submit">
-								{loading ? <span className="gravityform__button__loading_span">Loading</span> : submitButton?.text}
-							</button>
-						</div>
+						{pages.length > 1 && <StepNavigation currStepInd={currentPage} setStepIndex={handlePageIndChange} steps={pages} currStepComplete={isValid} />}
+
+						{currentPage === pages.length - 1 && (
+							<div className={`gform_footer ${valueToLowerCase(labelPlacement)}`}>
+								<button className="gravityform__button gform_button button" disabled={loading || !isValid} id={`gform_submit_button_${databaseId}`} type="submit">
+									{loading ? <span className="gravityform__button__loading_span">Loading</span> : submitButton?.text || "Submit"}
+								</button>
+							</div>
+						)}
 					</form>
 				</FormProvider>
 			)}

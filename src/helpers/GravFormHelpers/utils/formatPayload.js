@@ -12,7 +12,6 @@
  */
 
 const formatter = ({ id, fieldResponse, type, inputs }) => {
-	console.log(fieldResponse);
 	switch (type) {
 		case "ADDRESS":
 			return {
