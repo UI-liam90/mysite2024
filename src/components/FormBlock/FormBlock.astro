@@ -6,30 +6,38 @@ import "./style.scss";
 
 const { blockData, blockContext } = Astro.props;
 const classList = [
-    "form-block",
-    {
-        "context-multi": blockContext === "multi",
-        "bg-colour-black": blockData.blockBackgroundColour === "black",
-        "bg-colour-white": blockData.blockBackgroundColour === "white",
-        "bg-colour-brand-1": blockData.blockBackgroundColour === "brand-1",
-        "bg-colour-brand-2": blockData.blockBackgroundColour === "brand-2",
-        "bg-colour-brand-3": blockData.blockBackgroundColour === "brand-3",
-        "text-colour-black": blockData.blockTextColour === "black",
-        "text-colour-white": blockData.blockTextColour === "white",
-        "text-colour-brand-1": blockData.blockTextColour === "brand-1",
-        "text-colour-brand-2": blockData.blockTextColour === "brand-2",
-        "text-colour-brand-3": blockData.blockTextColour === "brand-3",
-    },
+	"form-block",
+	{
+		"context-multi": blockContext === "multi",
+		"bg-colour-black": blockData.blockBackgroundColour === "black",
+		"bg-colour-white": blockData.blockBackgroundColour === "white",
+		"bg-colour-brand-1": blockData.blockBackgroundColour === "brand-1",
+		"bg-colour-brand-2": blockData.blockBackgroundColour === "brand-2",
+		"bg-colour-brand-3": blockData.blockBackgroundColour === "brand-3",
+		"text-colour-black": blockData.blockTextColour === "black",
+		"text-colour-white": blockData.blockTextColour === "white",
+		"text-colour-brand-1": blockData.blockTextColour === "brand-1",
+		"text-colour-brand-2": blockData.blockTextColour === "brand-2",
+		"text-colour-brand-3": blockData.blockTextColour === "brand-3",
+	},
 ];
 ---
 
 <div id={blockData.blockId} class:list={classList}>
-    <div class:list={[{ container: blockData.blockWidth === "contain" }, { "container-wide": blockData.blockWidth === "wide" }]}>
-        <div class="form-block__text">
-            <HTMLRender data={blockData.text} />
-        </div>
-        <div class="form-block__form">
-            <GravForm client:load id={blockData.formId} />
-        </div>
-    </div>
+	<div class:list={[{ container: blockData.blockWidth === "contain" }, { "container-wide": blockData.blockWidth === "wide" }]}>
+		{
+			blockData.text && (
+				<div class="form-block__text">
+					<HTMLRender data={blockData.text} />
+				</div>
+			)
+		}
+		{
+			blockData.formId && (
+				<div class="form-block__form">
+					<GravForm client:load id={blockData.formId} />
+				</div>
+			)
+		}
+	</div>
 </div>
