@@ -14,30 +14,10 @@ import Address from "~helpers/GravFormHelpers/components/Address";
 import { valueToLowerCase } from "../../utils/helpers";
 import { islabelHidden } from "../../utils/inputSettings";
 import Section from "~helpers/GravFormHelpers/components/Section";
-//import { AppContext } from "@/context/AppContext";
 
 const FieldBuilder = ({ databaseId, formFields, formLoading, preOnSubmit, presetValues, settings, formSettings, currentPage }) => {
-	//get global state of preset values
-	//const { reset } = useFormContext();
-	// useEffect(() => {
-	//     reset(formValues[databaseId]);
-
-	//     // eslint-disable-next-line react-hooks/exhaustive-deps
-	// }, []);
-	// useEffect(() => {
-	//     reset(formValues[databaseId]);
-
-	//     // eslint-disable-next-line react-hooks/exhaustive-deps
-	// }, [formValues]);
-
-	// useEffect(() => {
-	//     handleFormValues(databaseId, presetValues);
-	//     // eslint-disable-next-line react-hooks/exhaustive-deps
-	// }, [presetValues]);
-
 	// Loop through fields and create
 	return formFields.map((field) => {
-		console.log(field.pageNumber, currentPage);
 		if (field.pageNumber !== currentPage) return null;
 
 		// Set the wrapper classes
@@ -71,9 +51,21 @@ const FieldBuilder = ({ databaseId, formFields, formLoading, preOnSubmit, preset
 		switch (field.type) {
 			// Add note for unsupported captcha field
 			case "CAPTCHA":
-				return <Captcha captchaTheme={captchaTheme} fieldData={field} gfId={id} key={id} name={inputName} ref={preOnSubmit} settings={settings?.recaptcha} wrapClassName={inputWrapperClass} />;
+				return (
+					<Captcha
+						captchaTheme={captchaTheme}
+						fieldData={field}
+						gfId={id}
+						key={id}
+						name={inputName}
+						ref={preOnSubmit}
+						settings={settings?.recaptcha}
+						wrapClassName={inputWrapperClass}
+						formSettings={formSettings}
+					/>
+				);
 			case "HTML":
-				return <Html fieldData={field} key={id} gfId={id} name={inputName} wrapClassName={inputWrapperClass} wrapId={wrapId} />;
+				return <Html fieldData={field} key={id} gfId={id} name={inputName} wrapClassName={inputWrapperClass} wrapId={wrapId} formSettings={formSettings} />;
 			// Start with the standard fields
 			case "TEXT":
 			case "NUMBER":
@@ -81,26 +73,27 @@ const FieldBuilder = ({ databaseId, formFields, formLoading, preOnSubmit, preset
 			case "HIDDEN":
 			case "DATE":
 			case "PHONE":
-				return <Input fieldData={field} key={id} gfId={id} name={inputName} defaultValue={defaultValue} wrapClassName={inputWrapperClass} wrapId={wrapId} />;
+			case "WEBSITE":
+				return <Input fieldData={field} key={id} gfId={id} name={inputName} defaultValue={defaultValue} wrapClassName={inputWrapperClass} wrapId={wrapId} formSettings={formSettings} />;
 			case "CONSENT":
-				return <Consent fieldData={field} key={id} gfId={id} name={inputName} wrapClassName={inputWrapperClass} wrapId={wrapId} />;
+				return <Consent fieldData={field} key={id} gfId={id} name={inputName} wrapClassName={inputWrapperClass} wrapId={wrapId} formSettings={formSettings} />;
 			case "TEXTAREA":
-				return <Textarea fieldData={field} defaultValue={defaultValue} key={id} gfId={id} name={inputName} wrapClassName={inputWrapperClass} wrapId={wrapId} />;
+				return <Textarea fieldData={field} defaultValue={defaultValue} key={id} gfId={id} name={inputName} wrapClassName={inputWrapperClass} wrapId={wrapId} formSettings={formSettings} />;
 			case "SELECT":
-				return <Select fieldData={field} key={id} gfId={id} name={inputName} wrapClassName={inputWrapperClass} defaultValue={defaultValue} wrapId={wrapId} />;
+				return <Select fieldData={field} key={id} gfId={id} name={inputName} wrapClassName={inputWrapperClass} defaultValue={defaultValue} wrapId={wrapId} formSettings={formSettings} />;
 			case "MULTISELECT":
-				return <Multiselect fieldData={field} key={id} gfId={id} name={inputName} wrapClassName={inputWrapperClass} wrapId={wrapId} />;
+				return <Multiselect fieldData={field} key={id} gfId={id} name={inputName} wrapClassName={inputWrapperClass} wrapId={wrapId} formSettings={formSettings} />;
 			case "RADIO":
 			case "CHECKBOX":
-				return <SelectorList fieldData={field} key={id} gfId={id} name={inputName} defaultValue={defaultValue} wrapClassName={inputWrapperClass} wrapId={wrapId} />;
+				return <SelectorList fieldData={field} key={id} gfId={id} name={inputName} defaultValue={defaultValue} wrapClassName={inputWrapperClass} wrapId={wrapId} formSettings={formSettings} />;
 			case "FILEUPLOAD":
-				return <FileUpload fieldData={field} key={id} gfId={id} name={inputName} wrapClassName={inputWrapperClass} wrapId={wrapId} />;
+				return <FileUpload fieldData={field} key={id} gfId={id} name={inputName} wrapClassName={inputWrapperClass} wrapId={wrapId} formSettings={formSettings} />;
 			case "NAME":
 				return <Name fieldData={field} key={id} gfId={id} name={inputName} wrapClassName={inputWrapperClass} wrapId={wrapId} formSettings={formSettings} />;
 			case "ADDRESS":
 				return <Address fieldData={field} key={id} gfId={id} name={inputName} wrapClassName={inputWrapperClass} wrapId={wrapId} formSettings={formSettings} />;
 			case "SECTION":
-				return <Section fieldData={field} key={id} wrapId={wrapId} />;
+				return <Section fieldData={field} key={id} wrapId={wrapId} formSettings={formSettings} />;
 			default:
 				return null;
 		}

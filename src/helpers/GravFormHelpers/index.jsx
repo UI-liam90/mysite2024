@@ -185,7 +185,6 @@ const GravityFormForm = ({ data, presetValues = null, successCallback = () => {}
 		setCurrentPage(index);
 	};
 
-	console.log(currentPage, "---", pages.length);
 	return (
 		<div className="gform_wrapper" id={`gform_wrapper_${databaseId}`}>
 			<div className="gform_anchor" id={`gf_${databaseId}`} />

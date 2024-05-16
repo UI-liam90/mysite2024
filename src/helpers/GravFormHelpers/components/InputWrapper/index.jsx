@@ -1,19 +1,13 @@
 import classnames from "classnames";
 import PropTypes from "prop-types";
 import React from "react";
-import parse from "html-react-parser";
 import { valueToLowerCase } from "../../utils/helpers";
-import { outputDescription } from "../../utils/inputSettings";
+import { outputDescription, outputLabel } from "../../utils/inputSettings";
 
 const InputWrapper = ({ children, errors, inputData: { cssClass, description, descriptionPlacement, isRequired, label, labelPlacement, maxLength, type }, labelFor, wrapClassName, wrapId }) => {
 	return (
 		<li className={classnames(wrapClassName, errors?.type && "gravityform__field--error", cssClass)} id={wrapId}>
-			{labelPlacement === "ABOVE" && (
-				<label className={classnames("gravityform__label", "gfield_label", { "gfield_label--hide": labelPlacement && labelPlacement === "HIDDEN" ? true : false })} htmlFor={labelFor}>
-					{label}
-					{isRequired && parse('<span className="gfield_required">*</span>')}
-				</label>
-			)}
+			{outputLabel(label, labelFor, labelPlacement, "ABOVE", isRequired)}
 			{outputDescription(description, descriptionPlacement, "above", errors)}
 			<div className={`ginput_container ginput_container_${valueToLowerCase(type)}`}>
 				{children}
@@ -26,15 +20,7 @@ const InputWrapper = ({ children, errors, inputData: { cssClass, description, de
                 */}
 			</div>
 			{outputDescription(description, descriptionPlacement, "below", errors)}
-			{labelPlacement === "BELOW" && (
-				<label
-					className={classnames("gravityform__label", "gfield_label_below", "gfield_label", { "gfield_label--hide": labelPlacement && labelPlacement === "HIDDEN" ? true : false })}
-					htmlFor={labelFor}
-				>
-					{label}
-					{isRequired && parse('<span className="gfield_required">*</span>')}
-				</label>
-			)}
+			{outputLabel(label, labelFor, labelPlacement, "BELOW", isRequired)}
 			{errors && (
 				<div aria-live="polite" className="gravityform__error_message gfield_description validation_message">
 					{errors.message}

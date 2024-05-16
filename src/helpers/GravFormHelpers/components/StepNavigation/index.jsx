@@ -6,8 +6,6 @@ const StepNavigation = ({ currStepInd, setStepIndex, steps, currStepComplete }) 
 		setStepIndex(index);
 	};
 
-	console.log(currStepInd, steps.length);
-
 	return (
 		<div className={`steps-navigation ${currStepInd === steps.length - 1 ? "final-step" : `step-${currStepInd}`}`}>
 			{currStepInd !== 0 && (
