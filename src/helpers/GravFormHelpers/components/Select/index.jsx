@@ -15,7 +15,7 @@ const Select = ({ defaultValue, fieldData, name, formSettings, ...wrapProps }) =
 	return (
 		<InputWrapper
 			errors={errors?.[name] || {}}
-			iinputData={{ ...fieldData, labelPlacement: !fieldData.labelPlacement || fieldData.labelPlacement === "INHERIT" ? formSettings.labelPlacement : fieldData.labelPlacement }}
+			inputData={{ ...fieldData, labelPlacement: !fieldData.labelPlacement || fieldData.labelPlacement === "INHERIT" ? formSettings.labelPlacement : fieldData.labelPlacement }}
 			labelFor={name}
 			{...wrapProps}
 		>

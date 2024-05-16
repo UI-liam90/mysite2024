@@ -4,7 +4,15 @@ import React from "react";
 import { valueToLowerCase } from "../../utils/helpers";
 import { outputDescription, outputLabel } from "../../utils/inputSettings";
 
-const InputWrapper = ({ children, errors, inputData: { cssClass, description, descriptionPlacement, isRequired, label, labelPlacement, maxLength, type }, labelFor, wrapClassName, wrapId }) => {
+const InputWrapper = ({
+	children,
+	errors,
+	inputData,
+	inputData: { cssClass, description, descriptionPlacement, isRequired, label, labelPlacement, maxLength, type },
+	labelFor,
+	wrapClassName,
+	wrapId,
+}) => {
 	return (
 		<li className={classnames(wrapClassName, errors?.type && "gravityform__field--error", cssClass)} id={wrapId}>
 			{outputLabel(label, labelFor, labelPlacement, "ABOVE", isRequired)}

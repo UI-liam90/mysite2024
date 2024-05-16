@@ -179,6 +179,7 @@ export const websiteFieldFragment = /* GraphQL */ `
     conditionalLogic {
       ${conditionalLogicFragment}
     }
+    cssClass
     description
     descriptionPlacement
     errorMessage

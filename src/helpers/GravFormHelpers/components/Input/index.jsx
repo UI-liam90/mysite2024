@@ -58,8 +58,6 @@ const Input = ({ defaultValue, fieldData, name, formSettings, ...wrapProps }) =>
 		formState: { errors },
 	} = useFormContext();
 
-	console.log(fieldData);
-
 	return (
 		<InputWrapper
 			errors={errors?.[name] || {}}
