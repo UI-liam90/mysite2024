@@ -7,7 +7,7 @@ import strings from "../../utils/strings";
 import { v4 } from "uuid";
 import GroupInputWrapper from "../GroupInputWrapper";
 
-const Name = ({ defaultValue, fieldData, name, ...wrapProps }) => {
+const Name = ({ defaultValue, fieldData, name, formSettings, ...wrapProps }) => {
 	const { cssClass, inputMaskValue, isRequired, maxLength, placeholder, size, type, inputs, subLabelPlacement } = fieldData;
 
 	const {
@@ -28,7 +28,12 @@ const Name = ({ defaultValue, fieldData, name, ...wrapProps }) => {
 						return (
 							<InputWrapper
 								errors={errors?.[name]?.[input.key] || {}}
-								inputData={{ ...input, isRequired: isRequired, label: input.customLabel || input.label }}
+								inputData={{
+									...input,
+									isRequired: isRequired,
+									label: input.customLabel || input.label,
+									labelPlacement: subLabelPlacement === "INHERIT" ? formSettings.subLabelPlacement : subLabelPlacement,
+								}}
 								labelFor={fieldName}
 								{...wrapProps}
 								key={v4()}

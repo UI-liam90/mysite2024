@@ -16,6 +16,7 @@ export const nameFieldFragment = /* GraphQL */ `
     isRequired
     label
     labelPlacement
+    subLabelPlacement
     value
     visibility
     inputs {

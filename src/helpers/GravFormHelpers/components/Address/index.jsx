@@ -7,8 +7,8 @@ import { valueToLowerCase } from "../../utils/helpers";
 import { v4 } from "uuid";
 import GroupInputWrapper from "../GroupInputWrapper";
 
-const Address = ({ fieldData, name, ...wrapProps }) => {
-	const { cssClass, isRequired, type, inputs } = fieldData;
+const Address = ({ fieldData, name, formSettings, ...wrapProps }) => {
+	const { cssClass, isRequired, type, inputs, subLabelPlacement } = fieldData;
 
 	const {
 		register,
@@ -34,6 +34,7 @@ const Address = ({ fieldData, name, ...wrapProps }) => {
 		<GroupInputWrapper inputData={fieldData} labelFor={name} wrapClassName="address-inputs-wrapper">
 			<ul className={`${name}-inputs address-inputs-grp inputs`}>
 				{inputs.map((input) => {
+					console.log(subLabelPlacement);
 					if (input.isHidden) return null;
 
 					const inputSettings = getInputSettings(input.key);
@@ -42,7 +43,12 @@ const Address = ({ fieldData, name, ...wrapProps }) => {
 					return (
 						<InputWrapper
 							errors={errors?.[name]?.[input.key] || {}}
-							inputData={{ ...input, isRequired: isRequired, label: input.customLabel || input.label }}
+							inputData={{
+								...input,
+								isRequired: isRequired,
+								label: input.customLabel || input.label,
+								labelPlacement: !subLabelPlacement || subLabelPlacement === "INHERIT" ? formSettings.subLabelPlacement : subLabelPlacement,
+							}}
 							labelFor={fieldName}
 							{...wrapProps}
 							key={v4()}

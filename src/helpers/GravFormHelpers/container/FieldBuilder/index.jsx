@@ -15,7 +15,7 @@ import { valueToLowerCase } from "../../utils/helpers";
 import { islabelHidden } from "../../utils/inputSettings";
 //import { AppContext } from "@/context/AppContext";
 
-const FieldBuilder = ({ databaseId, formFields, formLoading, preOnSubmit, presetValues, settings }) => {
+const FieldBuilder = ({ databaseId, formFields, formLoading, preOnSubmit, presetValues, settings, formSettings }) => {
 	//get global state of preset values
 	//const { reset } = useFormContext();
 	// useEffect(() => {
@@ -92,9 +92,9 @@ const FieldBuilder = ({ databaseId, formFields, formLoading, preOnSubmit, preset
 			case "FILEUPLOAD":
 				return <FileUpload fieldData={field} key={id} gfId={id} name={inputName} wrapClassName={inputWrapperClass} wrapId={wrapId} />;
 			case "NAME":
-				return <Name fieldData={field} key={id} gfId={id} name={inputName} wrapClassName={inputWrapperClass} wrapId={wrapId} />;
+				return <Name fieldData={field} key={id} gfId={id} name={inputName} wrapClassName={inputWrapperClass} wrapId={wrapId} formSettings={formSettings} />;
 			case "ADDRESS":
-				return <Address fieldData={field} key={id} gfId={id} name={inputName} wrapClassName={inputWrapperClass} wrapId={wrapId} />;
+				return <Address fieldData={field} key={id} gfId={id} name={inputName} wrapClassName={inputWrapperClass} wrapId={wrapId} formSettings={formSettings} />;
 			default:
 				return null;
 		}

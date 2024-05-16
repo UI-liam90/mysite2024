@@ -188,7 +188,7 @@ const GravityFormForm = ({ data, presetValues = null, successCallback = () => {}
 									databaseId={databaseId}
 									formLoading={loading}
 									formFields={formFields.nodes}
-									labelPlacement={labelPlacement}
+									formSettings={{ labelPlacement: labelPlacement || "ABOVE", subLabelPlacement: subLabelPlacement || "BELOW" }}
 									preOnSubmit={preOnSubmit}
 									presetValues={presetValues}
 									settings={settings}
