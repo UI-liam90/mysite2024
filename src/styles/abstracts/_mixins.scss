@@ -2,56 +2,56 @@
 
 // function to calc letter spacing correctly when using values from Adobe tools
 @function calc-letter-spacing($kerningValue) {
-    @return #{math.div($kerningValue, 1000)}em;
+	@return #{math.div($kerningValue, 1000)}em;
 }
 
 //mixin to add the neccessary placeholder code
 @mixin placeholder {
-    &::-webkit-input-placeholder {
-        @content;
-    }
+	&::-webkit-input-placeholder {
+		@content;
+	}
 
-    &:-moz-placeholder {
-        /* Firefox 18- */
-        @content;
-    }
+	&:-moz-placeholder {
+		/* Firefox 18- */
+		@content;
+	}
 
-    &::-moz-placeholder {
-        /* Firefox 19+ */
-        @content;
-    }
+	&::-moz-placeholder {
+		/* Firefox 19+ */
+		@content;
+	}
 
-    &:-ms-input-placeholder {
-        @content;
-    }
+	&:-ms-input-placeholder {
+		@content;
+	}
 }
 
 //mixin to create media queries
 @mixin create-mq($breakpoint) {
-    @if ($breakpoint == 0) {
-        @content;
-    } @else {
-        @media screen and ($breakpoint) {
-            @content;
-        }
-    }
+	@if ($breakpoint == 0) {
+		@content;
+	} @else {
+		@media screen and ($breakpoint) {
+			@content;
+		}
+	}
 }
 
 // change px to rem
 @function to-rems($px) {
-    $rems: math.div($px, 16px) * 1rem;
-    @return $rems;
+	$rems: math.div($px, 16px) * 1rem;
+	@return $rems;
 }
 
 //round numbers
 @function rnd($number, $places: 0) {
-    $n: 1;
-    @if $places > 0 {
-        @for $i from 1 through $places {
-            $n: $n * 10;
-        }
-    }
-    @return math.div(math.round($number * $n), $n);
+	$n: 1;
+	@if $places > 0 {
+		@for $i from 1 through $places {
+			$n: $n * 10;
+		}
+	}
+	@return math.div(math.round($number * $n), $n);
 }
 
 //create fluid font sizes with clamp
@@ -59,10 +59,95 @@ $default-min-bp: 548px;
 $default-max-bp: 1920px;
 
 @function clamped($min-px, $max-px, $min-bp: $default-min-bp, $max-bp: $default-max-bp) {
-    $slope: math.div($max-px - $min-px, $max-bp - $min-bp);
-    $slope-vw: rnd($slope * 100, 2);
-    $intercept-rems: rnd(to-rems($min-px - $slope * $min-bp), 2);
-    $min-rems: rnd(to-rems($min-px), 2);
-    $max-rems: rnd(to-rems($max-px), 2);
-    @return clamp(#{$min-rems}, #{$slope-vw}vw + #{$intercept-rems}, #{$max-rems});
+	$slope: math.div($max-px - $min-px, $max-bp - $min-bp);
+	$slope-vw: rnd($slope * 100, 2);
+	$intercept-rems: rnd(to-rems($min-px - $slope * $min-bp), 2);
+	$min-rems: rnd(to-rems($min-px), 2);
+	$max-rems: rnd(to-rems($max-px), 2);
+	@return clamp(#{$min-rems}, #{$slope-vw}vw + #{$intercept-rems}, #{$max-rems});
+}
+
+@mixin button {
+	--btn-bg-colour: transparent;
+	--btn-bg-colour-interactive: var(--brand-1);
+	--btn-border-colour: transparent;
+	--btn-border-colour-interactive: var(--black);
+	--btn-text-colour: var(--white);
+	--btn-text-colour-interactive: var(--white);
+	cursor: pointer;
+	display: inline-block;
+	text-decoration: none;
+	background-color: var(--btn-bg-colour);
+	border: 0.25rem solid var(--btn-border-colour);
+	font-size: var(--font-size-fox);
+	letter-spacing: calc-letter-spacing(25);
+	padding: 0.375em 1em 0.25em;
+	margin-top: var(--spacing-4);
+	color: var(--btn-text-colour);
+	transition: all 400ms linear;
+	font-family: var(--font-heading);
+	text-align: center;
+	font-weight: 600;
+	text-transform: uppercase;
+	line-height: 1;
+	box-shadow: 0px 4px 4px 0px rgba(34, 34, 34, 0.25);
+
+	&:hover:not(:disabled),
+	&:active:not(:disabled),
+	&:focus:not(:disabled) {
+		background-color: var(--btn-bg-colour-interactive);
+		color: var(--btn-text-colour-interactive);
+		border-color: var(--btn-border-colour-interactive);
+		box-shadow: none;
+		text-shadow: none;
+		text-decoration: none;
+	}
+
+	&.button--large {
+		--btn-font-size: 2.5rem;
+	}
+
+	&:disabled,
+	&[disabled] {
+		--btn-bg-colour: var(--grey-600);
+		--btn-text-colour: var(--white);
+		--btn-border-colour: var(--grey-600);
+		opacity: 0.75;
+		cursor: not-allowed;
+	}
+}
+
+@mixin secondary-button {
+	--btn-bg-colour: var(--white);
+	--btn-bg-colour-interactive: var(--brand-2);
+	--btn-border-colour: var(--white);
+	--btn-border-colour-interactive: var(--brand-2);
+	--btn-text-colour: var(--black);
+	--btn-text-colour-interactive: var(--black);
+
+	&:hover:not(:disabled),
+	&:active:not(:disabled),
+	&:focus:not(:disabled) {
+		background-color: var(--btn-bg-colour-interactive);
+		color: var(--btn-text-colour-interactive);
+		border-color: var(--btn-border-colour-interactive);
+	}
+}
+
+@mixin reset-list {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+
+	li {
+		padding: 0;
+		margin: 0;
+	}
+}
+
+@mixin img-cover {
+	display: flex;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
 }
