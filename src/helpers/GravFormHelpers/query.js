@@ -13,6 +13,7 @@ import { consentFieldFragment } from "./components/Consent/query";
 import { nameFieldFragment } from "./components/Name/query";
 import { formConfirmationFragment, submitButtonFragment } from "./fragments";
 import { addressFieldFragment } from "./components/Address/query";
+import { sectionFieldFragment } from "./components/Section/query";
 
 export const submitMutationQuery = gql`
 	mutation submitForm($id: ID!, $fieldValues: [FormFieldValuesInput]!) {
@@ -68,6 +69,7 @@ export const gravityFormQuery = /* GraphQL */ `
           ${consentFieldFragment}
           ${nameFieldFragment}
           ${addressFieldFragment}
+          ${sectionFieldFragment}
         }
       }
     }

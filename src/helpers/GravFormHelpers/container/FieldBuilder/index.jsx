@@ -13,6 +13,7 @@ import Name from "~helpers/GravFormHelpers/components/Name";
 import Address from "~helpers/GravFormHelpers/components/Address";
 import { valueToLowerCase } from "../../utils/helpers";
 import { islabelHidden } from "../../utils/inputSettings";
+import Section from "~helpers/GravFormHelpers/components/Section";
 //import { AppContext } from "@/context/AppContext";
 
 const FieldBuilder = ({ databaseId, formFields, formLoading, preOnSubmit, presetValues, settings, formSettings }) => {
@@ -36,6 +37,7 @@ const FieldBuilder = ({ databaseId, formFields, formLoading, preOnSubmit, preset
 
 	// Loop through fields and create
 	return formFields.map((field) => {
+		console.log(field.type, field);
 		// Set the wrapper classes
 		const { id, captchaTheme, descriptionPlacement, isRequired, subLabelPlacement, labelPlacement, type, size, visibility } = field;
 
@@ -95,6 +97,8 @@ const FieldBuilder = ({ databaseId, formFields, formLoading, preOnSubmit, preset
 				return <Name fieldData={field} key={id} gfId={id} name={inputName} wrapClassName={inputWrapperClass} wrapId={wrapId} formSettings={formSettings} />;
 			case "ADDRESS":
 				return <Address fieldData={field} key={id} gfId={id} name={inputName} wrapClassName={inputWrapperClass} wrapId={wrapId} formSettings={formSettings} />;
+			case "SECTION":
+				return <Section fieldData={field} key={id} wrapId={wrapId} />;
 			default:
 				return null;
 		}
