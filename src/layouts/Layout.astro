@@ -48,6 +48,9 @@ const { seoData, pageSlug } = Astro.props;
                     document.body.classList.remove("off-canvas-open");
                 }
             });
+            document.addEventListener("astro:page-load", () => {
+                isNavOpen.set(false);
+            });
         </script>
     </body>
 </html>

@@ -2,7 +2,7 @@
 import gql from "graphql-tag";
 
 import { captchaFieldFragment } from "./components/Captcha/query";
-import { dateFieldFragment, textFieldFragment, emailFieldFragment, hiddenFieldFragment, numberFieldFragment, phoneFieldFragment } from "./components/Input/query";
+import { dateFieldFragment, textFieldFragment, emailFieldFragment, hiddenFieldFragment, numberFieldFragment, phoneFieldFragment, websiteFieldFragment } from "./components/Input/query";
 import { htmlFieldFragment } from "./components/Html/query";
 import { multiSelectFieldFragment } from "./components/Multiselect/query";
 import { selectFieldFragment } from "./components/Select/query";
@@ -12,16 +12,18 @@ import { fileUploadFieldFragment } from "./components/FileUpload/query";
 import { consentFieldFragment } from "./components/Consent/query";
 import { nameFieldFragment } from "./components/Name/query";
 import { formConfirmationFragment, submitButtonFragment } from "./fragments";
+import { addressFieldFragment } from "./components/Address/query";
+import { sectionFieldFragment } from "./components/Section/query";
 
 export const submitMutationQuery = gql`
-    mutation submitForm($id: ID!, $fieldValues: [FormFieldValuesInput]!) {
-        submitGfForm(input: { id: $id, fieldValues: $fieldValues }) {
-            errors {
-                id
-                message
-            }
-        }
-    }
+	mutation submitForm($id: ID!, $fieldValues: [FormFieldValuesInput]!) {
+		submitGfForm(input: { id: $id, fieldValues: $fieldValues }) {
+			errors {
+				id
+				message
+			}
+		}
+	}
 `;
 
 export const gravityFormQuery = /* GraphQL */ `
@@ -38,6 +40,9 @@ export const gravityFormQuery = /* GraphQL */ `
       }
       confirmations {
         ${formConfirmationFragment}
+      }
+      pagination {
+        pageNames
       }
       formFields {
         nodes {
@@ -65,6 +70,10 @@ export const gravityFormQuery = /* GraphQL */ `
           ${fileUploadFieldFragment}
           ${nameFieldFragment}
           ${consentFieldFragment}
+          ${nameFieldFragment}
+          ${addressFieldFragment}
+          ${sectionFieldFragment}
+          ${websiteFieldFragment}
         }
       }
     }
