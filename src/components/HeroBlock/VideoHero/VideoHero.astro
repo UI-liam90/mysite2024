@@ -7,22 +7,24 @@ const video = blockData.video.node;
 ---
 
 <div class={`video-hero`}>
-    {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
-    <video
-        src={video.mediaItemUrl}
-        autoPlay={blockData.autoplay === "yes" ? "true" : false}
-        playsInline={blockData.autoplay === "yes" ? "true" : false}
-        controls={blockData.showControls === "yes" ? true : false}
-        muted={blockData.muted === "yes" ? true : false}
-        loop={blockData.loop === "yes" ? true : false}></video>
-    {
-        blockData.overlay || blockData.button ? (
-            <div class="hero-overlay">
-                {blockData.overlay && <HTMLRender data={blockData.overlay} />}
-                <LinkButton type="primary" url={blockData.button.url} target={blockData.button.target}>
-                    {blockData.button.title}
-                </LinkButton>
-            </div>
-        ) : null
-    }
+	{/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+	<video
+		src={video.mediaItemUrl}
+		autoPlay={blockData.autoplay === "yes" ? "true" : false}
+		playsInline={blockData.autoplay === "yes" ? "true" : false}
+		controls={blockData.showControls === "yes" ? true : false}
+		muted={blockData.muted === "yes" ? true : false}
+		loop={blockData.loop === "yes" ? true : false}></video>
+	{
+		blockData.overlay || blockData.button ? (
+			<div class="hero-overlay">
+				{blockData.overlay && <HTMLRender data={blockData.overlay} />}
+				{blockData.button && (
+					<LinkButton type="primary" url={blockData.button.url} target={blockData.button.target}>
+						{blockData.button.title}
+					</LinkButton>
+				)}
+			</div>
+		) : null
+	}
 </div>

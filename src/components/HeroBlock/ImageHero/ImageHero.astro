@@ -7,15 +7,17 @@ const { blockData } = Astro.props;
 ---
 
 <div class={`image-hero`}>
-	{blockData.image && <WpImage file={blockData.image} />}
-	{
-		blockData.overlay || blockData.button ? (
-			<div class={`hero-overlay`}>
-				{blockData.overlay && <HTMLRender data={blockData.overlay} />}
-				<LinkButton type="primary" url={blockData.button.url} target={blockData.button.target}>
-					{blockData.button.title}
-				</LinkButton>
-			</div>
-		) : null
-	}
+    {blockData.image && <WpImage file={blockData.image} />}
+    {
+        blockData.overlay || blockData.button ? (
+            <div class={`hero-overlay`}>
+                {blockData.overlay && <HTMLRender data={blockData.overlay} />}
+                {blockData.button && (
+                    <LinkButton type="primary" url={blockData.button.url} target={blockData.button.target}>
+                        {blockData.button.title}
+                    </LinkButton>
+                )}
+            </div>
+        ) : null
+    }
 </div>
