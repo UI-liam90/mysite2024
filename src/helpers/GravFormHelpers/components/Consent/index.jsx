@@ -5,31 +5,36 @@ import { useFormContext } from "react-hook-form";
 import strings from "../../utils/strings";
 import { HTMLRender } from "~helpers/htmlRender";
 
-const Consent = ({ fieldData, name, ...wrapProps }) => {
-    const { cssClass, isRequired, type, checkboxLabel } = fieldData;
+const Consent = ({ fieldData, name, formSettings, ...wrapProps }) => {
+	const { cssClass, isRequired, type, checkboxLabel } = fieldData;
 
-    let inputType = type.toLowerCase();
+	let inputType = type.toLowerCase();
 
-    const {
-        register,
-        formState: { errors },
-    } = useFormContext();
-    return (
-        <InputWrapper errors={errors?.[name] || {}} inputData={fieldData} labelFor={name} {...wrapProps}>
-            <input
-                className={classnames(`gravityform__field__input__${inputType}`, cssClass)}
-                id={name}
-                {...register(name, {
-                    required: isRequired && strings.errors.required,
-                })}
-                type={"checkbox"}
-                name={name}
-            />
-            <label htmlFor={`${name}`}>
-                <span>{<HTMLRender data={checkboxLabel} />}</span>
-            </label>
-        </InputWrapper>
-    );
+	const {
+		register,
+		formState: { errors },
+	} = useFormContext();
+	return (
+		<InputWrapper
+			errors={errors?.[name] || {}}
+			inputData={{ ...fieldData, labelPlacement: !fieldData.labelPlacement || fieldData.labelPlacement === "INHERIT" ? formSettings.labelPlacement : fieldData.labelPlacement }}
+			labelFor={name}
+			{...wrapProps}
+		>
+			<input
+				className={classnames(`gravityform__field__input__${inputType}`, cssClass)}
+				id={name}
+				{...register(name, {
+					required: isRequired && strings.errors.required,
+				})}
+				type={"checkbox"}
+				name={name}
+			/>
+			<label htmlFor={`${name}`}>
+				<span>{<HTMLRender data={checkboxLabel} />}</span>
+			</label>
+		</InputWrapper>
+	);
 };
 
 export default Consent;

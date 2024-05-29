@@ -171,3 +171,26 @@ export const phoneFieldFragment = /* GraphQL */ `
     visibility
   }
 `;
+
+export const websiteFieldFragment = /* GraphQL */ `
+  ... on WebsiteField {
+    adminLabel
+    canPrepopulate
+    conditionalLogic {
+      ${conditionalLogicFragment}
+    }
+    cssClass
+    description
+    descriptionPlacement
+    errorMessage
+    inputName
+    isRequired
+    label
+    labelPlacement
+    placeholder
+    shouldAllowDuplicates
+    size
+    value
+    visibility
+  }
+`;
