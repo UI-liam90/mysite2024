@@ -20,6 +20,9 @@ export default defineConfig({
     // image: {
     //     domains: [hostname, "secure.gravatar.com"],
     // },
+    prefetch: {
+        prefetchAll: false,
+    },
     output: "hybrid",
     adapter: netlify({
         cacheOnDemandPages: true,

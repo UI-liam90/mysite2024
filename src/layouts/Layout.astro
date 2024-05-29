@@ -1,5 +1,6 @@
 ---
 import "~styles/global.scss";
+import { ViewTransitions } from "astro:transitions";
 import Seo from "~components/Seo/Seo.astro";
 import CookieNotice from "~components/CookieNotice";
 import GoogleAnalytics from "~components/GoogleAnalytics";
@@ -21,6 +22,7 @@ const { seoData, pageSlug } = Astro.props;
         {import.meta.env.PUBLIC_ANALYTICS_ID && <GoogleAnalytics measurementId={import.meta.env.PUBLIC_ANALYTICS_ID} />}
         {import.meta.env.PUBLIC_GOOGLE_TAG_ID && <GoogleTagManager measurementId={import.meta.env.PUBLIC_GOOGLE_TAG_ID} />}
         <Seo seoData={seoData} slug={pageSlug} />
+        <ViewTransitions />
     </head>
     <body>
         <Header />
@@ -45,6 +47,9 @@ const { seoData, pageSlug } = Astro.props;
                 } else {
                     document.body.classList.remove("off-canvas-open");
                 }
+            });
+            document.addEventListener("astro:page-load", () => {
+                isNavOpen.set(false);
             });
         </script>
     </body>
