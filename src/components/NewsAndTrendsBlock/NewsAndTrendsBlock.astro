@@ -8,44 +8,44 @@ import "./style.scss";
 
 const { blockData, blockContext } = Astro.props;
 const classList = [
-    "news-trends-block",
-    {
-        "context-multi": blockContext === "multi",
-        "bg-colour-black": blockData.blockBackgroundColour === "black",
-        "bg-colour-white": blockData.blockBackgroundColour === "white",
-        "bg-colour-brand-1": blockData.blockBackgroundColour === "brand-1",
-        "bg-colour-brand-2": blockData.blockBackgroundColour === "brand-2",
-        "bg-colour-brand-3": blockData.blockBackgroundColour === "brand-3",
-        "text-colour-black": blockData.blockTextColour === "black",
-        "text-colour-white": blockData.blockTextColour === "white",
-        "text-colour-brand-1": blockData.blockTextColour === "brand-1",
-        "text-colour-brand-2": blockData.blockTextColour === "brand-2",
-        "text-colour-brand-3": blockData.blockTextColour === "brand-3",
-    },
+	"news-trends-block",
+	{
+		"context-multi": blockContext === "multi",
+		"bg-colour-black": blockData.blockBackgroundColour === "black",
+		"bg-colour-white": blockData.blockBackgroundColour === "white",
+		"bg-colour-brand-1": blockData.blockBackgroundColour === "brand-1",
+		"bg-colour-brand-2": blockData.blockBackgroundColour === "brand-2",
+		"bg-colour-brand-3": blockData.blockBackgroundColour === "brand-3",
+		"text-colour-black": blockData.blockTextColour === "black",
+		"text-colour-white": blockData.blockTextColour === "white",
+		"text-colour-brand-1": blockData.blockTextColour === "brand-1",
+		"text-colour-brand-2": blockData.blockTextColour === "brand-2",
+		"text-colour-brand-3": blockData.blockTextColour === "brand-3",
+	},
 ];
 
 const AllNews = await getAllNews();
 let newsNodes = blockData?.newsCategory?.nodes[0].contentNodes.nodes;
 if (!newsNodes || newsNodes.length === 0) {
-    newsNodes = AllNews.posts.nodes;
+	newsNodes = AllNews.posts.nodes;
 }
 ---
 
 <div id={blockData.blockId} class:list={classList}>
-    <div class:list={[{ container: blockData.blockWidth === "contain" }, { "container-wide": blockData.blockWidth === "wide" }]}>
-        <div class={`news-trends-block__text`}>
-            <HTag type={blockData.titleType}>{blockData.title}</HTag>
-            <HTMLRender data={blockData.text} />
-            {
-                blockData?.button?.url && (
-                    <LinkButton type="secondary" size="large" url={blockData.button.url}>
-                        {blockData.button.title}
-                    </LinkButton>
-                )
-            }
-        </div>
-        <div class="news-trends-block__news-grid">
-            {newsNodes.slice(0, blockData.numberOfPosts).map((post) => <NewsGridItemBlock client:load headingType="h2" postData={post} />)}
-        </div>
-    </div>
+	<div class:list={[{ container: blockData.blockWidth === "contain" }, { "container-wide": blockData.blockWidth === "wide" }]}>
+		<div class={`news-trends-block__text`}>
+			{blockData.title && <HTag type={blockData.titleType}>{blockData.title}</HTag>}
+			{blockData.text && <HTMLRender data={blockData.text} />}
+			{
+				blockData?.button?.url && (
+					<LinkButton type="secondary" size="large" url={blockData.button.url}>
+						{blockData.button.title}
+					</LinkButton>
+				)
+			}
+		</div>
+		<div class="news-trends-block__news-grid">
+			{newsNodes?.slice(0, blockData.numberOfPosts).map((post) => <NewsGridItemBlock client:load headingType="h2" postData={post} />)}
+		</div>
+	</div>
 </div>

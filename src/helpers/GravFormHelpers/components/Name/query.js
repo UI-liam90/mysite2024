@@ -1,4 +1,5 @@
-import { conditionalLogicFragment } from "../../fragments";
+import { conditionalLogicFragment } from "~helpers/GravFormHelpers/fragments";
+
 export const nameFieldFragment = /* GraphQL */ `
   ... on NameField {
     adminLabel
@@ -15,6 +16,7 @@ export const nameFieldFragment = /* GraphQL */ `
     isRequired
     label
     labelPlacement
+    subLabelPlacement
     value
     visibility
     inputs {

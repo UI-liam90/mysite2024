@@ -27,46 +27,51 @@ const pageQuery = `
 `;
 
 export async function getHomePage() {
-    const query = {
-        query: `
+	const query = {
+		query: `
         query GetPage {
           page(id: "/", idType: URI) {
             ${pageQuery}
           }
         }
     `,
-    };
-    const responseBody = await GQLQuery(query);
+	};
+	const responseBody = await GQLQuery(query);
 
-    return responseBody;
+	return responseBody;
 }
 
 export async function getPage(uri) {
-    const query = {
-        query: `
+	const query = {
+		query: `
         query GetPageByUri {
             page(id: "${uri}", idType: URI) {
                 ${pageQuery}
             }
         }
     `,
-    };
-    const responseBody = await GQLQuery(query);
+	};
+	const responseBody = await GQLQuery(query);
 
-    return responseBody;
+	return responseBody;
 }
 
 export async function getPageSlugs() {
-    const query = {
-        query: `query getPageSlugs {
-        pages(first: 10000) {
+	const query = {
+		query: `query getPageSlugs {
+        pages(first: 10000, where: {parent: "0"}) {
           nodes {
             slug
+            children {
+                nodes {
+                    slug
+                }
+            }
           }
         }
       }`,
-    };
-    const responseBody = await GQLQuery(query);
+	};
+	const responseBody = await GQLQuery(query);
 
-    return responseBody.pages;
+	return responseBody.pages;
 }

@@ -1,0 +1,13 @@
+.steps-navigation {
+	display: flex;
+	justify-content: space-between;
+	gap: var(--spacing-2);
+
+	.next-nav {
+		margin-left: auto;
+	}
+
+	&.final-step {
+		display: inline-block;
+	}
+}
