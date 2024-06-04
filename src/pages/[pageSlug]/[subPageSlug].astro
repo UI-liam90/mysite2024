@@ -3,7 +3,7 @@ import Layout from "../../layouts/Layout.astro";
 import Card from "../components/Card.astro";
 import { getPage, getPageSlugs } from "~data/page";
 import FlexibleContent from "~components/FlexibleContent/FlexibleContent.astro";
-import ScreenVisibility from "~helpers/screenVisibility";
+import ScreenVisibility from "~helpers/ScreenVisibility";
 
 // get page data and slugs
 const { pageSlug, subPageSlug } = Astro.params;
@@ -12,32 +12,32 @@ let { page } = await getPage(subPageSlug);
 import Link from "~helpers/Link";
 
 export async function getStaticPaths() {
-	let data = await getPageSlugs();
+    let data = await getPageSlugs();
 
-	const subPages = [];
-	data.nodes.forEach((page) => {
-		if (page.children.nodes.length > 0) {
-			for (const subPage in page.children.nodes) {
-				subPages.push({
-					params: { pageSlug: page.slug, subPageSlug: page.children.nodes[subPage].slug },
-					props: { page: page },
-				});
-			}
-		}
-	});
-	return subPages;
+    const subPages = [];
+    data.nodes.forEach((page) => {
+        if (page.children.nodes.length > 0) {
+            for (const subPage in page.children.nodes) {
+                subPages.push({
+                    params: { pageSlug: page.slug, subPageSlug: page.children.nodes[subPage].slug },
+                    props: { page: page },
+                });
+            }
+        }
+    });
+    return subPages;
 }
 ---
 
 <Layout pageSlug={subPageSlug} seoData={page.seo}>
-	<ScreenVisibility hiddenMQ={"(max-width: 1024px)"} client:load>
-		<div class="sub-page-menu">
-			<div class="container sub-page-menu-wrapper">
-				{parentPage?.children?.nodes.map((page) => <Link href={page.link}>{page.title}</Link>)}
-			</div>
-		</div>
-	</ScreenVisibility>
-	<main class="main-content">
-		<FlexibleContent blockData={page.pageBuilder.blocks} contentType="Page" />
-	</main>
+    <ScreenVisibility hiddenMQ={"(max-width: 1024px)"} client:load>
+        <div class="sub-page-menu">
+            <div class="container sub-page-menu-wrapper">
+                {parentPage?.children?.nodes.map((page) => <Link href={page.link}>{page.title}</Link>)}
+            </div>
+        </div>
+    </ScreenVisibility>
+    <main class="main-content">
+        <FlexibleContent blockData={page.pageBuilder.blocks} contentType="Page" />
+    </main>
 </Layout>
