@@ -4,37 +4,37 @@ import Card from "../components/Card.astro";
 import { getPage, getPageSlugs } from "~data/page";
 import FlexibleContent from "~components/FlexibleContent/FlexibleContent.astro";
 import Link from "~helpers/Link";
-import ScreenVisibility from "~helpers/screenVisibility";
+import ScreenVisibility from "~helpers/ScreenVisibility";
 
 // get page data and slugs
 const { pageSlug } = Astro.params;
 let { page } = await getPage(pageSlug);
 
 export async function getStaticPaths() {
-	let data = await getPageSlugs();
+    let data = await getPageSlugs();
 
-	return data.nodes.map((page) => ({
-		params: { pageSlug: page.slug },
-		props: { page: page },
-	}));
+    return data.nodes.map((page) => ({
+        params: { pageSlug: page.slug },
+        props: { page: page },
+    }));
 }
 ---
 
 <Layout pageSlug={pageSlug} seoData={page.seo}>
-	{
-		page.children?.nodes && (
-			<ScreenVisibility hiddenMQ={"(max-width: 1024px)"} client:load>
-				<div class="sub-page-menu">
-					<div class="container sub-page-menu-wrapper">
-						{page.children?.nodes.map((childPage) => (
-							<Link href={childPage.link}>{childPage.title}</Link>
-						))}
-					</div>
-				</div>
-			</ScreenVisibility>
-		)
-	}
-	<main class="main-content">
-		<FlexibleContent blockData={page.pageBuilder.blocks} contentType="Page" />
-	</main>
+    {
+        page.children?.nodes && (
+            <ScreenVisibility hiddenMQ={"(max-width: 1024px)"} client:load>
+                <div class="sub-page-menu">
+                    <div class="container sub-page-menu-wrapper">
+                        {page.children?.nodes.map((childPage) => (
+                            <Link href={childPage.link}>{childPage.title}</Link>
+                        ))}
+                    </div>
+                </div>
+            </ScreenVisibility>
+        )
+    }
+    <main class="main-content">
+        <FlexibleContent blockData={page.pageBuilder.blocks} contentType="Page" />
+    </main>
 </Layout>

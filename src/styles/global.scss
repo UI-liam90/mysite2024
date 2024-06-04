@@ -210,6 +210,34 @@ strong {
     padding-left: var(--container-y-gutters);
     padding-right: var(--container-y-gutters);
 }
+
+.content-grid {
+    --breakout-size: calc((var(--container-wide-width) - var(--container-width)) / 2);
+
+    display: grid;
+    grid-template-columns:
+        [full-width-start] minmax(var(--container-y-gutters), 1fr)
+        [breakout-start] minmax(0, var(--breakout-size))
+        [content-start] min(100% - (var(--container-y-gutters) * 2), var(--container-width))
+        [content-end]
+        minmax(0, var(--breakout-size)) [breakout-end]
+        minmax(var(--container-y-gutters), 1fr) [full-width-end];
+    & > :not(.breakout, .full-width),
+    &.full-width > :not(.breakout, .full-width) {
+        grid-column: content;
+    }
+    &.breakout > * {
+        grid-column: breakout;
+    }
+    &.full-width > * {
+        grid-column: full-width;
+    }
+    &.full-width {
+        display: grid;
+        grid-template-columns: inherit;
+    }
+}
+
 .screen-reader-text {
     border: 0;
     clip: rect(1px, 1px, 1px, 1px);
