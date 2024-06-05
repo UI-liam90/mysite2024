@@ -1,0 +1,7 @@
+---
+const { type, className } = Astro.props;
+
+let HeadingElement = type;
+---
+
+<HeadingElement class={className}><slot /></HeadingElement>

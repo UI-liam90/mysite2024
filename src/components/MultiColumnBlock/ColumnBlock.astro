@@ -1,4 +1,5 @@
 ---
+import BlockWrapper from "~helpers/BlockWrapper.astro";
 import ContactBlock from "~components/ContactBlock/ContactBlock.astro";
 import FormBlock from "~components/FormBlock/FormBlock.astro";
 import ImageBlock from "~components/ImageBlock/ImageBlock.astro";
@@ -13,13 +14,29 @@ const blocks = columnData?.blocks;
             blocks.map((block) => {
                 switch (block.fieldGroupName) {
                     case `PageBuilderBlocksColumnOneBlocksContactBlockLayout`:
-                        return <ContactBlock blockData={block} blockContext="multi" />;
+                        return (
+                            <BlockWrapper blockName="contact-block-wrapper" blockData={block} blockContext="multi">
+                                <ContactBlock blockData={block} />
+                            </BlockWrapper>
+                        );
                     case `PageBuilderBlocksColumnOneBlocksFormBlockLayout`:
-                        return <FormBlock blockData={block} blockContext="multi" />;
+                        return (
+                            <BlockWrapper blockName="form-block-wrapper" blockData={block} blockContext="multi">
+                                <FormBlock blockData={block} />
+                            </BlockWrapper>
+                        );
                     case `PageBuilderBlocksColumnOneBlocksImageBlockLayout`:
-                        return <ImageBlock blockData={block} blockContext="multi" />;
+                        return (
+                            <BlockWrapper blockName="image-block-wrapper" blockData={block} blockContext="multi">
+                                <ImageBlock blockData={block} />
+                            </BlockWrapper>
+                        );
                     case `PageBuilderBlocksColumnOneBlocksTextBlockLayout`:
-                        return <TextBlock blockData={block} blockContext="multi" />;
+                        return (
+                            <BlockWrapper blockName="text-block-wrapper" blockData={block} blockContext="multi">
+                                <TextBlock blockData={block} />
+                            </BlockWrapper>
+                        );
                     default:
                         return null;
                 }
