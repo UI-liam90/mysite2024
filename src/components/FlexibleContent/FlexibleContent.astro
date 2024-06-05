@@ -1,4 +1,5 @@
 ---
+import BlockWrapper from "~helpers/BlockWrapper.astro";
 import ContactBlock from "~components/ContactBlock/ContactBlock.astro";
 import FormBlock from "~components/FormBlock/FormBlock.astro";
 import FaqBlock from "~components/FaqBlock";
@@ -18,21 +19,55 @@ const blocks = blockData;
         blocks.map((block) => {
             switch (block.fieldGroupName) {
                 case `PageBuilderBlocksContactBlockLayout`:
-                    return <ContactBlock blockData={block} blockContext="single" />;
-                case `PageBuilderBlocksFormBlockLayout`:
-                    return <FormBlock blockData={block} blockContext="single" />;
+                    return (
+                        <BlockWrapper blockName="contact-block-wrapper" blockData={block} blockContext="single">
+                            <ContactBlock blockData={block} />
+                        </BlockWrapper>
+                    );
                 case `PageBuilderBlocksFaqBlockLayout`:
-                    return <FaqBlock client:load blockData={block} blockContext="single" />;
+                    return (
+                        <BlockWrapper blockName="faq-block-wrapper" blockData={block} blockContext="single">
+                            <FaqBlock client:load blockData={block} />
+                        </BlockWrapper>
+                    );
+                case `PageBuilderBlocksFormBlockLayout`:
+                    return (
+                        <BlockWrapper blockName="form-block-wrapper" blockData={block} blockContext="single">
+                            <FormBlock blockData={block} />
+                        </BlockWrapper>
+                    );
+
                 case `PageBuilderBlocksGalleryBlockLayout`:
-                    return <GalleryBlock client:load blockData={block} blockContext="single" />;
+                    return (
+                        <BlockWrapper blockName="gallery-block-wrapper" blockData={block} blockContext="single">
+                            <GalleryBlock client:load blockData={block} />
+                        </BlockWrapper>
+                    );
                 case `PageBuilderBlocksHeroBannerLayout`:
-                    return <HeroBlock blockData={block} blockContext="single" />;
-                case `PageBuilderBlocksNewsAndTrendsBlockLayout`:
-                    return <NewsAndTrendsBlock blockData={block} blockContext="single" />;
+                    return (
+                        <BlockWrapper blockName="hero-block-wrapper" blockData={block} blockContext="single">
+                            <HeroBlock blockData={block} />
+                        </BlockWrapper>
+                    );
                 case `PageBuilderBlocksMultiColumnBlockLayout`:
-                    return <MultiColumnBlock blockData={block} blockContext="single" />;
+                    return (
+                        <BlockWrapper blockName="multicolumn-block-wrapper" blockData={block} blockContext="single">
+                            <MultiColumnBlock blockData={block} />
+                        </BlockWrapper>
+                    );
+                case `PageBuilderBlocksNewsAndTrendsBlockLayout`:
+                    return (
+                        <BlockWrapper blockName="news-trends-block-wrapper" blockData={block} blockContext="single">
+                            <NewsAndTrendsBlock blockData={block} />
+                        </BlockWrapper>
+                    );
+
                 case `PageBuilderBlocksTextBlockLayout`:
-                    return <TextBlock blockData={block} blockContext="single" />;
+                    return (
+                        <BlockWrapper blockName="text-block-wrapper" blockData={block} blockContext="single">
+                            <TextBlock blockData={block} />
+                        </BlockWrapper>
+                    );
                 case "PageBuilderBlocksGlobalElementBlockLayout":
                     if (contentType === "GlobalElement") {
                         return null;

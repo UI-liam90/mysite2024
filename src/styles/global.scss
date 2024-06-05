@@ -213,7 +213,8 @@ strong {
 
 .content-grid {
     --breakout-size: calc((var(--container-wide-width) - var(--container-width)) / 2);
-
+    padding-top: var(--container-x-gutters);
+    padding-bottom: var(--container-x-gutters);
     display: grid;
     grid-template-columns:
         [full-width-start] minmax(var(--container-y-gutters), 1fr)
@@ -222,19 +223,21 @@ strong {
         [content-end]
         minmax(0, var(--breakout-size)) [breakout-end]
         minmax(var(--container-y-gutters), 1fr) [full-width-end];
-    & > :not(.breakout, .full-width),
-    &.full-width > :not(.breakout, .full-width) {
+    &.full-width {
+        padding-left: var(--container-y-gutters);
+        padding-right: var(--container-y-gutters);
+    }
+    & > *,
+    & > astro-island > * {
         grid-column: content;
     }
-    &.breakout > * {
+    &.breakout > *,
+    &.breakout > astro-island > * {
         grid-column: breakout;
     }
-    &.full-width > * {
+    &.full-width > *,
+    &.full-width > astro-island > * {
         grid-column: full-width;
-    }
-    &.full-width {
-        display: grid;
-        grid-template-columns: inherit;
     }
 }
 
