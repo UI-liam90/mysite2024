@@ -5,11 +5,11 @@ $breakpoints: (
     xl: 1440px,
     xxl: 1920px,
 );
-@mixin breakpoint($name) {
+@mixin breakpoint($name, $direction: "min-width") {
     @if not map-has-key($breakpoints, $name) {
         @warn "Warning: `#{$name}` is not a valid breakpoint name.";
     } @else {
-        @media screen and (min-width: map-get($breakpoints, $name)) {
+        @media screen and (#{$direction}: map-get($breakpoints, $name)) {
             @content;
         }
     }
