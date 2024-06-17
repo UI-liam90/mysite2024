@@ -16,7 +16,7 @@ const Link = ({ className, href, target, children }) => {
     const wordpressUrl = new URL(`${import.meta.env.PUBLIC_WORDPRESS_API_URL}`);
 
     if (url && url.host === wordpressUrl.host) {
-        href = `${url?.pathname}${url.hash}`;
+        href = `${url.pathname}${url.search}${url.hash}`;
     }
 
     return (
