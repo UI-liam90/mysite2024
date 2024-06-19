@@ -1,7 +1,7 @@
 ---
 import Layout from "~layouts/Layout.astro";
 import { getPostList, getPostArchiveSeo } from "~data/post";
-import PostList from "~components/PostList";
+import PostList from "~components/PostList/PostList.astro";
 
 export const prerender = false;
 
@@ -19,7 +19,7 @@ const PostArchiveSeo = await getPostArchiveSeo();
     <main class="main-content">
         <div class="container">
             <h1>{PostArchiveSeo.archivePageSettings.newsArchiveSettings.pageTitle}</h1>
-            <PostList client:load postsData={allPosts} page={parseInt(pageNum)} path="/news/" postSize={parseInt(import.meta.env.PUBLIC_POST_SIZE)} />
+            <PostList postsData={allPosts} page={parseInt(pageNum)} path="/news/" postSize={parseInt(import.meta.env.PUBLIC_POST_SIZE)} />
         </div>
     </main>
 </Layout>
