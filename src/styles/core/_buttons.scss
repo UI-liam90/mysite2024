@@ -71,7 +71,6 @@ a.button.button--primary,
 button.button,
 input[type="submit"].button,
 input[type="submit"],
-button[type="submit"],
 input[type="button"],
 input[type="reset"] {
     @include button;

@@ -3,7 +3,7 @@ import { getSeo } from "~data/seo";
 
 const globalSeo = await getSeo();
 
-const { seoData, slug } = Astro.props;
+const { seoData, slug, hiddenPage } = Astro.props;
 
 const siteUrl = import.meta.env.PUBLIC_SITE_URL;
 
@@ -37,7 +37,7 @@ const twitterImage = seoData?.twitterImage?.localFile?.url;
 const noFollow = seoData?.metaRobotsNofollow;
 const noIndex = seoData?.metaRobotsNoindex;
 let metaRobots = `noFollow,noIndex`;
-if (import.meta.env.PUBLIC_SEO_ACTIVE === "false") {
+if (import.meta.env.PUBLIC_SEO_ACTIVE === "false" || hiddenPage) {
     metaRobots = `noFollow,noIndex`;
 } else if (noFollow && noIndex) {
     metaRobots = `${noFollow},${noIndex}`;

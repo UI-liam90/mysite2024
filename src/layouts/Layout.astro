@@ -8,8 +8,9 @@ import GoogleTagManager from "~components/GoogleTagManager";
 import Header from "~slices/Header/header.astro";
 import Footer from "~slices/Footer/Footer.astro";
 import OffCanvas from "~slices/OffCanvas";
+import PageLoadingBar from "~components/PageLoadingBar/PageLoadingBar.astro";
 
-const { seoData, pageSlug } = Astro.props;
+const { seoData, pageSlug, hiddenPage } = Astro.props;
 ---
 
 <!doctype html>
@@ -21,10 +22,11 @@ const { seoData, pageSlug } = Astro.props;
         <meta name="generator" content={Astro.generator} />
         {import.meta.env.PUBLIC_ANALYTICS_ID && <GoogleAnalytics measurementId={import.meta.env.PUBLIC_ANALYTICS_ID} />}
         {import.meta.env.PUBLIC_GOOGLE_TAG_ID && <GoogleTagManager measurementId={import.meta.env.PUBLIC_GOOGLE_TAG_ID} />}
-        <Seo seoData={seoData} slug={pageSlug} />
+        <Seo seoData={seoData} slug={pageSlug} hiddenPage={hiddenPage} />
         <ViewTransitions />
     </head>
     <body>
+        <PageLoadingBar bgColour="rgba(255 255 255 / 0.25)" barColour="var(--black)" />
         <Header />
         <slot />
         <Footer />

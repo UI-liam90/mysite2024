@@ -136,3 +136,43 @@ export async function getAllNews() {
 
     return responseBody;
 }
+
+export async function getSearchResults(searchTerm) {
+    const query = {
+        query: `
+    query search {
+      contentNodes(where: {search: "${searchTerm}"}) {
+        nodes {
+          ... on Page {
+            id
+            title
+            uri
+            excerpt
+            contentTypeName
+            featuredImage {
+              node {
+                ${imageFragment}
+              }
+            }
+          }
+          ... on Post {
+            id
+            title
+            uri
+            excerpt
+            contentTypeName
+            featuredImage {
+              node {
+                ${imageFragment}
+              }
+            }
+          }
+        }
+      }
+    }
+`,
+    };
+
+    const responseBody = await GQLQuery(query);
+    return responseBody;
+}

@@ -15,7 +15,7 @@ const Link = ({ className, href, target, children }) => {
     const url = isValidUrl(href) ? new URL(`${href}`) : null;
     const wordpressUrl = new URL(`${import.meta.env.PUBLIC_WORDPRESS_API_URL}`);
 
-    if (url && url.host === wordpressUrl.host) {
+    if (url && url.host === wordpressUrl.host && !url?.pathname?.includes("/wp-content/uploads/")) {
         href = `${url.pathname}${url.search}${url.hash}`;
     }
 
