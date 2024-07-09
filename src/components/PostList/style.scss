@@ -1,4 +1,4 @@
-@use "~styles/abstracts/breakpoint" as *;
+@use "~styles/functions/breakpoint" as *;
 .news-grid {
     display: grid;
     grid-template-columns: auto;

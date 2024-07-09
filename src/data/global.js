@@ -141,7 +141,7 @@ export async function getSearchResults(searchTerm) {
     const query = {
         query: `
     query search {
-      contentNodes(where: {search: "${searchTerm}"}) {
+      contentNodes(where: {contentTypes: [PAGE, POST], search: "${searchTerm}"}) {
         nodes {
           ... on Page {
             id
