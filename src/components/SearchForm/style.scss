@@ -40,15 +40,19 @@
     }
     @container (width > 600px) {
         button {
-            @include button;
-            @include secondary-button;
-            margin: 0;
-            height: var(--size);
-            span.large-text {
-                display: inline;
+            & {
+                @include button;
             }
-            span.small-text {
-                display: none;
+
+            & {
+                margin: 0;
+                height: var(--size);
+                span.large-text {
+                    display: inline;
+                }
+                span.small-text {
+                    display: none;
+                }
             }
         }
     }
