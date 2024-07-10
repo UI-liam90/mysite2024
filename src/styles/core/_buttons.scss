@@ -1,77 +1,10 @@
-@use "../abstracts/mixins" as *;
-@mixin button {
-    --btn-bg-colour: var(--brand-1);
-    --btn-bg-colour-interactive: var(--brand-2);
-    --btn-border-colour: var(--brand-1);
-    --btn-border-colour-interactive: var(--brand-1);
-    --btn-text-colour: var(--white);
-    --btn-text-colour-interactive: var(--white);
-    cursor: pointer;
-    display: inline-block;
-    text-decoration: none;
-    background-color: var(--btn-bg-colour);
-    border: 0.25rem solid var(--btn-border-colour);
-    font-size: var(--font-size-fox);
-    letter-spacing: calc-letter-spacing(25);
-    padding: 0.375em 1em 0.25em;
-    margin-top: var(--spacing-4);
-    color: var(--btn-text-colour);
-    transition: all 400ms linear;
-    font-family: var(--font-heading);
-    text-align: center;
-    font-weight: 600;
-    text-transform: uppercase;
-    line-height: 1;
-    box-shadow: 0px 4px 4px 0px rgba(34, 34, 34, 0.25);
-
-    &:hover:not(:disabled),
-    &:active:not(:disabled),
-    &:focus:not(:disabled) {
-        background-color: var(--btn-bg-colour-interactive);
-        color: var(--btn-text-colour-interactive);
-        border-color: var(--btn-border-colour-interactive);
-        box-shadow: none;
-        text-shadow: none;
-        text-decoration: none;
-    }
-
-    &.button--large {
-        --btn-font-size: 2.5rem;
-    }
-
-    &:disabled,
-    &[disabled] {
-        --btn-bg-colour: var(--grey-600);
-        --btn-text-colour: var(--white);
-        --btn-border-colour: var(--grey-600);
-        opacity: 0.75;
-        cursor: not-allowed;
-    }
-}
-
-@mixin secondary-button {
-    --btn-bg-colour: var(--white);
-    --btn-bg-colour-interactive: var(--brand-2);
-    --btn-border-colour: var(--white);
-    --btn-border-colour-interactive: var(--brand-2);
-    --btn-text-colour: var(--black);
-    --btn-text-colour-interactive: var(--black);
-
-    &:hover:not(:disabled),
-    &:active:not(:disabled),
-    &:focus:not(:disabled) {
-        background-color: var(--btn-bg-colour-interactive);
-        color: var(--btn-text-colour-interactive);
-        border-color: var(--btn-border-colour-interactive);
-    }
-}
+@use "~styles/mixins/buttons" as *;
 
 a.button,
 a.button.button--primary,
 button.button,
 input[type="submit"].button,
 input[type="submit"],
-button[type="submit"],
 input[type="button"],
 input[type="reset"] {
     @include button;

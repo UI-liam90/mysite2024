@@ -1,5 +1,5 @@
-@use "~styles/abstracts/breakpoint" as *;
-@use "~styles/abstracts/mixins" as *;
+@use "~styles/functions/breakpoint" as *;
+@use "~styles/mixins/utilities" as *;
 footer.footer {
     display: flex;
     flex-direction: column;

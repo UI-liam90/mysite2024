@@ -1,4 +1,5 @@
-@use "../abstracts/mixins" as *;
+@use "~styles/functions/letter-spacing" as *;
+@use "~styles/functions/clamping" as *;
 
 :root {
     /* ---------------------------------------

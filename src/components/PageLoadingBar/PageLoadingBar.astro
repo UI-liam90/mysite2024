@@ -1,0 +1,29 @@
+---
+const { bgColour, barColour } = Astro.props;
+import "./style.scss";
+---
+
+<div id="page-loading" class="page-loading-icon" style={{ "--bg-colour": bgColour, "--bar-colour": barColour }}>
+    <div class="loading-bar"></div>
+</div>
+<script is:inline>
+    document.addEventListener("astro:before-preparation", () => {
+        let loadingEl = document.querySelector("#page-loading");
+        let loadingWidth = 10;
+        loadingEl.classList.add("show");
+        loadingEl.querySelector(".loading-bar").style.width = `${loadingWidth}%`;
+        setInterval(() => {
+            if (loadingWidth < 90) {
+                loadingWidth = loadingWidth + 10;
+                loadingEl.querySelector(".loading-bar").style.width = `${loadingWidth}%`;
+            }
+        }, 1000);
+    });
+    document.addEventListener("astro:after-preparation", () => {
+        let loadingEl = document.querySelector("#page-loading");
+        loadingEl.querySelector(".loading-bar").style.width = `100%`;
+        clearInterval();
+        loadingEl.classList.remove("show");
+        loadingEl.querySelector(".loading-bar").style.width = `0%`;
+    });
+</script>

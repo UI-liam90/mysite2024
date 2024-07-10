@@ -1,0 +1,6 @@
+@use "sass:math";
+
+// function to calc letter spacing correctly when using values from Adobe tools
+@function calc-letter-spacing($kerningValue) {
+    @return #{math.div($kerningValue, 1000)}em;
+}

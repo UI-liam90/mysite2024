@@ -1,0 +1,54 @@
+@use "~styles/mixins/buttons" as *;
+.search-form {
+    container-type: inline-size;
+}
+.search-form__input-wrap {
+    --size: 40px;
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    input[type="search"] {
+        border: 1px solid var(--black);
+        height: var(--size);
+        padding: var(--spacing-1) calc(var(--size) + var(--spacing-1)) var(--spacing-1) var(--spacing-3);
+    }
+    @container (width <= 600px) {
+        button {
+            margin: 0;
+            background-color: transparent;
+            border: none;
+            box-shadow: none;
+            padding: 8px;
+            height: var(--size);
+            width: var(--size);
+            position: absolute;
+            right: 0;
+            transition: all 250ms var(--ease-1);
+            svg {
+                --icon-size: 15px;
+                fill: var(--black);
+                width: var(--icon-size);
+                height: var(--icon-size);
+            }
+            span.large-text {
+                display: none;
+            }
+            &:hover {
+                transform: scale(1.1);
+            }
+        }
+    }
+    @container (width > 600px) {
+        button {
+            @include button;
+            margin: 0;
+            height: var(--size);
+            span.large-text {
+                display: inline;
+            }
+            span.small-text {
+                display: none;
+            }
+        }
+    }
+}

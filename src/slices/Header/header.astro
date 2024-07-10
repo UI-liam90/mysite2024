@@ -3,6 +3,7 @@ import Menu from "~components/Menu";
 import { WpImage } from "~helpers/WpImage";
 import ScreenVisibility from "~helpers/ScreenVisibility";
 import { getHeader, getMenu } from "~data/global.js";
+import SearchForm from "~components/SearchForm/SearchForm.astro";
 
 import "./style.scss";
 
@@ -18,6 +19,9 @@ const header = await getHeader();
             {/* Output the logo if it is a SVG */}
             {header.themeGeneralSettings.themeSettings?.siteLogoSvg && <WpImage file={header.themeGeneralSettings.themeSettings?.siteLogoSvg.node} />}
         </a>
+    </div>
+    <div class="header-search">
+        <SearchForm />
     </div>
     <div class="desktopNav">
         <ScreenVisibility client:load mediaQuery={"(max-width: 1024px)"} hideOnMediaQuery={true}>

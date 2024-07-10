@@ -1,0 +1,19 @@
+.page-loading-icon {
+    position: fixed;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    display: none;
+    background-color: var(--bg-colour);
+    .loading-bar {
+        background-color: var(--bar-colour);
+        height: 5px;
+        width: 50%;
+    }
+    &.show {
+        display: block;
+        z-index: var(--layer-1);
+    }
+}

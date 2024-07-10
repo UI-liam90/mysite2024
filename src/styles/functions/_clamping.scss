@@ -1,0 +1,15 @@
+@use "sass:math";
+@use "~styles/functions/conversions" as *;
+
+//create fluid font sizes with clamp
+$default-min-bp: 548px;
+$default-max-bp: 1920px;
+
+@function clamped($min-px, $max-px, $min-bp: $default-min-bp, $max-bp: $default-max-bp) {
+    $slope: math.div($max-px - $min-px, $max-bp - $min-bp);
+    $slope-vw: rnd($slope * 100, 2);
+    $intercept-rems: rnd(to-rems($min-px - $slope * $min-bp), 2);
+    $min-rems: rnd(to-rems($min-px), 2);
+    $max-rems: rnd(to-rems($max-px), 2);
+    @return clamp(#{$min-rems}, #{$slope-vw}vw + #{$intercept-rems}, #{$max-rems});
+}

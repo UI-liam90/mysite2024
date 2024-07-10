@@ -1,4 +1,4 @@
-@use "../abstracts/breakpoint" as *;
+@use "~styles/functions/breakpoint" as *;
 .gform_wrapper {
     input[type="address"],
     input[type="color"],

@@ -36,6 +36,7 @@ menu {
 img {
     max-width: 100%;
     height: auto;
+    display: block;
 }
 
 /* removes spacing between cells in tables */
@@ -48,7 +49,14 @@ input,
 textarea {
     -webkit-user-select: auto;
 }
-
+input[type="checkbox"] {
+    appearance: checkbox !important;
+}
+input[type="radio"] {
+    appearance: radio !important;
+    width: 16px;
+    height: 16px;
+}
 /* revert the 'white-space' property for textarea elements on Safari */
 textarea {
     white-space: revert;

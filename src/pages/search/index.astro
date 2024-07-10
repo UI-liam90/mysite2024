@@ -1,0 +1,71 @@
+---
+import Layout from "~layouts/Layout.astro";
+import { getSearchResults } from "~data/global";
+import FlexibleContent from "~components/FlexibleContent/FlexibleContent.astro";
+import SearchForm from "~components/SearchForm/SearchForm.astro";
+import { toSentenceCase } from "~helpers/caseConverter";
+import { HTMLRender } from "~helpers/htmlRender";
+import { WpImage } from "~helpers/WpImage";
+import "~styles/core/search-page.scss";
+
+export const prerender = false;
+
+// get page data and slugs
+const { searchParams } = Astro.url;
+
+const searchTerm = searchParams.get("s");
+let pageSearch = await getSearchResults(searchTerm);
+let results = pageSearch.contentNodes.nodes;
+
+// Get unique content types
+let uniqueContentTypes = [...new Set(results.map((result) => result.contentTypeName))];
+---
+
+<Layout hiddenPage={true}>
+    <main class="main-content content-grid">
+        <h1 class="title-two">Let's find what you're looking for</h1>
+        <SearchForm />
+        <hr />
+        {
+            results.length === 0 ? (
+                <p>
+                    We're sorry, nothing was found for "{searchTerm}".
+                    <br /> Please try a different search term, navigate the website, or <a href="/contact">Contact Us</a> if you still can't find what you need.
+                </p>
+            ) : (
+                uniqueContentTypes.map((contentType) => (
+                    <div>
+                        {contentType && (
+                            <div key={contentType}>
+                                <div class="search-content-type">
+                                    <h2 class="title-four">{toSentenceCase(contentType)} Results</h2>
+                                </div>
+                                <ul class="search-links">
+                                    {results
+                                        .filter((result) => result.contentTypeName === contentType)
+                                        .map((result) => (
+                                            <li class="search-link">
+                                                <h3 class="title-five">
+                                                    <a href={result.uri}>{result.title}</a>
+                                                </h3>
+                                                {result.excerpt && (
+                                                    <div class="excerpt">
+                                                        <HTMLRender data={result.excerpt} />
+                                                    </div>
+                                                )}
+                                                {result.featuredImage && (
+                                                    <div class="featured-image">
+                                                        <WpImage file={result.featuredImage.node} />
+                                                    </div>
+                                                )}
+                                            </li>
+                                        ))}
+                                </ul>
+                            </div>
+                        )}
+                    </div>
+                ))
+            )
+        }
+    </main>
+</Layout>
