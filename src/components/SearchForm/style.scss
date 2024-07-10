@@ -12,7 +12,7 @@
         height: var(--size);
         padding: var(--spacing-1) calc(var(--size) + var(--spacing-1)) var(--spacing-1) var(--spacing-3);
     }
-    @container (width <= 599px) {
+    @container (width <= 600px) {
         button {
             margin: 0;
             background-color: transparent;
