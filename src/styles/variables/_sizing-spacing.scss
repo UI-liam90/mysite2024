@@ -1,4 +1,5 @@
 @use "~styles/functions/breakpoint" as *;
+@use "~styles/functions/conversions" as *;
 :root {
     /* ---------------------------------------
     Character Limit Sizes and max widths
@@ -14,7 +15,7 @@
     Gaps, Padding, & Margins
     ------------------------------------------ */
     /* these work on a scale of 4px increments, please keep to this mind set if adding more sizes */
-    --inc: 4px;
+    --inc: 4px; // can be changed to a rem value by using #{to-rems(4px)}
     --spacing-1: calc(var(--inc) * 1);
     --spacing-2: calc(var(--inc) * 2);
     --spacing-3: calc(var(--inc) * 3);
@@ -28,27 +29,14 @@
     --spacing-20: calc(var(--inc) * 20);
     --spacing-30: calc(var(--inc) * 30);
     --spacing-40: calc(var(--inc) * 40);
-    // --spacing-1: 4px;
-    // --spacing-2: 8px;
-    // --spacing-3: 12px;
-    // --spacing-4: 16px;
-    // --spacing-5: 20px;
-    // --spacing-6: 24px;
-    // --spacing-7: 28px;
-    // --spacing-8: 32px;
-    // --spacing-9: 36px;
-    // --spacing-10: 40px;
-    // --spacing-20: 80px;
-    // --spacing-30: 120px;
-    // --spacing-40: 160px;
 
     /* ---------------------------------------
     container Settings
     ------------------------------------------ */
     --container-width: 1200px;
     --container-wide-width: 1440px;
-    --container-y-gutters: var(--spacing-6);
-    --container-x-gutters: var(--spacing-10);
+    --inline-gutters: var(--spacing-6); // ◀▶ The gutter down the left and right sides
+    --block-gutters: var(--spacing-10); // 🔼🔽 The gutter on the top and bottom sides
 
     /* ---------------------------------------
     Aspect ratios
