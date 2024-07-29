@@ -4,15 +4,16 @@
     justify-content: center;
     align-items: center;
     padding: var(--spacing-10);
+    background-color: var(--brand-1);
     .logo {
         width: 100%;
-        max-width: 350px;
+        max-width: 250px;
     }
     .desktopNav {
         display: block;
         width: 100%;
     }
     @include breakpoint(lg) {
-        justify-content: flex-start;
+        justify-content: center;
     }
 }

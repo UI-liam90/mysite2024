@@ -1,0 +1,70 @@
+---
+import { HTMLRender } from "~helpers/htmlRender";
+import HTag from "~helpers/hTag.astro";
+import "./style.scss";
+
+const { blockData, blockContext } = Astro.props;
+---
+
+<div class="coding-hero-block">
+    <div class="intro-title animate">
+        <div class="coding-hero-title">
+            <span class="line-one">{blockData.headingLineOne && <HTMLRender data={blockData.headingLineOne} />}</span>
+            <span class="line-two">{blockData.headingLineTwo && <HTMLRender data={blockData.headingLineTwo} />}</span>
+        </div>
+    </div>
+    <div class="terminal animate">
+        <div class="terminal-topbar">
+            <div class="terminal-btn terminal-btn--one"></div>
+            <div class="terminal-btn terminal-btn--two"></div>
+            <div class="terminal-btn terminal-btn--three"></div>
+        </div>
+        <div class="terminal-area">
+            <div id="terminal-typing"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    import { scrollObserver } from "~helpers/ScrollObserver";
+    import { default as fitty } from "fitty";
+    import Typewriter from "typewriter-effect/dist/core";
+
+    scrollObserver(".animate", "animate-enter");
+
+    fitty(".line-one");
+    fitty(".line-two");
+
+    //setup typing terminal
+
+    const currentDate = new Date();
+    const hours = currentDate.getHours();
+    let welcomeMessage = "";
+
+    if (hours >= 0 && hours < 12) {
+        welcomeMessage = "Good Morning";
+    } else if (hours >= 12 && hours < 18) {
+        welcomeMessage = "Good Afternoon";
+    } else if (hours >= 17) {
+        welcomeMessage = "Good Evening";
+    } else {
+        welcomeMessage = "Hello!";
+    }
+    const greetings = ["How are you Today?", "I hope you are having a great day :)", "How can I help you on this fine day?"];
+    const typewriter = new Typewriter("#terminal-typing", {
+        loop: false,
+        delay: 75,
+    });
+
+    typewriter
+        .typeString(`> `)
+        .pauseFor(2500)
+        .typeString(`${welcomeMessage} <br> > `)
+        .pauseFor(2000)
+        .typeString(`${greetings[Math.floor(Math.random() * greetings.length)]} <br> > `)
+        .pauseFor(2000)
+        .typeString(`This site has a number of small things that can happen depending on what you type into the console, why not try 'confetti' <br> > <input type="text" />`)
+        .pauseFor(1000)
+        .start();
+    //typewriter.stop();
+</script>

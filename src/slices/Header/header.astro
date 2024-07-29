@@ -12,6 +12,11 @@ const header = await getHeader();
 ---
 
 <header class="globalHeader">
+    <div class="desktopNav">
+        <ScreenVisibility client:load mediaQuery={"(max-width: 1024px)"} hideOnMediaQuery={true}>
+            <Menu className="menu desktop-menu" menuData={menu.menuItems} />
+        </ScreenVisibility>
+    </div>
     <div class="logo">
         <a aria-label="back to homepage" class="header-link-home" href="/">
             {/* Output the logo if it is a standard image file format */}
@@ -19,9 +24,6 @@ const header = await getHeader();
             {/* Output the logo if it is a SVG */}
             {header.themeGeneralSettings.themeSettings?.siteLogoSvg && <WpImage file={header.themeGeneralSettings.themeSettings?.siteLogoSvg.node} />}
         </a>
-    </div>
-    <div class="header-search">
-        <SearchForm />
     </div>
     <div class="desktopNav">
         <ScreenVisibility client:load mediaQuery={"(max-width: 1024px)"} hideOnMediaQuery={true}>
