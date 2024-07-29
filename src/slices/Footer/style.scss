@@ -8,6 +8,9 @@ footer.footer {
     padding-top: var(--spacing-4);
     padding-bottom: var(--spacing-4);
     margin-top: 0;
+    .content-grid {
+        padding-block: 0;
+    }
     .footerItems {
         display: flex;
         align-items: center;

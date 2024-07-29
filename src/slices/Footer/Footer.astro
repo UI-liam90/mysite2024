@@ -14,8 +14,8 @@ const title = footer.generalSettings.title;
 ---
 
 <footer class="footer">
-    <div class="container">
-        <div class="footerItems">
+    <div class="content-grid full-width">
+        <!-- <div class="footerItems">
             <div class="footerColumn">
                 {themeSettings?.socialMedia && <SocialMenu socialData={themeSettings?.socialMedia} className="social-media-menu__footer" />}
                 {
@@ -43,12 +43,12 @@ const title = footer.generalSettings.title;
             <div class="footerColumn"></div>
             <div class="footerColumn"></div>
             <div class="footerColumn"></div>
-        </div>
+        </div> -->
         <div class="footerBottom">
             <div class="copyrightSection">
                 <p class="copyright">
                     © {title}
-                    {new Date().getFullYear()} | Site Developed By <a href="https://mosaicdigitalmedia.co.uk/">Mosaic Digital Media</a>
+                    {new Date().getFullYear()}
                 </p>
                 <Menu className="footerMenu" menuData={footer.menuItems} />
             </div>

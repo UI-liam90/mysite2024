@@ -5,10 +5,11 @@
     flex-direction: column;
     margin-inline: var(--spacing-6);
     margin-block: var(--spacing-20);
+    gap: var(--spacing-10);
     @include breakpoint(lg) {
         display: grid;
         grid-template-columns: calc(60% - var(--spacing-10)) 40%;
-        gap: var(--spacing-10);
+        align-items: center;
     }
 }
 .coding-hero-title {
@@ -19,15 +20,19 @@
         display: inline-block;
         white-space: nowrap;
         // width: 100%;
-        background: linear-gradient(180deg, rgba(0, 0, 0, 1) 57%, rgba(255, 255, 255, 1) 58%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        text-fill-color: transparent;
+        // background: linear-gradient(180deg, rgba(0, 0, 0, 1) 57%, rgba(255, 255, 255, 1) 58%);
+        // -webkit-background-clip: text;
+        // -webkit-text-fill-color: transparent;
+        // background-clip: text;
+        // text-fill-color: transparent;
         line-height: 1;
     }
-    // span.line-one {
-    // }
+    span.line-one {
+        color: var(--white);
+    }
+    span.line-two {
+        color: var(--black);
+    }
     // span.rainbow {
     //     background: linear-gradient(
     //         90deg,
@@ -68,6 +73,7 @@
     overflow: hidden;
     border-bottom-left-radius: var(--radius-16);
     border-bottom-right-radius: var(--radius-16);
+    aspect-ratio: var(--ratio-landscape);
     .terminal-topbar {
         border-top-left-radius: var(--radius-16);
         border-top-right-radius: var(--radius-16);
