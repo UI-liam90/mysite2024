@@ -1,5 +1,6 @@
 @use "~styles/functions/clamping" as *;
 @use "~styles/functions/breakpoint" as *;
+@use "~styles/mixins/utilities" as *;
 .coding-hero-block {
     display: flex;
     flex-direction: column;
@@ -70,9 +71,6 @@
     animation-fill-mode: forwards;
 }
 .terminal {
-    overflow: hidden;
-    border-bottom-left-radius: var(--radius-16);
-    border-bottom-right-radius: var(--radius-16);
     aspect-ratio: var(--ratio-landscape);
     .terminal-topbar {
         border-top-left-radius: var(--radius-16);
@@ -109,7 +107,22 @@
         padding: var(--spacing-4);
         color: var(--white);
         font-family: var(--font-mono);
-
+        font-size: var(--fs-fox);
         height: 100%;
+        overflow: auto;
+        border-bottom-left-radius: var(--radius-16);
+        border-bottom-right-radius: var(--radius-16);
+        ul {
+            @include reset-list;
+        }
+        li,
+        input {
+            font-family: var(--font-mono);
+            font-size: var(--fs-fox);
+        }
     }
+}
+
+#commandEntry {
+    color: var(--white);
 }

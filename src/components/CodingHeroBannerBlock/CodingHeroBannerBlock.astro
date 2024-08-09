@@ -28,6 +28,7 @@ const { blockData, blockContext } = Astro.props;
 <script>
     import { scrollObserver } from "~helpers/ScrollObserver";
     import { default as fitty } from "fitty";
+    import { cmds, addCmds } from "src/context/nanoContext";
     import Typewriter from "typewriter-effect/dist/core";
 
     scrollObserver(".animate", "animate-enter");
@@ -39,6 +40,7 @@ const { blockData, blockContext } = Astro.props;
 
     const currentDate = new Date();
     const hours = currentDate.getHours();
+    let consoleStartLine = "godvibes bot 0001> ";
     let welcomeMessage = "";
 
     if (hours >= 0 && hours < 12) {
@@ -53,18 +55,61 @@ const { blockData, blockContext } = Astro.props;
     const greetings = ["How are you Today?", "I hope you are having a great day :)", "How can I help you on this fine day?"];
     const typewriter = new Typewriter("#terminal-typing", {
         loop: false,
-        delay: 75,
+        delay: 25,
     });
 
     typewriter
-        .typeString(`> `)
+        .typeString(`${consoleStartLine}`)
         .pauseFor(2500)
-        .typeString(`${welcomeMessage} <br> > `)
+        .typeString(`${welcomeMessage} <br> ${consoleStartLine}`)
         .pauseFor(2000)
-        .typeString(`${greetings[Math.floor(Math.random() * greetings.length)]} <br> > `)
+        .typeString(`${greetings[Math.floor(Math.random() * greetings.length)]} <br> ${consoleStartLine}`)
         .pauseFor(2000)
-        .typeString(`This site has a number of small things that can happen depending on what you type into the console, why not try 'confetti' <br> > <input type="text" />`)
+        .typeString(`This site has a number of small things that can happen depending on what you type into the console, why not try 'confetti'`)
+        .callFunction(() => addUserTypingArea("#terminal-typing"))
         .pauseFor(1000)
         .start();
-    //typewriter.stop();
+
+    const addUserTypingArea = (element) => {
+        const el = document.querySelector(element);
+        let commandsList = `
+            <ul id="commandsList"></ul>
+            ${consoleStartLine} <input id="commandEntry" />
+        `;
+        el.insertAdjacentHTML("beforeend", commandsList);
+        el.querySelector(".Typewriter__cursor").style.display = "none";
+
+        focusInput("#commandEntry");
+        handleInputSubmit("#commandEntry");
+        //renderCmds("#commandsList");
+        renderCmds("#commandsList");
+    };
+    const focusInput = (element) => {
+        const el = document.querySelector(element);
+        el.focus();
+        el.select();
+    };
+    const handleInputSubmit = (element) => {
+        const el = document.querySelector(element);
+        el.addEventListener("keypress", (event) => {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                addCmds(el.value);
+                el.value = "";
+                focusInput(element);
+                el.scrollIntoView();
+            }
+        });
+    };
+    const renderCmds = (element) => {
+        const el = document.querySelector(element);
+        cmds.subscribe((values) => {
+            el.innerHTML = "";
+            if (values.length > 0) {
+                values.map((cmd) => {
+                    el.insertAdjacentHTML("beforeend", `<li>${consoleStartLine} ${cmd}</li>`);
+                });
+            }
+        });
+    };
 </script>
