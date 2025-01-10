@@ -3,10 +3,9 @@ import { atom } from "nanostores";
 
 export const isNavOpen = atom(false);
 
-export const cmds = atom(["test"]);
+export const cmds = atom([]);
 
 export const addCmds = (newValues) => {
     var oldValues = cmds.get();
-    console.log(oldValues, newValues);
     cmds.set([...oldValues, newValues]);
 };

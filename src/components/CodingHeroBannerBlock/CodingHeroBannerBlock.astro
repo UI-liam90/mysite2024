@@ -30,6 +30,7 @@ const { blockData, blockContext } = Astro.props;
     import { default as fitty } from "fitty";
     import { cmds, addCmds } from "src/context/nanoContext";
     import Typewriter from "typewriter-effect/dist/core";
+    import confetti from "canvas-confetti";
 
     scrollObserver(".animate", "animate-enter");
 
@@ -40,7 +41,7 @@ const { blockData, blockContext } = Astro.props;
 
     const currentDate = new Date();
     const hours = currentDate.getHours();
-    let consoleStartLine = "godvibes bot 0001> ";
+    let consoleStartLine = "goodVibes bot 3000> ";
     let welcomeMessage = "";
 
     if (hours >= 0 && hours < 12) {
@@ -59,13 +60,18 @@ const { blockData, blockContext } = Astro.props;
     });
 
     typewriter
-        .typeString(`${consoleStartLine}`)
-        .pauseFor(2500)
-        .typeString(`${welcomeMessage} <br> ${consoleStartLine}`)
-        .pauseFor(2000)
-        .typeString(`${greetings[Math.floor(Math.random() * greetings.length)]} <br> ${consoleStartLine}`)
-        .pauseFor(2000)
+        .pasteString(`${consoleStartLine}`)
+        .pauseFor(1500)
+        .typeString(`${welcomeMessage}`)
+        .pauseFor(500)
+        .pasteString(`<br> ${consoleStartLine}`)
+        .pauseFor(1000)
+        .typeString(`${greetings[Math.floor(Math.random() * greetings.length)]}`)
+        .pauseFor(500)
+        .pasteString(`<br> ${consoleStartLine}`)
+        .pauseFor(1000)
         .typeString(`This site has a number of small things that can happen depending on what you type into the console, why not try 'confetti'`)
+        .pauseFor(500)
         .callFunction(() => addUserTypingArea("#terminal-typing"))
         .pauseFor(1000)
         .start();
@@ -99,6 +105,14 @@ const { blockData, blockContext } = Astro.props;
                 focusInput(element);
                 el.scrollIntoView();
             }
+            if (event.key === "ArrowUp") {
+                event.preventDefault();
+                let currentCmds = cmds.get();
+                let lastCmd = cmds.at(-1);
+                el.value = lastCmd;
+                focusInput(element);
+                el.scrollIntoView();
+            }
         });
     };
     const renderCmds = (element) => {
@@ -112,4 +126,52 @@ const { blockData, blockContext } = Astro.props;
             }
         });
     };
+
+    var count = 200;
+    var defaults = {
+        origin: { y: 0.7 },
+    };
+
+    function fire(particleRatio, opts) {
+        confetti({
+            ...defaults,
+            ...opts,
+            particleCount: Math.floor(count * particleRatio),
+        });
+    }
+
+    cmds.subscribe((cmdsList) => {
+        if (cmdsList.at(-1) === "confetti") {
+            fire(0.25, {
+                spread: 26,
+                startVelocity: 55,
+            });
+            fire(0.2, {
+                spread: 60,
+            });
+            fire(0.35, {
+                spread: 100,
+                decay: 0.91,
+                scalar: 0.8,
+            });
+            fire(0.1, {
+                spread: 120,
+                startVelocity: 25,
+                decay: 0.92,
+                scalar: 1.2,
+            });
+            fire(0.1, {
+                spread: 120,
+                startVelocity: 45,
+            });
+            addCmds("Whoop whoop!");
+        }
+        if (cmdsList.at(-1) === "do a barrel roll") {
+            document.body.classList.add("barrel-roll");
+            setTimeout(() => {
+                document.body.classList.remove("barrel-roll");
+                addCmds("well, now my head is spinning");
+            }, 1000);
+        }
+    });
 </script>

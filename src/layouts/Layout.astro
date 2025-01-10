@@ -43,7 +43,7 @@ const { seoData, pageSlug, hiddenPage } = Astro.props;
         }
         <script>
             //add an off-canvas-open class to the body when the off canvas is open
-            import { isNavOpen } from "src/context/nanoContext";
+            import { isNavOpen, cmds, addCmds } from "src/context/nanoContext";
 
             isNavOpen.subscribe((open) => {
                 if (open) {

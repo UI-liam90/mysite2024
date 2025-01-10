@@ -12,7 +12,7 @@ html {
 }
 
 body {
-    background: var(--white);
+    background: var(--brand-1);
     color: var(--black);
 }
 
@@ -176,6 +176,12 @@ Container Styles
     }
 }
 
+body.barrel-roll {
+    animation-name: barrelRoll;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+}
 /**------------------------------------------------
 Animations
 ---------------------------------------------------*/
@@ -200,6 +206,18 @@ Animations
     }
     100% {
         opacity: 1;
+    }
+}
+@keyframes barrelRoll {
+    0% {
+        scale: 0.5;
+    }
+    // 50% {
+    //     rotate: 360deg;
+    // }
+    100% {
+        rotate: 360deg;
+        scale: 1;
     }
 }
 
